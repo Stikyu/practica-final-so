@@ -1,0 +1,12 @@
+{
+  "name": "practica-final-so",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Práctica para el final de Sistemas Operativos: multiple choice, ejercicios interactivos y teoría.",
+  "type": "module",
+  "scripts": {
+    "test": "node tests/verificar.mjs",
+    "check": "node --check js/app.js && node --check js/quiz.js && node --check js/teoria.js && node --check js/ejercicios/vista.js && node --check js/ejercicios/tipos.js && node --check js/ejercicios/motor.js",
+    "start": "python -m http.server 8000"
+  }
+}
