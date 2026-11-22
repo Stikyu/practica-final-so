@@ -1,0 +1,1685 @@
+{
+  "version": 1,
+  "descripcion": "Ejercicios del material de la cátedra. Cada ejercicio indica de dónde sale (fuente) y, si el material muestra resultados, los guarda en 'esperado' para verificar los correctores. Formato documentado en README.md.",
+  "ejercicios": [
+    {
+      "id": "plan-fcfs",
+      "tipo": "planificacion",
+      "titulo": "FCFS con los procesos A–E",
+      "origen": "material",
+      "fuente": {
+        "archivo": "Unidad 3b.pdf",
+        "pagina": 9
+      },
+      "datos": {
+        "algoritmo": "FCFS",
+        "procesos": [
+          {
+            "id": "A",
+            "llegada": 0,
+            "rafaga": 3
+          },
+          {
+            "id": "B",
+            "llegada": 1,
+            "rafaga": 5
+          },
+          {
+            "id": "C",
+            "llegada": 4,
+            "rafaga": 2
+          },
+          {
+            "id": "D",
+            "llegada": 5,
+            "rafaga": 6
+          },
+          {
+            "id": "E",
+            "llegada": 8,
+            "rafaga": 4
+          }
+        ]
+      },
+      "esperado": {
+        "gantt": "AAABBBBBCCDDDDDDEEEE",
+        "fin": {
+          "A": 3,
+          "B": 8,
+          "C": 10,
+          "D": 16,
+          "E": 20
+        },
+        "espera": {
+          "A": 0,
+          "B": 2,
+          "C": 4,
+          "D": 5,
+          "E": 8
+        },
+        "promedios": {
+          "retorno": 7.8,
+          "espera": 3.8,
+          "indice": 0.59
+        }
+      }
+    },
+    {
+      "id": "plan-sjf",
+      "tipo": "planificacion",
+      "titulo": "SJF con los procesos A–E",
+      "origen": "material",
+      "fuente": {
+        "archivo": "Unidad 3b.pdf",
+        "pagina": 12
+      },
+      "datos": {
+        "algoritmo": "SJF",
+        "procesos": [
+          {
+            "id": "A",
+            "llegada": 0,
+            "rafaga": 3
+          },
+          {
+            "id": "B",
+            "llegada": 1,
+            "rafaga": 5
+          },
+          {
+            "id": "C",
+            "llegada": 4,
+            "rafaga": 2
+          },
+          {
+            "id": "D",
+            "llegada": 5,
+            "rafaga": 6
+          },
+          {
+            "id": "E",
+            "llegada": 8,
+            "rafaga": 4
+          }
+        ]
+      },
+      "esperado": {
+        "gantt": "AAABBBBBCCEEEEDDDDDD",
+        "fin": {
+          "A": 3,
+          "B": 8,
+          "C": 10,
+          "D": 20,
+          "E": 14
+        },
+        "espera": {
+          "A": 0,
+          "B": 2,
+          "C": 4,
+          "D": 9,
+          "E": 2
+        },
+        "promedios": {
+          "retorno": 7.4,
+          "espera": 3.4,
+          "indice": 0.62
+        }
+      }
+    },
+    {
+      "id": "plan-srtf",
+      "tipo": "planificacion",
+      "titulo": "SRTF con los procesos A–E",
+      "origen": "material",
+      "fuente": {
+        "archivo": "Unidad 3b.pdf",
+        "pagina": 14
+      },
+      "nota": "En la diapositiva, la tabla tiene las filas de D y E cruzadas respecto de su propio Gantt (dice D: Tf=14 y E: Tf=20). El Gantt y el algoritmo dan D: Tf=20 y E: Tf=14: en t=10, E (resta 4) tiene menos tiempo restante que D (resta 6). Los promedios de T y E (7,00 y 3,00) coinciden igual.",
+      "datos": {
+        "algoritmo": "SRTF",
+        "procesos": [
+          {
+            "id": "A",
+            "llegada": 0,
+            "rafaga": 3
+          },
+          {
+            "id": "B",
+            "llegada": 1,
+            "rafaga": 5
+          },
+          {
+            "id": "C",
+            "llegada": 4,
+            "rafaga": 2
+          },
+          {
+            "id": "D",
+            "llegada": 5,
+            "rafaga": 6
+          },
+          {
+            "id": "E",
+            "llegada": 8,
+            "rafaga": 4
+          }
+        ]
+      },
+      "esperado": {
+        "gantt": "AAABCCBBBBEEEEDDDDDD",
+        "promedios": {
+          "retorno": 7,
+          "espera": 3
+        }
+      }
+    },
+    {
+      "id": "plan-rr1",
+      "tipo": "planificacion",
+      "titulo": "Round Robin con q = 1",
+      "origen": "material",
+      "fuente": {
+        "archivo": "Unidad 3b.pdf",
+        "pagina": 16
+      },
+      "datos": {
+        "algoritmo": "RR",
+        "quantum": 1,
+        "rrModo": "catedra",
+        "procesos": [
+          {
+            "id": "A",
+            "llegada": 0,
+            "rafaga": 3
+          },
+          {
+            "id": "B",
+            "llegada": 1,
+            "rafaga": 5
+          },
+          {
+            "id": "C",
+            "llegada": 4,
+            "rafaga": 2
+          },
+          {
+            "id": "D",
+            "llegada": 5,
+            "rafaga": 6
+          },
+          {
+            "id": "E",
+            "llegada": 8,
+            "rafaga": 4
+          }
+        ]
+      },
+      "esperado": {
+        "gantt": "ABABCDABCDEBDEBDEDED",
+        "fin": {
+          "A": 7,
+          "B": 15,
+          "C": 9,
+          "D": 20,
+          "E": 19
+        },
+        "espera": {
+          "A": 4,
+          "B": 9,
+          "C": 3,
+          "D": 9,
+          "E": 7
+        },
+        "promedios": {
+          "retorno": 10.4,
+          "espera": 6.4,
+          "indice": 0.39
+        }
+      }
+    },
+    {
+      "id": "plan-rr3",
+      "tipo": "planificacion",
+      "titulo": "Round Robin con q = 3",
+      "origen": "material",
+      "fuente": {
+        "archivo": "Unidad 3b.pdf",
+        "pagina": 17
+      },
+      "datos": {
+        "algoritmo": "RR",
+        "quantum": 3,
+        "rrModo": "catedra",
+        "procesos": [
+          {
+            "id": "A",
+            "llegada": 0,
+            "rafaga": 3
+          },
+          {
+            "id": "B",
+            "llegada": 1,
+            "rafaga": 5
+          },
+          {
+            "id": "C",
+            "llegada": 4,
+            "rafaga": 2
+          },
+          {
+            "id": "D",
+            "llegada": 5,
+            "rafaga": 6
+          },
+          {
+            "id": "E",
+            "llegada": 8,
+            "rafaga": 4
+          }
+        ]
+      },
+      "esperado": {
+        "gantt": "AAABBBCCDDDEEEBBDDDE",
+        "fin": {
+          "A": 3,
+          "B": 16,
+          "C": 8,
+          "D": 19,
+          "E": 20
+        },
+        "espera": {
+          "A": 0,
+          "B": 10,
+          "C": 2,
+          "D": 8,
+          "E": 8
+        },
+        "promedios": {
+          "retorno": 9.6,
+          "espera": 5.6,
+          "indice": 0.52
+        }
+      }
+    },
+    {
+      "id": "plan-prioridad",
+      "tipo": "planificacion",
+      "titulo": "Prioridades (no apropiativo)",
+      "origen": "material",
+      "fuente": {
+        "archivo": "Unidad 3b.pdf",
+        "pagina": 21
+      },
+      "datos": {
+        "algoritmo": "PRIORIDAD",
+        "procesos": [
+          {
+            "id": "P1",
+            "llegada": 0,
+            "rafaga": 10,
+            "prioridad": 3
+          },
+          {
+            "id": "P2",
+            "llegada": 0,
+            "rafaga": 1,
+            "prioridad": 1
+          },
+          {
+            "id": "P3",
+            "llegada": 0,
+            "rafaga": 2,
+            "prioridad": 4
+          },
+          {
+            "id": "P4",
+            "llegada": 0,
+            "rafaga": 1,
+            "prioridad": 5
+          },
+          {
+            "id": "P5",
+            "llegada": 0,
+            "rafaga": 5,
+            "prioridad": 2
+          }
+        ]
+      },
+      "esperado": {
+        "gantt": [
+          "P2",
+          "P5",
+          "P5",
+          "P5",
+          "P5",
+          "P5",
+          "P1",
+          "P1",
+          "P1",
+          "P1",
+          "P1",
+          "P1",
+          "P1",
+          "P1",
+          "P1",
+          "P1",
+          "P3",
+          "P3",
+          "P4"
+        ],
+        "promedios": {
+          "espera": 8.2
+        }
+      }
+    },
+    {
+      "id": "plan-prioridad-rr",
+      "tipo": "planificacion",
+      "titulo": "Prioridades con Round Robin (q = 2)",
+      "origen": "material",
+      "fuente": {
+        "archivo": "Unidad 3b.pdf",
+        "pagina": 22
+      },
+      "datos": {
+        "algoritmo": "PRIORIDAD_RR",
+        "quantum": 2,
+        "procesos": [
+          {
+            "id": "P1",
+            "llegada": 0,
+            "rafaga": 4,
+            "prioridad": 3
+          },
+          {
+            "id": "P2",
+            "llegada": 0,
+            "rafaga": 5,
+            "prioridad": 2
+          },
+          {
+            "id": "P3",
+            "llegada": 0,
+            "rafaga": 8,
+            "prioridad": 2
+          },
+          {
+            "id": "P4",
+            "llegada": 0,
+            "rafaga": 7,
+            "prioridad": 1
+          },
+          {
+            "id": "P5",
+            "llegada": 0,
+            "rafaga": 3,
+            "prioridad": 3
+          }
+        ]
+      },
+      "esperado": {
+        "gantt": [
+          "P4",
+          "P4",
+          "P4",
+          "P4",
+          "P4",
+          "P4",
+          "P4",
+          "P2",
+          "P2",
+          "P3",
+          "P3",
+          "P2",
+          "P2",
+          "P3",
+          "P3",
+          "P2",
+          "P3",
+          "P3",
+          "P3",
+          "P3",
+          "P1",
+          "P1",
+          "P5",
+          "P5",
+          "P1",
+          "P1",
+          "P5"
+        ]
+      }
+    },
+    {
+      "id": "reemp-fifo",
+      "tipo": "reemplazo",
+      "titulo": "FIFO con 3 marcos",
+      "origen": "material",
+      "fuente": {
+        "archivo": "Unidad 5 - Gestion de Memoria - B.pdf",
+        "pagina": 22
+      },
+      "datos": {
+        "algoritmo": "FIFO",
+        "marcos": 3,
+        "referencias": [
+          7,
+          0,
+          1,
+          2,
+          0,
+          3,
+          0,
+          4,
+          2,
+          3,
+          0,
+          3,
+          2,
+          1,
+          2,
+          0,
+          1,
+          7,
+          0,
+          1
+        ]
+      },
+      "esperado": {
+        "fallos": 15,
+        "marcosEnFallos": [
+          [
+            7,
+            null,
+            null
+          ],
+          [
+            7,
+            0,
+            null
+          ],
+          [
+            7,
+            0,
+            1
+          ],
+          [
+            2,
+            0,
+            1
+          ],
+          [
+            2,
+            3,
+            1
+          ],
+          [
+            2,
+            3,
+            0
+          ],
+          [
+            4,
+            3,
+            0
+          ],
+          [
+            4,
+            2,
+            0
+          ],
+          [
+            4,
+            2,
+            3
+          ],
+          [
+            0,
+            2,
+            3
+          ],
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            7,
+            1,
+            2
+          ],
+          [
+            7,
+            0,
+            2
+          ],
+          [
+            7,
+            0,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "id": "reemp-opt",
+      "tipo": "reemplazo",
+      "titulo": "Óptimo (OPT) con 3 marcos",
+      "origen": "material",
+      "fuente": {
+        "archivo": "Unidad 5 - Gestion de Memoria - B.pdf",
+        "pagina": 24
+      },
+      "datos": {
+        "algoritmo": "OPT",
+        "marcos": 3,
+        "referencias": [
+          7,
+          0,
+          1,
+          2,
+          0,
+          3,
+          0,
+          4,
+          2,
+          3,
+          0,
+          3,
+          2,
+          1,
+          2,
+          0,
+          1,
+          7,
+          0,
+          1
+        ]
+      },
+      "esperado": {
+        "fallos": 9,
+        "marcosEnFallos": [
+          [
+            7,
+            null,
+            null
+          ],
+          [
+            7,
+            0,
+            null
+          ],
+          [
+            7,
+            0,
+            1
+          ],
+          [
+            2,
+            0,
+            1
+          ],
+          [
+            2,
+            0,
+            3
+          ],
+          [
+            2,
+            4,
+            3
+          ],
+          [
+            2,
+            0,
+            3
+          ],
+          [
+            2,
+            0,
+            1
+          ],
+          [
+            7,
+            0,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "id": "reemp-lru",
+      "tipo": "reemplazo",
+      "titulo": "LRU con 3 marcos",
+      "origen": "material",
+      "fuente": {
+        "archivo": "Unidad 5 - Gestion de Memoria - B.pdf",
+        "pagina": 25
+      },
+      "datos": {
+        "algoritmo": "LRU",
+        "marcos": 3,
+        "referencias": [
+          7,
+          0,
+          1,
+          2,
+          0,
+          3,
+          0,
+          4,
+          2,
+          3,
+          0,
+          3,
+          2,
+          1,
+          2,
+          0,
+          1,
+          7,
+          0,
+          1
+        ]
+      },
+      "esperado": {
+        "fallos": 12,
+        "marcosEnFallos": [
+          [
+            7,
+            null,
+            null
+          ],
+          [
+            7,
+            0,
+            null
+          ],
+          [
+            7,
+            0,
+            1
+          ],
+          [
+            2,
+            0,
+            1
+          ],
+          [
+            2,
+            0,
+            3
+          ],
+          [
+            4,
+            0,
+            3
+          ],
+          [
+            4,
+            0,
+            2
+          ],
+          [
+            4,
+            3,
+            2
+          ],
+          [
+            0,
+            3,
+            2
+          ],
+          [
+            1,
+            3,
+            2
+          ],
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            1,
+            0,
+            7
+          ]
+        ]
+      }
+    },
+    {
+      "id": "reemp-belady-3",
+      "tipo": "reemplazo",
+      "titulo": "Anomalía de Belady: FIFO con 3 marcos",
+      "origen": "material",
+      "fuente": {
+        "archivo": "Unidad 5 - Gestion de Memoria - B.pdf",
+        "pagina": 23
+      },
+      "nota": "La diapositiva da los totales (3 marcos → 9 fallos, 4 marcos → 10) y el gráfico; la cadena 1 2 3 4 1 2 5 1 2 3 4 5 es la del libro, que corresponde a ese gráfico.",
+      "datos": {
+        "algoritmo": "FIFO",
+        "marcos": 3,
+        "referencias": [
+          1,
+          2,
+          3,
+          4,
+          1,
+          2,
+          5,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "esperado": {
+        "fallos": 9
+      }
+    },
+    {
+      "id": "reemp-belady-4",
+      "tipo": "reemplazo",
+      "titulo": "Anomalía de Belady: FIFO con 4 marcos",
+      "origen": "material",
+      "fuente": {
+        "archivo": "Unidad 5 - Gestion de Memoria - B.pdf",
+        "pagina": 23
+      },
+      "nota": "Con un marco más, FIFO da MÁS fallos que con 3: esa es la anomalía de Belady.",
+      "datos": {
+        "algoritmo": "FIFO",
+        "marcos": 4,
+        "referencias": [
+          1,
+          2,
+          3,
+          4,
+          1,
+          2,
+          5,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "esperado": {
+        "fallos": 10
+      }
+    },
+    {
+      "id": "pag-ejemplo",
+      "tipo": "paginacion",
+      "titulo": "Paginación con m = 4, n = 2",
+      "origen": "material",
+      "fuente": {
+        "archivo": "Unidad 5 - Gestion de Memoria - A.pdf",
+        "pagina": 29
+      },
+      "datos": {
+        "m": 4,
+        "n": 2,
+        "memoriaFisica": 32,
+        "tabla": [
+          5,
+          6,
+          1,
+          2
+        ],
+        "direcciones": [
+          0,
+          3,
+          4,
+          13
+        ]
+      },
+      "esperado": {
+        "tamPagina": 4,
+        "cantPaginas": 4,
+        "cantMarcos": 8,
+        "bitsP": 2,
+        "bitsD": 2,
+        "fisicas": [
+          20,
+          23,
+          24,
+          9
+        ]
+      }
+    },
+    {
+      "id": "pag-ejercitacion",
+      "tipo": "paginacion",
+      "titulo": "Ejercitación de paginación: m = 6, n = 3",
+      "origen": "material",
+      "fuente": {
+        "archivo": "Ejercitación paginación.pdf",
+        "pagina": 1
+      },
+      "nota": "El enunciado y la tabla página→marco (pág. 2) son del material, que no trae la resolución: la calcula la página.",
+      "datos": {
+        "m": 6,
+        "n": 3,
+        "memoriaFisica": 64,
+        "tabla": [
+          3,
+          6,
+          0,
+          5,
+          1,
+          7,
+          2,
+          4
+        ],
+        "direcciones": [
+          0,
+          8,
+          12,
+          20,
+          25,
+          30,
+          34,
+          36,
+          43,
+          45,
+          47,
+          54,
+          58,
+          61
+        ]
+      }
+    },
+    {
+      "id": "seg-tabla",
+      "tipo": "segmentacion",
+      "titulo": "Segmentación con la tabla de la diapositiva",
+      "origen": "adaptado",
+      "fuente": {
+        "archivo": "Unidad 5 - Gestion de Memoria - A.pdf",
+        "pagina": 47
+      },
+      "nota": "La tabla de segmentos es la de la diapositiva. Las direcciones (s, d) se eligieron para practicar: la resolución la calcula la página.",
+      "datos": {
+        "tabla": [
+          {
+            "limite": 1000,
+            "base": 1400
+          },
+          {
+            "limite": 400,
+            "base": 6300
+          },
+          {
+            "limite": 400,
+            "base": 4300
+          },
+          {
+            "limite": 1100,
+            "base": 3200
+          },
+          {
+            "limite": 1000,
+            "base": 4700
+          }
+        ],
+        "referencias": [
+          {
+            "s": 2,
+            "d": 53
+          },
+          {
+            "s": 3,
+            "d": 852
+          },
+          {
+            "s": 0,
+            "d": 1222
+          },
+          {
+            "s": 1,
+            "d": 399
+          },
+          {
+            "s": 4,
+            "d": 1000
+          }
+        ]
+      }
+    },
+    {
+      "id": "bl-ejemplo",
+      "tipo": "base-limite",
+      "titulo": "Registros base y límite",
+      "origen": "material",
+      "fuente": {
+        "archivo": "Unidad 5 - Gestion de Memoria - A.pdf",
+        "pagina": 9
+      },
+      "datos": {
+        "base": 300040,
+        "limite": 120900,
+        "direcciones": [
+          300040,
+          350000,
+          420939,
+          420940,
+          300039
+        ]
+      },
+      "esperado": {
+        "ultima": 420939,
+        "legales": [
+          true,
+          true,
+          true,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "id": "buddy-ejemplo",
+      "tipo": "buddy",
+      "titulo": "Buddy System: el kernel pide 21 KB",
+      "origen": "material",
+      "fuente": {
+        "archivo": "Unidad 5 - Gestion de Memoria - B.pdf",
+        "pagina": 37
+      },
+      "datos": {
+        "segmento": 256,
+        "solicitud": 21
+      },
+      "esperado": {
+        "bloque": 32,
+        "cantDivisiones": 3,
+        "fragInterna": 11
+      }
+    },
+    {
+      "id": "marcos-ejemplo",
+      "tipo": "asignacion-marcos",
+      "titulo": "Asignación equitativa vs. proporcional",
+      "origen": "material",
+      "fuente": {
+        "archivo": "hoja_de_estudio_SO.pdf",
+        "pagina": 10
+      },
+      "datos": {
+        "marcos": 62,
+        "tamanos": [
+          10,
+          127
+        ]
+      },
+      "esperado": {
+        "equitativa": 31,
+        "proporcional": [
+          4,
+          57
+        ]
+      }
+    },
+    {
+      "id": "eat-ejemplo",
+      "tipo": "eat",
+      "titulo": "EAT con p = 0,01",
+      "origen": "material",
+      "fuente": {
+        "archivo": "Unidad 5 - Gestion de Memoria - B.pdf",
+        "pagina": 14
+      },
+      "datos": {
+        "p": 0.01,
+        "tMem": 200,
+        "tFallo": 8000000
+      },
+      "esperado": {
+        "eat": 80198
+      }
+    },
+    {
+      "id": "amdahl-ejemplo",
+      "tipo": "amdahl",
+      "titulo": "Ley de Amdahl: 80 % paralelizable con 4 núcleos",
+      "origen": "material",
+      "fuente": {
+        "archivo": "Unidad 2b.pdf",
+        "pagina": 20
+      },
+      "datos": {
+        "P": 0.8,
+        "N": 4,
+        "tiempo": 100
+      },
+      "esperado": {
+        "S": 2.5
+      }
+    },
+    {
+      "id": "amdahl-limite",
+      "tipo": "amdahl",
+      "titulo": "Ley de Amdahl: 25 % serial y 1000 núcleos",
+      "origen": "adaptado",
+      "fuente": {
+        "archivo": "Unidad 2b.pdf",
+        "pagina": 18
+      },
+      "nota": "La diapositiva afirma que con 25 % serial el programa nunca será más de 4 veces más rápido, aunque tenga 1000 núcleos. Acá se hace la cuenta.",
+      "datos": {
+        "P": 0.75,
+        "N": 1000,
+        "tiempo": 100
+      },
+      "esperado": {
+        "limite": 4
+      }
+    },
+    {
+      "id": "inodo-ejemplo",
+      "tipo": "inodo",
+      "titulo": "Capacidad máxima del inodo UNIX",
+      "origen": "material",
+      "fuente": {
+        "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf",
+        "pagina": 41
+      },
+      "datos": {
+        "bloque": 4096,
+        "puntero": 4,
+        "directos": 12
+      },
+      "esperado": {
+        "punterosPorBloque": 1024,
+        "directa": 49152,
+        "simple": 4194304,
+        "doble": 4294967296,
+        "triple": 4398046511104
+      }
+    },
+    {
+      "id": "bloques-ejemplo",
+      "tipo": "bloques",
+      "titulo": "Fragmentación interna: archivo de 5000 bytes",
+      "origen": "material",
+      "fuente": {
+        "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf",
+        "pagina": 12
+      },
+      "datos": {
+        "archivo": 5000,
+        "bloque": 4096
+      },
+      "esperado": {
+        "bloques": 2,
+        "ocupado": 8192,
+        "desperdicio": 3192
+      }
+    },
+    {
+      "id": "disco-fcfs",
+      "tipo": "disco",
+      "titulo": "Disco FCFS (cola del libro)",
+      "origen": "material",
+      "fuente": {
+        "archivo": "hoja_de_estudio_SO.pdf",
+        "pagina": 14
+      },
+      "datos": {
+        "algoritmo": "FCFS",
+        "cola": [
+          98,
+          183,
+          37,
+          122,
+          14,
+          124,
+          65,
+          67
+        ],
+        "cabeza": 53,
+        "direccion": "arriba",
+        "maxCilindro": 199
+      },
+      "esperado": {
+        "total": 640
+      }
+    },
+    {
+      "id": "disco-sstf",
+      "tipo": "disco",
+      "titulo": "Disco SSTF (cola del libro)",
+      "origen": "material",
+      "fuente": {
+        "archivo": "hoja_de_estudio_SO.pdf",
+        "pagina": 14
+      },
+      "datos": {
+        "algoritmo": "SSTF",
+        "cola": [
+          98,
+          183,
+          37,
+          122,
+          14,
+          124,
+          65,
+          67
+        ],
+        "cabeza": 53,
+        "direccion": "arriba",
+        "maxCilindro": 199
+      },
+      "esperado": {
+        "total": 236,
+        "orden": [
+          65,
+          67,
+          37,
+          14,
+          98,
+          122,
+          124,
+          183
+        ]
+      }
+    },
+    {
+      "id": "disco-scan",
+      "tipo": "disco",
+      "titulo": "Disco SCAN hacia el cilindro 0",
+      "origen": "adaptado",
+      "fuente": {
+        "archivo": "hoja_de_estudio_SO.pdf",
+        "pagina": 14
+      },
+      "nota": "La cola es la del material, que explica SCAN pero no da el total: lo calcula la página (disco de 0 a 199).",
+      "datos": {
+        "algoritmo": "SCAN",
+        "cola": [
+          98,
+          183,
+          37,
+          122,
+          14,
+          124,
+          65,
+          67
+        ],
+        "cabeza": 53,
+        "direccion": "abajo",
+        "maxCilindro": 199
+      }
+    },
+    {
+      "id": "disco-cscan",
+      "tipo": "disco",
+      "titulo": "Disco C-SCAN hacia arriba",
+      "origen": "adaptado",
+      "fuente": {
+        "archivo": "hoja_de_estudio_SO.pdf",
+        "pagina": 14
+      },
+      "nota": "Cola del material; el total lo calcula la página (disco de 0 a 199).",
+      "datos": {
+        "algoritmo": "CSCAN",
+        "cola": [
+          98,
+          183,
+          37,
+          122,
+          14,
+          124,
+          65,
+          67
+        ],
+        "cabeza": 53,
+        "direccion": "arriba",
+        "maxCilindro": 199
+      }
+    },
+    {
+      "id": "disco-look",
+      "tipo": "disco",
+      "titulo": "Disco LOOK hacia arriba",
+      "origen": "adaptado",
+      "fuente": {
+        "archivo": "hoja_de_estudio_SO.pdf",
+        "pagina": 14
+      },
+      "nota": "Cola del material; el total lo calcula la página.",
+      "datos": {
+        "algoritmo": "LOOK",
+        "cola": [
+          98,
+          183,
+          37,
+          122,
+          14,
+          124,
+          65,
+          67
+        ],
+        "cabeza": 53,
+        "direccion": "arriba",
+        "maxCilindro": 199
+      }
+    },
+    {
+      "id": "disco-clook",
+      "tipo": "disco",
+      "titulo": "Disco C-LOOK hacia arriba",
+      "origen": "adaptado",
+      "fuente": {
+        "archivo": "hoja_de_estudio_SO.pdf",
+        "pagina": 14
+      },
+      "nota": "Cola del material; el total lo calcula la página.",
+      "datos": {
+        "algoritmo": "CLOOK",
+        "cola": [
+          98,
+          183,
+          37,
+          122,
+          14,
+          124,
+          65,
+          67
+        ],
+        "cabeza": 53,
+        "direccion": "arriba",
+        "maxCilindro": 199
+      }
+    },
+    {
+      "id": "banq-cintas",
+      "tipo": "banquero",
+      "titulo": "Estado seguro con 12 unidades de cinta",
+      "origen": "material",
+      "fuente": {
+        "archivo": "hoja_de_estudio_SO.pdf",
+        "pagina": 6
+      },
+      "datos": {
+        "recursos": [
+          "Cintas"
+        ],
+        "disponible": [
+          3
+        ],
+        "max": [
+          [
+            10
+          ],
+          [
+            4
+          ],
+          [
+            9
+          ]
+        ],
+        "asignado": [
+          [
+            5
+          ],
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ]
+      },
+      "esperado": {
+        "seguro": true,
+        "secuencia": [
+          "P1",
+          "P0",
+          "P2"
+        ]
+      }
+    },
+    {
+      "id": "banq-cintas-solicitud",
+      "tipo": "banquero",
+      "titulo": "¿Se le da una cinta más a P2?",
+      "origen": "material",
+      "fuente": {
+        "archivo": "hoja_de_estudio_SO.pdf",
+        "pagina": 6
+      },
+      "datos": {
+        "recursos": [
+          "Cintas"
+        ],
+        "disponible": [
+          3
+        ],
+        "max": [
+          [
+            10
+          ],
+          [
+            4
+          ],
+          [
+            9
+          ]
+        ],
+        "asignado": [
+          [
+            5
+          ],
+          [
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        "solicitud": {
+          "proceso": 2,
+          "vector": [
+            1
+          ]
+        }
+      },
+      "esperado": {
+        "seguro": true,
+        "concede": false
+      }
+    },
+    {
+      "id": "rms-ejemplo",
+      "tipo": "rms",
+      "titulo": "RMS: sensor y motor",
+      "origen": "material",
+      "fuente": {
+        "archivo": "Unidad 7 - Virtualizacion y otros.pdf",
+        "pagina": 33
+      },
+      "datos": {
+        "tareas": [
+          {
+            "nombre": "Sensor",
+            "t": 2,
+            "p": 10
+          },
+          {
+            "nombre": "Motor",
+            "t": 4,
+            "p": 20
+          }
+        ]
+      },
+      "esperado": {
+        "U": 0.4,
+        "cota": 0.828,
+        "garantizado": true
+      }
+    },
+    {
+      "id": "buffer-tabla",
+      "tipo": "buffer",
+      "titulo": "Buffer circular de 3 posiciones",
+      "origen": "material",
+      "fuente": {
+        "archivo": "Sincronismo Procesos - ProdCons.xlsx",
+        "pagina": null
+      },
+      "nota": "Es la misma tabla que la diapositiva 14 de la Unidad 4.",
+      "datos": {
+        "tam": 3,
+        "ops": [
+          {
+            "tipo": "P",
+            "item": "A"
+          },
+          {
+            "tipo": "P",
+            "item": "B"
+          },
+          {
+            "tipo": "P",
+            "item": "C"
+          },
+          {
+            "tipo": "C"
+          },
+          {
+            "tipo": "P",
+            "item": "C"
+          },
+          {
+            "tipo": "C"
+          },
+          {
+            "tipo": "C"
+          },
+          {
+            "tipo": "P",
+            "item": "D"
+          },
+          {
+            "tipo": "P",
+            "item": "E"
+          },
+          {
+            "tipo": "C"
+          }
+        ]
+      },
+      "esperado": {
+        "in": [
+          1,
+          2,
+          2,
+          2,
+          0,
+          0,
+          0,
+          1,
+          2,
+          2
+        ],
+        "out": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          2,
+          0,
+          0,
+          0,
+          1
+        ],
+        "bloqueado": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "id": "peterson-tabla",
+      "tipo": "peterson",
+      "titulo": "Traza del algoritmo de Peterson",
+      "origen": "material",
+      "fuente": {
+        "archivo": "Sincronismo Procesos - Peterson.xlsx",
+        "pagina": null
+      },
+      "nota": "Es la misma traza que la diapositiva 26 de la Unidad 4.",
+      "datos": {
+        "eventos": [
+          {
+            "proceso": 0,
+            "accion": "flag"
+          },
+          {
+            "proceso": 0,
+            "accion": "turn"
+          },
+          {
+            "proceso": 1,
+            "accion": "flag"
+          },
+          {
+            "proceso": 1,
+            "accion": "turn"
+          },
+          {
+            "proceso": 0,
+            "accion": "sc"
+          },
+          {
+            "proceso": 0,
+            "accion": "sale"
+          },
+          {
+            "proceso": 1,
+            "accion": "entra"
+          },
+          {
+            "proceso": 0,
+            "accion": "flag"
+          },
+          {
+            "proceso": 0,
+            "accion": "turn"
+          },
+          {
+            "proceso": 1,
+            "accion": "sale"
+          }
+        ]
+      },
+      "esperado": {
+        "flag0": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          true,
+          true,
+          true
+        ],
+        "flag1": [
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        "turn": [
+          null,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        "enSC": [
+          "Nadie",
+          "P0",
+          "P0",
+          "P0",
+          "P0",
+          "Nadie",
+          "P1",
+          "P1",
+          "P1",
+          "Nadie"
+        ]
+      }
+    },
+    {
+      "id": "sem-holas",
+      "tipo": "semaforos",
+      "titulo": "HOLAS / HOALS",
+      "origen": "material",
+      "fuente": {
+        "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf",
+        "pagina": 46
+      },
+      "datos": {
+        "enunciado": "P1 imprime H, L y S; P2 imprime O y A. Agregá semáforos (y sus valores iniciales) para que la salida sea siempre HOLAS u HOALS y nunca otra secuencia.",
+        "programas": [
+          "print(H)\nprint(L)\nprint(S)",
+          "print(O)\nprint(A)"
+        ],
+        "permitidas": [
+          "HOLAS",
+          "HOALS"
+        ],
+        "solucion": {
+          "programas": [
+            "wait(S1)\nprint(H)\nsignal(S2)\nwait(S3)\nprint(L)\nwait(S4)\nprint(S)",
+            "wait(S2)\nprint(O)\nsignal(S3)\nprint(A)\nsignal(S4)"
+          ],
+          "iniciales": "S1=1, S2=0, S3=0, S4=0"
+        },
+        "explicacion": "S1 = 1 deja arrancar a P1 con la H. Después de la H, signal(S2) habilita a P2 para la O. Después de la O, signal(S3) habilita la L de P1. La A de P2 puede salir antes o después de la L (por eso hay dos salidas válidas), pero la S tiene que esperar la A: P2 hace signal(S4) después de la A y P1 hace wait(S4) antes de la S."
+      }
+    },
+    {
+      "id": "sem-synch",
+      "tipo": "semaforos",
+      "titulo": "D2 solo después de D1",
+      "origen": "material",
+      "fuente": {
+        "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf",
+        "pagina": 45
+      },
+      "datos": {
+        "enunciado": "P1 ejecuta la declaración D1 y P2 la declaración D2. Hacé que D2 se ejecute siempre después de D1.",
+        "programas": [
+          "print(D1)",
+          "print(D2)"
+        ],
+        "permitidas": [
+          "D1 D2"
+        ],
+        "solucion": {
+          "programas": [
+            "print(D1)\nsignal(synch)",
+            "wait(synch)\nprint(D2)"
+          ],
+          "iniciales": "synch=0"
+        },
+        "explicacion": "synch arranca en 0, así que P2 se bloquea en wait(synch) hasta que P1 termina D1 y hace signal(synch). Así D2 siempre se ejecuta después de D1."
+      }
+    }
+  ]
+}

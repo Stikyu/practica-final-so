@@ -1,0 +1,269 @@
+{
+  "unidad": "u6",
+  "preguntas": [
+    {
+      "id": "u6-001", "unidad": "u6", "tema": "Archivo", "tipo": "unica",
+      "enunciado": "¿Cómo consideran UNIX y Windows a un archivo?",
+      "opciones": ["Como registros de formato rígido que el kernel interpreta", "Como una secuencia no estructurada de bytes, cuya interpretación queda a cargo de la aplicación", "Como bloques físicos del disco", "Como entradas de directorio"],
+      "correcta": 1,
+      "explicacion": "Los sistemas modernos consideran al archivo un flujo de bytes y delegan su interpretación a la aplicación. La excepción es el ejecutable (ELF/PE), que el loader debe reconocer.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 5 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-002", "unidad": "u6", "tema": "Archivo", "tipo": "unica",
+      "enunciado": "¿Qué tipo de archivo está obligado a reconocer el kernel?",
+      "opciones": ["Los archivos de texto", "Los archivos fuente", "Los archivos ejecutables (cabeceras ELF/PE)", "Ninguno"],
+      "correcta": 2,
+      "explicacion": "El loader necesita saber en qué direcciones de la RAM ubicar el código, la pila y los datos iniciales, por eso el SO reconoce estrictamente el formato del ejecutable.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 5 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-003", "unidad": "u6", "tema": "Metadatos", "tipo": "unica",
+      "enunciado": "¿Qué ventaja tiene separar el nombre del archivo de su identificador interno (inodo/FCB)?",
+      "opciones": ["Permite renombrar o mover un archivo sin copiar sus datos", "Hace que el archivo ocupe menos espacio", "Elimina la necesidad de permisos", "Permite que dos archivos tengan el mismo inodo con distinto contenido"],
+      "correcta": 0,
+      "explicacion": "El directorio traduce nombre → identificador → metadatos y datos. Separar nombre e identificador permite renombrar o mover sin copiar datos.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 7 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-004", "unidad": "u6", "tema": "Bloques", "tipo": "unica",
+      "enunciado": "Un archivo de 5000 bytes se guarda en bloques de 4096 bytes. ¿Cuánto espacio se desperdicia?",
+      "opciones": ["904 bytes", "3192 bytes", "4096 bytes", "Nada"],
+      "correcta": 1,
+      "explicacion": "Necesita 2 bloques (8192 bytes); se desperdician 8192 − 5000 = 3192 bytes en el segundo bloque: es fragmentación interna.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 12 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-005", "unidad": "u6", "tema": "Bloques", "tipo": "unica",
+      "enunciado": "¿Qué pasa al aumentar el tamaño del bloque físico de disco?",
+      "opciones": ["Aumenta la velocidad de lectura/escritura continua, pero también la fragmentación interna en el último bloque", "Disminuye la fragmentación interna", "Se elimina la fragmentación externa", "No cambia nada"],
+      "correcta": 0,
+      "explicacion": "Cuanto mayor es el bloque, mayor es la velocidad de transferencia continua, pero mayor es el desperdicio en el último bloque de cada archivo.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 12 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-006", "unidad": "u6", "tema": "Syscalls", "tipo": "unica",
+      "enunciado": "¿Qué devuelve la llamada open() si tiene éxito?",
+      "opciones": ["El contenido del archivo", "Un entero pequeño llamado descriptor de archivo (fd)", "El número de inodo", "La ruta absoluta"],
+      "correcta": 1,
+      "explicacion": "open() localiza el archivo una sola vez, verifica permisos, copia los metadatos a RAM y devuelve un descriptor de archivo (fd) que usan las operaciones posteriores.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 13 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-007", "unidad": "u6", "tema": "Syscalls", "tipo": "unica",
+      "enunciado": "¿Qué hace truncate?",
+      "opciones": ["Borra el archivo y su entrada de directorio", "Vacía el contenido liberando bloques, pero conserva los metadatos y la entrada en el directorio", "Mueve el puntero de posición", "Cierra el descriptor"],
+      "correcta": 1,
+      "explicacion": "truncate vacía el contenido liberando los bloques sobrantes, pero conserva intactos los metadatos y la entrada en el directorio. delete, en cambio, quita la entrada.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 14 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-008", "unidad": "u6", "tema": "Syscalls", "tipo": "unica",
+      "enunciado": "¿Qué llamada reubica el puntero de posición sin leer ni escribir, habilitando el acceso directo?",
+      "opciones": ["read()", "lseek()", "truncate()", "close()"],
+      "correcta": 1,
+      "explicacion": "lseek reubica el puntero de posición en cualquier byte (inicio, posición relativa o final) sin leer ni escribir.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 14 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-009", "unidad": "u6", "tema": "Tablas de apertura", "tipo": "unica",
+      "enunciado": "¿Cuándo se liberan de la tabla global los metadatos de un archivo abierto?",
+      "opciones": ["Cuando cualquier proceso hace close()", "Cuando el contador de aperturas (open_count) llega a cero", "Al apagar la máquina", "Nunca"],
+      "correcta": 1,
+      "explicacion": "open() carga el FCB/inodo en la tabla global e incrementa open_count. Los metadatos se liberan cuando, con los close(), el open_count llega a cero.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 47 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-010", "unidad": "u6", "tema": "Locking", "tipo": "unica",
+      "enunciado": "Un bloqueo compartido (reader lock) sobre un archivo:",
+      "opciones": ["Permite que varios procesos lean en paralelo, pero impide que alguno obtenga un bloqueo de escritura", "Da control total a un solo proceso", "Impide la lectura", "Lo impone siempre el kernel"],
+      "correcta": 0,
+      "explicacion": "El bloqueo compartido permite múltiples lectores en paralelo e impide bloqueos de escritura. El exclusivo da control total a un solo proceso.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 16 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-011", "unidad": "u6", "tema": "Locking", "tipo": "unica",
+      "enunciado": "¿Qué estrategia de bloqueo de archivos es la predeterminada en UNIX/Linux?",
+      "opciones": ["Obligatoria (mandatory)", "De aviso (advisory)", "Ninguna", "Exclusiva siempre"],
+      "correcta": 1,
+      "explicacion": "En UNIX/Linux el bloqueo predeterminado es de aviso: los procesos deben verificar el bloqueo y el kernel no impide el acceso si un programa lo ignora. En Windows es obligatorio.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 16 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-012", "unidad": "u6", "tema": "Métodos de acceso", "tipo": "unica",
+      "enunciado": "¿Qué método de acceso es típico de los motores de bases de datos?",
+      "opciones": ["Secuencial", "Directo / aleatorio", "Solo escritura", "Por spooling"],
+      "correcta": 1,
+      "explicacion": "El acceso directo trata al archivo como bloques numerados y permite saltar a cualquier bloque n con lseek(); es típico de bases de datos. El secuencial es típico de compiladores y audio.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 18 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-013", "unidad": "u6", "tema": "Directorios", "tipo": "unica",
+      "enunciado": "¿Qué problema tiene el directorio de dos niveles (MFD / UFD)?",
+      "opciones": ["Colisiones de nombres entre usuarios", "Aísla a los usuarios e impide cooperar y crear subcarpetas", "No permite rutas", "Requiere grafos con ciclos"],
+      "correcta": 1,
+      "explicacion": "El directorio de dos niveles elimina las colisiones de nombres, pero aísla a los usuarios, impidiendo la cooperación y la creación de subcarpetas temáticas.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 20 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-014", "unidad": "u6", "tema": "Enlaces", "tipo": "unica",
+      "enunciado": "¿Qué es un enlace duro (hard link)?",
+      "opciones": ["Un archivo independiente que contiene la ruta del destino", "Una nueva entrada de directorio que apunta al mismo número de inodo", "Una copia física del archivo", "Un acceso directo que se rompe si se borra el original"],
+      "correcta": 1,
+      "explicacion": "El enlace duro crea otra entrada que apunta al mismo inodo. Si se borra una entrada, el archivo sigue mientras exista al menos otra apuntando al inodo.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 24 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-015", "unidad": "u6", "tema": "Enlaces", "tipo": "unica",
+      "enunciado": "¿Qué le pasa a un enlace simbólico si el archivo original se elimina?",
+      "opciones": ["Se borra automáticamente", "Permanece en el disco pero queda roto (dangling)", "Se convierte en un enlace duro", "Pasa a apuntar a otro archivo"],
+      "correcta": 1,
+      "explicacion": "El enlace simbólico es un archivo cuyo contenido es la ruta del destino. Si el original se elimina o se mueve, el enlace permanece pero queda roto.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 24 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-016", "unidad": "u6", "tema": "Permisos", "tipo": "unica",
+      "enunciado": "En un directorio, ¿qué permite el permiso x (ejecución)?",
+      "opciones": ["Listar su contenido", "Crear o borrar archivos", "Ingresar a él (cd) o atravesar la ruta", "Ejecutar todos los archivos que contiene"],
+      "correcta": 2,
+      "explicacion": "En directorios: r permite listar (ls), w crear, renombrar o eliminar archivos, y x ingresar (cd) o atravesar la ruta.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 27 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-017", "unidad": "u6", "tema": "Permisos", "tipo": "unica",
+      "enunciado": "¿Cuántos bits ocupa el esquema UGO en el inodo?",
+      "opciones": ["3", "9", "12", "32"],
+      "correcta": 1,
+      "explicacion": "Son 3 categorías (User, Group, Others) × 3 bits (rwx) = 9 bits por archivo. Por eso el esquema es muy rápido y compacto.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 27 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-018", "unidad": "u6", "tema": "Permisos", "tipo": "unica",
+      "enunciado": "¿A qué valor octal corresponden los permisos rwxr-xr-x?",
+      "opciones": ["644", "755", "777", "711"],
+      "correcta": 1,
+      "explicacion": "Con r = 4, w = 2 y x = 1: rwx = 7, r-x = 5, r-x = 5 → 755. El dueño hace todo y los demás leen y ejecutan.",
+      "fuente": { "archivo": "hoja_de_estudio_SO.pdf", "pagina": 12 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-019", "unidad": "u6", "tema": "ACL", "tipo": "unica",
+      "enunciado": "¿Cuál es una desventaja de las ACL frente a UGO?",
+      "opciones": ["Son menos flexibles", "Tienen longitud variable, no entran en el inodo estándar y aumentan la sobrecarga al verificar cada apertura", "No las soporta ningún sistema", "Solo funcionan con un usuario"],
+      "correcta": 1,
+      "explicacion": "Las ACL dan control fino, pero tienen longitud variable: exigen bloques de metadatos adicionales y aumentan la sobrecarga del kernel al recorrer la lista en cada apertura.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 29 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-020", "unidad": "u6", "tema": "mmap", "tipo": "unica",
+      "enunciado": "¿Qué ventaja tiene mmap frente a read() y write()?",
+      "opciones": ["Evita copias repetidas entre búferes del kernel y del usuario, y accede al archivo a velocidad de RAM", "No usa memoria virtual", "No produce nunca fallos de página", "Escribe directamente en el disco sin caché"],
+      "correcta": 0,
+      "explicacion": "mmap asocia direcciones virtuales al archivo: el primer acceso causa un page fault y después se lee y escribe a velocidad de RAM, sin syscalls repetidas ni copias intermedias.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 31 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-021", "unidad": "u6", "tema": "mmap", "tipo": "unica",
+      "enunciado": "Si dos procesos mapean el mismo archivo con un mapeo privado y uno escribe:",
+      "opciones": ["El otro ve el cambio inmediatamente", "El SO crea una copia privada de esa página para el que escribe (copy-on-write)", "Se produce un deadlock", "El archivo se corrompe"],
+      "correcta": 1,
+      "explicacion": "Con mapeo privado, inicialmente comparten la página; cuando uno escribe, el SO crea una copia privada (COW). Con MAP_SHARED, en cambio, los cambios se ven entre procesos.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 33 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-022", "unidad": "u6", "tema": "Capas", "tipo": "unica",
+      "enunciado": "¿Qué capa del sistema de archivos traduce bloques lógicos (0, 1, 2…) a bloques físicos y gestiona el espacio libre?",
+      "opciones": ["Sistema de archivos lógico", "Módulo de organización de archivos", "Sistema de archivos básico", "Control de E/S"],
+      "correcta": 1,
+      "explicacion": "El módulo de organización de archivos traduce bloques lógicos a físicos y gestiona el espacio libre. El lógico maneja directorios, inodos y permisos; el básico emite comandos genéricos; el control de E/S tiene los drivers.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 35 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-023", "unidad": "u6", "tema": "Asignación", "tipo": "unica",
+      "enunciado": "¿Cuál es la principal desventaja de la asignación contigua?",
+      "opciones": ["Acceso aleatorio lento", "Fragmentación externa severa y la necesidad de conocer el tamaño final del archivo", "Consume mucha RAM por la FAT", "Requiere 4 lecturas de disco por bloque"],
+      "correcta": 1,
+      "explicacion": "La asignación contigua tiene el mejor rendimiento (física = inicio + i), pero provoca fragmentación externa severa y exige conocer o estimar el tamaño final.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 36 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-024", "unidad": "u6", "tema": "Asignación", "tipo": "unica",
+      "enunciado": "¿Qué hace la tabla FAT en la asignación enlazada?",
+      "opciones": ["Junta en una tabla en RAM todos los punteros que antes estaban dentro de cada bloque", "Guarda los permisos de cada archivo", "Reemplaza a los inodos en UNIX", "Ordena los bloques para que sean contiguos"],
+      "correcta": 0,
+      "explicacion": "La FAT saca los punteros de los bloques de disco y los reúne en una tabla centralizada en RAM. Se aprovecha todo el bloque para datos, pero el acceso aleatorio sigue siendo lento y la FAT consume RAM.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 37 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-025", "unidad": "u6", "tema": "Inodo", "tipo": "unica",
+      "enunciado": "¿Cuántos punteros tiene el inodo combinado de UNIX y cómo se reparten?",
+      "opciones": ["10 directos y 5 indirectos", "15: 12 directos, 1 indirecto simple, 1 doble y 1 triple", "12 directos solamente", "16: 8 directos y 8 indirectos"],
+      "correcta": 1,
+      "explicacion": "El inodo tiene 15 punteros: 12 directos (0 a 11), uno indirecto simple (12), uno doble (13) y uno triple (14).",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 40 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-026", "unidad": "u6", "tema": "Inodo", "tipo": "unica",
+      "enunciado": "Con bloques de 4 KB y punteros de 4 bytes, ¿cuál es la capacidad del puntero indirecto doble?",
+      "opciones": ["48 KB", "4 MB", "4 GB", "4 TB"],
+      "correcta": 2,
+      "explicacion": "Cada bloque índice guarda 4096 / 4 = 1024 punteros. Indirecto doble: 1024 × 1024 × 4 KB = 4 GB. Directa = 48 KB, simple = 4 MB, triple = 4 TB.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 41 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-027", "unidad": "u6", "tema": "Espacio libre", "tipo": "unica",
+      "enunciado": "¿Cuál es la desventaja del bitmap para administrar el espacio libre?",
+      "opciones": ["Es lento para encontrar un bloque libre", "Debe mantenerse completo en RAM", "Solo sirve para asignar de a un bloque", "No permite asignar bloques contiguos"],
+      "correcta": 1,
+      "explicacion": "El bitmap (1 bit por bloque) es muy rápido y facilita asignar bloques contiguos, pero exige mantenerse completo en RAM. La lista enlazada no consume RAM, pero es lenta.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 42 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-028", "unidad": "u6", "tema": "E/S", "tipo": "unica",
+      "enunciado": "¿Qué mecanismo de E/S hace que la controladora copie bloques entre dispositivo y RAM y genere una sola interrupción al final?",
+      "opciones": ["Polling", "E/S guiada por interrupciones", "DMA", "Spooling"],
+      "correcta": 2,
+      "explicacion": "Con DMA la controladora toma el bus, copia bloques masivos directamente entre el dispositivo y la RAM, y genera una única interrupción al finalizar el bloque entero.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 43 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-029", "unidad": "u6", "tema": "E/S", "tipo": "unica",
+      "enunciado": "¿Cuál es el inconveniente del polling?",
+      "opciones": ["Necesita una controladora de DMA", "La CPU desperdicia ciclos leyendo el busy bit en un bucle (espera activa)", "No funciona con discos", "Produce demasiadas interrupciones"],
+      "correcta": 1,
+      "explicacion": "En el sondeo, la CPU lee continuamente el bit de ocupado del registro de estado hasta que el dispositivo termina, y desperdicia ciclos en ese bucle.",
+      "fuente": { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 43 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-030", "unidad": "u6", "tema": "Disco", "tipo": "unica",
+      "enunciado": "Cola 98, 183, 37, 122, 14, 124, 65, 67 y cabezal en 53. ¿Cuántos cilindros recorre SSTF?",
+      "opciones": ["640", "236", "208", "382"],
+      "correcta": 1,
+      "explicacion": "SSTF va siempre al pedido más cercano: 53 → 65 → 67 → 37 → 14 → 98 → 122 → 124 → 183 = 236 cilindros. FCFS recorre 640.",
+      "fuente": { "archivo": "hoja_de_estudio_SO.pdf", "pagina": 14 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-031", "unidad": "u6", "tema": "Disco", "tipo": "unica",
+      "enunciado": "¿Qué algoritmo de disco atiende en un solo sentido y, al llegar al final, vuelve al inicio sin atender, logrando tiempos de espera más parejos?",
+      "opciones": ["SCAN", "C-SCAN", "SSTF", "FCFS"],
+      "correcta": 1,
+      "explicacion": "C-SCAN es como SCAN pero atiende en un solo sentido: al llegar al final vuelve al inicio sin atender, y eso da tiempos de espera más uniformes.",
+      "fuente": { "archivo": "hoja_de_estudio_SO.pdf", "pagina": 14 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-032", "unidad": "u6", "tema": "RAID", "tipo": "unica",
+      "enunciado": "¿Qué ofrece RAID 1?",
+      "opciones": ["Más velocidad sin redundancia", "Espejo: cada disco se duplica; es muy fiable pero cuesta el doble de discos", "Paridad distribuida", "Compresión de datos"],
+      "correcta": 1,
+      "explicacion": "RAID 1 (mirroring) duplica cada disco: es muy fiable, pero cuesta el doble. RAID 0 reparte en bandas sin redundancia y los niveles con paridad (como el 5) reconstruyen con menos costo.",
+      "fuente": { "archivo": "hoja_de_estudio_SO.pdf", "pagina": 15 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u6-033", "unidad": "u6", "tema": "Servicios de E/S", "tipo": "unica",
+      "enunciado": "¿Qué servicio del kernel mete en una cola los trabajos para la impresora, que no admite E/S intercalada?",
+      "opciones": ["Buffering", "Caching", "Spooling", "Polling"],
+      "correcta": 2,
+      "explicacion": "El spooling es una cola de salida para dispositivos que no admiten E/S intercalada, como la impresora: los trabajos se imprimen uno por uno sin mezclarse.",
+      "fuente": { "archivo": "hoja_de_estudio_SO.pdf", "pagina": 15 }, "origen": "generada", "estado": "verificada"
+    }
+  ]
+}

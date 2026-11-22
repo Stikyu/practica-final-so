@@ -1,0 +1,237 @@
+{
+  "unidad": "u3",
+  "preguntas": [
+    {
+      "id": "u3-001", "unidad": "u3", "tema": "Ráfagas", "tipo": "unica",
+      "enunciado": "Un proceso I/O-bound se caracteriza por:",
+      "opciones": ["Pocas ráfagas de CPU muy extensas", "Muchas ráfagas de CPU cortas y mucho tiempo esperando E/S", "No hacer nunca E/S", "Usar siempre el quantum completo"],
+      "correcta": 1,
+      "explicacion": "Los procesos I/O-bound tienen muchas ráfagas cortas: pasan poco tiempo en la CPU y mucho esperando. Los CPU-bound tienen pocas ráfagas pero muy extensas.",
+      "fuente": { "archivo": "Unidad 3a.pdf", "pagina": 5 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-002", "unidad": "u3", "tema": "Planificadores", "tipo": "unica",
+      "enunciado": "¿Qué planificador decide cómo y cuándo un proceso listo accede al procesador, y debe ser de ejecución muy rápida?",
+      "opciones": ["El de largo plazo", "El de mediano plazo", "El de corto plazo", "El de swapping"],
+      "correcta": 2,
+      "explicacion": "El planificador a corto plazo decide qué proceso preparado usa el procesador. Se ejecuta con mucha frecuencia, por eso debe ser muy rápido.",
+      "fuente": { "archivo": "Unidad 3a.pdf", "pagina": 7 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-003", "unidad": "u3", "tema": "Planificadores", "tipo": "unica",
+      "enunciado": "El planificador de mediano plazo se encarga de:",
+      "opciones": ["Crear procesos nuevos", "Sacar temporalmente de memoria procesos bloqueados o suspendidos (swapping)", "Elegir el próximo proceso para la CPU en cada interrupción", "Asignar prioridades nice"],
+      "correcta": 1,
+      "explicacion": "El planificador a medio plazo (de swapping) decide si un proceso bloqueado o suspendido debe salir de memoria temporalmente, para devolverlo cuando el sistema esté más descargado.",
+      "fuente": { "archivo": "Unidad 3a.pdf", "pagina": 7 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-004", "unidad": "u3", "tema": "Apropiación", "tipo": "unica",
+      "enunciado": "En la planificación no apropiativa:",
+      "opciones": ["El kernel puede interrumpir al proceso en cualquier momento", "El proceso mantiene la CPU hasta que termina o se bloquea", "Se necesita obligatoriamente un timer", "Nunca hay cambios de contexto"],
+      "correcta": 1,
+      "explicacion": "En la no apropiativa el proceso conserva la CPU hasta soltarla (terminando o bloqueándose). La apropiativa permite al kernel interrumpirlo y requiere hardware de soporte, como los temporizadores.",
+      "fuente": { "archivo": "Unidad 3a.pdf", "pagina": 9 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-005", "unidad": "u3", "tema": "Despachador", "tipo": "unica",
+      "enunciado": "¿Cuál de estas tareas NO es del despachador?",
+      "opciones": ["Realizar el cambio de contexto", "Cambiar a modo usuario", "Saltar a la dirección del PC para reanudar", "Decidir qué proceso entra al sistema desde la cola de trabajos"],
+      "correcta": 3,
+      "explicacion": "El despachador hace el cambio de contexto, cambia a modo usuario y salta al PC. Decidir qué trabajos entran al sistema es tarea del planificador de largo plazo.",
+      "fuente": { "archivo": "Unidad 3a.pdf", "pagina": 10 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-006", "unidad": "u3", "tema": "Criterios", "tipo": "unica",
+      "enunciado": "¿Qué mide el throughput?",
+      "opciones": ["El porcentaje de tiempo que la CPU hace trabajo útil", "La cantidad de procesos que completan su ejecución por unidad de tiempo", "El tiempo hasta la primera respuesta", "El tiempo total en la cola de listos"],
+      "correcta": 1,
+      "explicacion": "El throughput (rendimiento) es el número de procesos que completan su ejecución por unidad de tiempo: una medida de volumen.",
+      "fuente": { "archivo": "Unidad 3a.pdf", "pagina": 12 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-007", "unidad": "u3", "tema": "Criterios", "tipo": "unica",
+      "enunciado": "¿Cuál es la métrica que los algoritmos de planificación intentan minimizar directamente, definida como la suma de períodos en la cola de listos?",
+      "opciones": ["Tiempo de retorno (turnaround)", "Tiempo de espera (waiting time)", "Tiempo de respuesta", "Utilización de CPU"],
+      "correcta": 1,
+      "explicacion": "El waiting time es la suma de todos los períodos que el proceso pasa en la Ready Queue; es la métrica que los algoritmos intentan minimizar directamente.",
+      "fuente": { "archivo": "Unidad 3a.pdf", "pagina": 13 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-008", "unidad": "u3", "tema": "Fórmulas", "tipo": "unica",
+      "enunciado": "Con la notación de la cátedra (Ti llegada, t ráfaga, Tf fin), el tiempo de espera es:",
+      "opciones": ["E = Tf − Ti", "E = T − t, con T = Tf − Ti", "E = t / T", "E = Tf + Ti"],
+      "correcta": 1,
+      "explicacion": "Tiempo de servicio: T = Tf − Ti. Tiempo de espera: E = T − t. Índice de servicio: I = t / T.",
+      "fuente": { "archivo": "Unidad 3b.pdf", "pagina": 6 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-009", "unidad": "u3", "tema": "Fórmulas", "tipo": "unica",
+      "enunciado": "Un proceso llega en t = 1, tiene ráfaga 5 y termina en t = 8. ¿Cuánto valen T y E?",
+      "opciones": ["T = 8 y E = 3", "T = 7 y E = 2", "T = 5 y E = 0", "T = 7 y E = 5"],
+      "correcta": 1,
+      "explicacion": "T = Tf − Ti = 8 − 1 = 7; E = T − t = 7 − 5 = 2. Es el proceso B del ejemplo FCFS de la cátedra.",
+      "fuente": { "archivo": "Unidad 3b.pdf", "pagina": 9 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-010", "unidad": "u3", "tema": "FCFS", "tipo": "unica",
+      "enunciado": "¿Qué es el efecto convoy?",
+      "opciones": ["Cuando un proceso largo bloquea a muchos procesos cortos que vienen detrás", "Cuando muchos procesos cortos desalojan a uno largo", "Cuando el quantum es demasiado chico", "Cuando dos procesos se bloquean mutuamente"],
+      "correcta": 0,
+      "explicacion": "En FCFS, un proceso largo bloquea a muchos procesos cortos que vienen detrás: es el efecto convoy, que además deja ociosos los periféricos.",
+      "fuente": { "archivo": "Unidad 3b.pdf", "pagina": 8 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-011", "unidad": "u3", "tema": "FIFO vs FCFS", "tipo": "unica",
+      "enunciado": "Según el glosario de la cátedra, ¿cuál es la diferencia entre FIFO y FCFS?",
+      "opciones": ["Son lo mismo", "FIFO es la estructura de datos (cola) y FCFS es el algoritmo (atender por orden de llegada)", "FCFS es apropiativo y FIFO no", "FIFO se usa en memoria y FCFS solo en disco"],
+      "correcta": 1,
+      "explicacion": "FIFO (First-In, First-Out) es la estructura de datos; FCFS (First-Come, First-Served) es el algoritmo, la regla de atender por orden de llegada.",
+      "fuente": { "archivo": "Unidad 3b.pdf", "pagina": 3 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-012", "unidad": "u3", "tema": "SJF", "tipo": "unica",
+      "enunciado": "¿Qué propiedad tiene SJF?",
+      "opciones": ["Es óptimo para minimizar el tiempo de espera promedio", "Es el más justo con los procesos largos", "No necesita conocer ninguna ráfaga", "Es apropiativo"],
+      "correcta": 0,
+      "explicacion": "SJF es óptimo para minimizar el tiempo de espera promedio. Su dificultad es conocer la duración de la próxima ráfaga.",
+      "fuente": { "archivo": "Unidad 3b.pdf", "pagina": 10 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-013", "unidad": "u3", "tema": "SJF", "tipo": "unica",
+      "enunciado": "Como el SO no conoce la próxima ráfaga, ¿cómo la estima para aplicar SJF en sistemas interactivos?",
+      "opciones": ["La elige al azar", "Con un promedio exponencial del historial de ráfagas anteriores", "Le pregunta al usuario", "Usa siempre el quantum"],
+      "correcta": 1,
+      "explicacion": "El kernel estima la siguiente ráfaga con un promedio exponencial (suavizado) basado en las ráfagas anteriores. Con alfa alto reacciona rápido a cambios; con alfa bajo se basa en la historia larga.",
+      "fuente": { "archivo": "Unidad 3b.pdf", "pagina": 11 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-014", "unidad": "u3", "tema": "SRTF", "tipo": "unica",
+      "enunciado": "En SRTF, ¿cuándo se desaloja al proceso en ejecución?",
+      "opciones": ["Cuando vence el quantum", "Cuando llega un proceso cuya ráfaga es menor que el tiempo restante del que está ejecutando", "Cuando llega un proceso con mayor prioridad numérica", "Nunca: es no apropiativo"],
+      "correcta": 1,
+      "explicacion": "SRTF es la versión apropiativa de SJF: si la ráfaga del recién llegado es menor que el tiempo restante del que ejecuta, el SO hace un cambio de contexto.",
+      "fuente": { "archivo": "Unidad 3b.pdf", "pagina": 13 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-015", "unidad": "u3", "tema": "SRTF", "tipo": "unica",
+      "enunciado": "Procesos (llegada, ráfaga): A(0,3), B(1,5), C(4,2), D(5,6), E(8,4). Con SRTF, ¿qué proceso ejecuta en t = 10?",
+      "opciones": ["B", "C", "D", "E"],
+      "correcta": 3,
+      "explicacion": "En t = 10 termina B. Quedan D (resta 6) y E (resta 4): SRTF elige el de menor tiempo restante, E. Así lo muestra el Gantt de la diapositiva de SRTF.",
+      "fuente": { "archivo": "Unidad 3b.pdf", "pagina": 14 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-016", "unidad": "u3", "tema": "Round Robin", "tipo": "unica",
+      "enunciado": "Con n procesos listos y quantum q en Round Robin, ¿cuál es el tiempo máximo aproximado que espera un proceso antes de volver a recibir CPU?",
+      "opciones": ["n × q", "(n − 1) × q", "q / n", "n + q"],
+      "correcta": 1,
+      "explicacion": "En un sistema con n procesos listos, el tiempo máximo aproximado de espera antes de volver a recibir CPU es (n − 1) × q.",
+      "fuente": { "archivo": "Unidad 3b.pdf", "pagina": 15 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-017", "unidad": "u3", "tema": "Round Robin", "tipo": "unica",
+      "enunciado": "¿Qué pasa si el quantum de Round Robin es demasiado largo?",
+      "opciones": ["El algoritmo degenera en FCFS y se pierde la interactividad", "El cambio de contexto consume casi toda la CPU", "Se vuelve SJF", "Los procesos sufren inanición"],
+      "correcta": 0,
+      "explicacion": "Con q demasiado largo, RR degenera en FCFS y se pierde la interactividad. Con q demasiado corto, el costo del cambio de contexto consume un porcentaje inaceptable de la CPU.",
+      "fuente": { "archivo": "Unidad 3b.pdf", "pagina": 18 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-018", "unidad": "u3", "tema": "Round Robin", "tipo": "unica",
+      "enunciado": "Según la regla de ingeniería de la cátedra, el tiempo de cambio de contexto debería ser:",
+      "opciones": ["Mayor que el quantum", "Una fracción despreciable del quantum (por ejemplo, menos del 10 %)", "Exactamente igual al quantum", "Cero"],
+      "correcta": 1,
+      "explicacion": "Para que el sistema sea eficiente, el tiempo de cambio de contexto debe ser una fracción despreciable del quantum (por ejemplo, menos del 10 %).",
+      "fuente": { "archivo": "Unidad 3b.pdf", "pagina": 18 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-019", "unidad": "u3", "tema": "Round Robin", "tipo": "unica",
+      "enunciado": "En los ejemplos de RR de la cátedra, si un proceso llega justo en el instante en que vence un quantum:",
+      "opciones": ["Se considera que llegó antes de que venza el quantum", "Se considera que llegó después y va detrás del desalojado", "Se lo ignora hasta el próximo quantum", "Desaloja inmediatamente al proceso actual"],
+      "correcta": 0,
+      "explicacion": "La condición del ejemplo dice que, si un proceso se crea en el mismo momento en que finaliza un quantum, se supone que llegó a la cola de preparados antes de la finalización de ese quantum.",
+      "fuente": { "archivo": "Unidad 3b.pdf", "pagina": 16 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-020", "unidad": "u3", "tema": "Prioridades", "tipo": "unica",
+      "enunciado": "¿Qué es el envejecimiento (aging)?",
+      "opciones": ["Bajar la prioridad de los procesos que usan mucha CPU", "Aumentar gradualmente la prioridad de un proceso que espera mucho tiempo en Ready, para evitar la inanición", "Eliminar procesos viejos", "Reducir el quantum con el tiempo"],
+      "correcta": 1,
+      "explicacion": "El envejecimiento aumenta gradualmente la prioridad de un proceso que permanece en estado Ready por períodos prolongados; así se mitiga la inanición (starvation).",
+      "fuente": { "archivo": "Unidad 3b.pdf", "pagina": 25 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-021", "unidad": "u3", "tema": "Prioridades", "tipo": "unica",
+      "enunciado": "Procesos que llegan en 0 (ráfaga, prioridad): P1(10,3), P2(1,1), P3(2,4), P4(1,5), P5(5,2). Con prioridades no apropiativas (número chico = más prioridad), ¿cuál es la espera promedio?",
+      "opciones": ["6,2", "8,2", "9,6", "12"],
+      "correcta": 1,
+      "explicacion": "Orden: P2 (0–1), P5 (1–6), P1 (6–16), P3 (16–18), P4 (18–19). Esperas: 6 + 0 + 16 + 18 + 1 = 41 → 41 / 5 = 8,2.",
+      "fuente": { "archivo": "Unidad 3b.pdf", "pagina": 21 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-022", "unidad": "u3", "tema": "Multinivel", "tipo": "unica",
+      "enunciado": "¿Qué diferencia a las colas multinivel con retroalimentación (MLFQ) de las colas multinivel simples?",
+      "opciones": ["En MLFQ los procesos pueden moverse entre colas según su comportamiento", "MLFQ tiene una sola cola", "En MLFQ las colas no tienen prioridad", "MLFQ no permite RR"],
+      "correcta": 0,
+      "explicacion": "En las colas multinivel la asignación es fija; en MLFQ un proceso puede moverse: si consume demasiada CPU baja de cola, y si espera mucho sube (aging).",
+      "fuente": { "archivo": "Unidad 3c.pdf", "pagina": 5 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-023", "unidad": "u3", "tema": "Multiprocesador", "tipo": "unica",
+      "enunciado": "En un sistema de 4 núcleos con 2 hilos de hardware por núcleo, ¿cuántos procesadores lógicos ve el sistema operativo?",
+      "opciones": ["2", "4", "6", "8"],
+      "correcta": 3,
+      "explicacion": "Con chip multithreading (hyperthreading), 4 núcleos × 2 hilos de hardware = 8 procesadores lógicos.",
+      "fuente": { "archivo": "Unidad 3c.pdf", "pagina": 12 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-024", "unidad": "u3", "tema": "Multiprocesador", "tipo": "unica",
+      "enunciado": "¿Qué es la afinidad de procesador?",
+      "opciones": ["La tendencia de un proceso a quedarse en la CPU donde ejecuta, para aprovechar los datos en caché", "Mover procesos de CPUs cargadas a ociosas", "Asignar más prioridad a procesos interactivos", "Compartir la caché L3"],
+      "correcta": 0,
+      "explicacion": "La afinidad hace que un proceso tienda a quedarse en la misma CPU para aprovechar la caché (soft: se intenta; hard: obligatoria). Mover procesos para equilibrar es el balanceo de carga.",
+      "fuente": { "archivo": "Unidad 3c.pdf", "pagina": 14 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-025", "unidad": "u3", "tema": "Multiprocesador", "tipo": "unica",
+      "enunciado": "En el balanceo de carga, la pull migration consiste en que:",
+      "opciones": ["Una tarea del SO empuja procesos de CPUs cargadas a ociosas", "Una CPU ociosa tira de un proceso en espera de otra CPU ocupada", "Los procesos eligen su CPU", "Se apaga una CPU para ahorrar energía"],
+      "correcta": 1,
+      "explicacion": "En la pull migration, una CPU ociosa tira de un proceso en espera de otra CPU. En la push migration, una tarea del SO vigila la carga y empuja procesos a las CPUs ociosas.",
+      "fuente": { "archivo": "Unidad 3c.pdf", "pagina": 14 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-026", "unidad": "u3", "tema": "Tiempo real", "tipo": "unica",
+      "enunciado": "¿Cuál es la diferencia entre Rate Monotonic y EDF?",
+      "opciones": ["RM usa prioridad estática según la frecuencia (período corto = más prioridad); EDF usa prioridad dinámica según el plazo más cercano", "RM es dinámico y EDF estático", "Ambos usan quantum fijo", "EDF nunca puede llegar al 100 % de CPU"],
+      "correcta": 0,
+      "explicacion": "Rate Monotonic asigna prioridad estática por frecuencia (los períodos cortos tienen más prioridad) y tiene un límite de utilización menor al 100 %. EDF usa prioridad dinámica (el plazo más cercano primero) y puede llegar al 100 %.",
+      "fuente": { "archivo": "Unidad 3c.pdf", "pagina": 20 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-027", "unidad": "u3", "tema": "CFS", "tipo": "unica",
+      "enunciado": "¿A qué proceso elige ejecutar el CFS de Linux?",
+      "opciones": ["Al de mayor prioridad estática", "Al que tenga el menor vruntime acumulado", "Al que llegó primero", "Al de ráfaga más corta"],
+      "correcta": 1,
+      "explicacion": "El CFS siempre elige al proceso con menor vruntime acumulado, el menos favorecido hasta el momento. Por eso los procesos I/O-bound, que usan poca CPU, obtienen prioridad automática.",
+      "fuente": { "archivo": "Unidad 3c.pdf", "pagina": 23 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-028", "unidad": "u3", "tema": "CFS", "tipo": "unica",
+      "enunciado": "Sobre los valores nice en Linux, ¿qué es correcto?",
+      "opciones": ["Van de −20 (máxima prioridad) a +19 (mínima); un nice positivo hace que el vruntime crezca más rápido", "Van de 0 a 100 y el mayor es el más prioritario", "Un nice negativo hace que el proceso reciba menos CPU", "No afectan al vruntime"],
+      "correcta": 0,
+      "explicacion": "El nice va de −20 (máxima prioridad) a +19 (mínima), con 0 por defecto. No cambia el tiempo real sino la velocidad a la que crece el vruntime: con nice positivo crece más rápido y el proceso recibe menos CPU.",
+      "fuente": { "archivo": "Unidad 3c.pdf", "pagina": 24 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u3-029", "unidad": "u3", "tema": "Tiempo real", "tipo": "unica",
+      "enunciado": "En un sistema hard real-time:",
+      "opciones": ["El proceso debe completarse dentro de un plazo estricto; si no, el sistema falla", "Se garantiza prioridad, pero no un tiempo exacto", "No importan los plazos", "Siempre se usa FCFS"],
+      "correcta": 0,
+      "explicacion": "Hard real-time: el proceso debe completarse en un plazo estricto o el sistema falla (frenos ABS, control de vuelo). Soft real-time da prioridad sin asegurar un tiempo exacto (streaming).",
+      "fuente": { "archivo": "Unidad 3c.pdf", "pagina": 15 }, "origen": "generada", "estado": "verificada"
+    }
+  ]
+}

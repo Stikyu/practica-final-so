@@ -1,0 +1,277 @@
+{
+  "unidad": "u5",
+  "preguntas": [
+    {
+      "id": "u5-001", "unidad": "u5", "tema": "Base y límite", "tipo": "unica",
+      "enunciado": "Con base = 300040 y límite = 120900, ¿qué rango de direcciones puede usar el programa?",
+      "opciones": ["De 0 a 120900", "De 300040 a 420939 inclusive", "De 300040 a 420940 inclusive", "De 120900 a 300040"],
+      "correcta": 1,
+      "explicacion": "Una dirección es válida si base ≤ dir < base + límite: de 300040 a 300040 + 120900 − 1 = 420939. La 420940 provoca un trap.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 9 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-002", "unidad": "u5", "tema": "Base y límite", "tipo": "unica",
+      "enunciado": "¿Quién controla en cada acceso que un programa no se salga de su rango base–límite?",
+      "opciones": ["El sistema operativo, por software", "El hardware de la CPU (MMU)", "La memoria RAM", "El compilador"],
+      "correcta": 1,
+      "explicacion": "El SO define el rango, pero el control en cada acceso lo hace el hardware (CPU/MMU), porque el SO no puede intervenir en cada acceso por rendimiento. La RAM no aplica la protección.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 9 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-003", "unidad": "u5", "tema": "Address binding", "tipo": "unica",
+      "enunciado": "¿En qué momento del enlace de direcciones se permite mover un proceso en RAM mientras corre (reubicación dinámica)?",
+      "opciones": ["En tiempo de compilación", "En tiempo de carga", "En tiempo de ejecución", "En ninguno"],
+      "correcta": 2,
+      "explicacion": "El enlace en tiempo de ejecución es el estándar moderno: permite mover el proceso mientras corre (reubicación dinámica) y requiere soporte de hardware (MMU).",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 13 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-004", "unidad": "u5", "tema": "MMU", "tipo": "unica",
+      "enunciado": "Si el registro de reubicación vale 14000 y el programa usa la dirección lógica 346, ¿qué dirección física envía la MMU?",
+      "opciones": ["346", "13654", "14346", "14000"],
+      "correcta": 2,
+      "explicacion": "En su esquema más simple la MMU suma el registro de reubicación a cada dirección lógica: 14000 + 346 = 14346.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 17 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-005", "unidad": "u5", "tema": "Asignación contigua", "tipo": "unica",
+      "enunciado": "¿Qué estrategia elige el hueco más pequeño que alcance para el proceso?",
+      "opciones": ["First-fit", "Best-fit", "Worst-fit", "Next-fit"],
+      "correcta": 1,
+      "explicacion": "Best-fit busca en toda la lista y elige el hueco más pequeño que sirva; deja sobrantes diminutos. First-fit toma el primero que alcance y worst-fit el más grande.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 20 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-006", "unidad": "u5", "tema": "Fragmentación", "tipo": "unica",
+      "enunciado": "Hay 12 GB libres repartidos en 3 huecos de 4 GB y llega un proceso de 6 GB que no entra. ¿Qué tipo de fragmentación es?",
+      "opciones": ["Interna", "Externa", "De página", "De segmento"],
+      "correcta": 1,
+      "explicacion": "Fragmentación externa: hay memoria total suficiente, pero no es contigua. La interna es el espacio desperdiciado dentro de una partición asignada.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 21 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-007", "unidad": "u5", "tema": "Compactación", "tipo": "unica",
+      "enunciado": "¿Qué requisito tiene la compactación para resolver la fragmentación externa?",
+      "opciones": ["Que la reubicación sea dinámica, en tiempo de ejecución", "Que se use paginación", "Que el disco sea SSD", "Que no haya procesos en memoria"],
+      "correcta": 0,
+      "explicacion": "La compactación solo es posible si la reubicación es dinámica y se hace en tiempo de ejecución con el registro de reubicación de la MMU. Además es costosa y lenta.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 22 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-008", "unidad": "u5", "tema": "Paginación", "tipo": "unica",
+      "enunciado": "¿Qué tipo de fragmentación elimina la paginación?",
+      "opciones": ["La interna", "La externa", "Ambas", "Ninguna"],
+      "correcta": 1,
+      "explicacion": "La paginación evita la fragmentación externa y la necesidad de compactar, porque las páginas van a cualquier marco libre. Sigue habiendo fragmentación interna en la última página.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 24 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-009", "unidad": "u5", "tema": "Paginación", "tipo": "unica",
+      "enunciado": "Si el espacio lógico es de 2^m direcciones y las páginas de 2^n bytes, ¿cuántos bits ocupa el número de página p?",
+      "opciones": ["n", "m", "m − n", "m + n"],
+      "correcta": 2,
+      "explicacion": "Los m − n bits de orden superior designan el número de página y los n bits de orden inferior, el desplazamiento.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 28 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-010", "unidad": "u5", "tema": "Paginación", "tipo": "unica",
+      "enunciado": "Con m = 4, n = 2 y la tabla de páginas 0→5, 1→6, 2→1, 3→2, ¿a qué dirección física corresponde la lógica 13?",
+      "opciones": ["13", "9", "21", "25"],
+      "correcta": 1,
+      "explicacion": "13 = (11 | 01)₂ → p = 3, d = 1. La página 3 está en el marco 2 → física = 2 × 4 + 1 = 9.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 29 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-011", "unidad": "u5", "tema": "Paginación", "tipo": "unica",
+      "enunciado": "Con m = 4 y n = 2 y una memoria física de 32 bytes, ¿cuántas páginas y cuántos marcos hay?",
+      "opciones": ["4 páginas y 8 marcos", "8 páginas y 4 marcos", "16 páginas y 32 marcos", "2 páginas y 2 marcos"],
+      "correcta": 0,
+      "explicacion": "Páginas de 2^2 = 4 bytes. Espacio lógico de 2^4 = 16 direcciones → 16 / 4 = 4 páginas. Memoria física de 32 bytes → 32 / 4 = 8 marcos.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 29 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-012", "unidad": "u5", "tema": "Tablas", "tipo": "unica",
+      "enunciado": "¿Cuál es la diferencia entre la tabla de páginas y la tabla de marcos?",
+      "opciones": ["La tabla de páginas es por proceso; la tabla de marcos es global del sistema y tiene una entrada por marco físico", "Ambas son por proceso", "La tabla de marcos está en la TLB", "La tabla de páginas solo existe en segmentación"],
+      "correcta": 0,
+      "explicacion": "La tabla de páginas es por proceso (mapea sus páginas a marcos). La tabla de marcos es global: una entrada por marco que indica si está libre o a qué página de qué proceso pertenece.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 30 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-013", "unidad": "u5", "tema": "TLB", "tipo": "unica",
+      "enunciado": "¿Qué problema resuelve la TLB?",
+      "opciones": ["La fragmentación externa", "El doble acceso a RAM que exige tener la tabla de páginas en memoria", "El thrashing", "La anomalía de Belady"],
+      "correcta": 1,
+      "explicacion": "Con la tabla en RAM cada acceso requiere dos accesos físicos (100 ns → 200 ns). La TLB, una memoria asociativa en la MMU, guarda traducciones recientes: con un hit se evita ir a la tabla.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 34 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-014", "unidad": "u5", "tema": "TLB", "tipo": "unica",
+      "enunciado": "¿Para qué sirven los ASID en la TLB?",
+      "opciones": ["Para que convivan traducciones de varios procesos sin borrarlas en cada cambio de contexto", "Para acelerar el disco", "Para marcar páginas sucias", "Para contar fallos de página"],
+      "correcta": 0,
+      "explicacion": "Algunos TLB guardan un identificador del espacio de direcciones (ASID), así las traducciones de varios programas conviven sin borrarse en cada cambio de contexto.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 34 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-015", "unidad": "u5", "tema": "Páginas compartidas", "tipo": "unica",
+      "enunciado": "¿Qué tipo de código se puede compartir entre procesos mediante páginas compartidas?",
+      "opciones": ["Código reentrante, que no se modifica a sí mismo", "Cualquier código con variables globales", "Solo el stack", "El heap de cada proceso"],
+      "correcta": 0,
+      "explicacion": "El código reentrante nunca cambia durante la ejecución, así que varios procesos pueden ejecutarlo a la vez con una sola copia (por ejemplo, libc).",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 38 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-016", "unidad": "u5", "tema": "Tablas", "tipo": "unica",
+      "enunciado": "La paginación jerárquica sirve para:",
+      "opciones": ["Evitar una tabla plana gigantesca, paginando la propia tabla de páginas", "Eliminar la TLB", "Compartir segmentos", "Calcular el EAT"],
+      "correcta": 0,
+      "explicacion": "Una tabla plana para espacios enormes ocuparía megabytes. La paginación jerárquica pagina la propia tabla y solo crea las subtablas necesarias.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 39 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-017", "unidad": "u5", "tema": "Segmentación", "tipo": "unica",
+      "enunciado": "En segmentación, el segmento 2 tiene base 4300 y límite 400. ¿Qué pasa con la dirección (2, 53)?",
+      "opciones": ["Es válida y la física es 4353", "Es válida y la física es 453", "Produce un trap", "La física es 4300"],
+      "correcta": 0,
+      "explicacion": "Como 0 ≤ 53 < 400, la dirección es legal y física = base + d = 4300 + 53 = 4353. Si d superara el límite, habría un trap.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 47 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-018", "unidad": "u5", "tema": "Paginación vs. segmentación", "tipo": "unica",
+      "enunciado": "¿Qué tipo de fragmentación sufre la segmentación?",
+      "opciones": ["Interna", "Externa", "Ninguna", "Solo en el stack"],
+      "correcta": 1,
+      "explicacion": "La segmentación (bloques de tamaño variable) sufre fragmentación externa; la paginación (bloques fijos) sufre fragmentación interna en la última página.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 50 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-019", "unidad": "u5", "tema": "Swapping", "tipo": "unica",
+      "enunciado": "¿Por qué el swapping de procesos completos ya no se usa en Linux y Windows?",
+      "opciones": ["Porque el tiempo para mover procesos enteros entre memoria y disco es prohibitivo; hoy se intercambian páginas", "Porque los discos no permiten escribir procesos", "Porque los procesos ya no usan memoria", "Porque está prohibido por seguridad"],
+      "correcta": 0,
+      "explicacion": "El swapping estándar mueve procesos completos y es demasiado lento. Hoy se intercambian páginas (page out / page in), lo que funciona bien con memoria virtual.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 53 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-020", "unidad": "u5", "tema": "Memoria virtual", "tipo": "unica",
+      "enunciado": "¿Qué permite la memoria virtual?",
+      "opciones": ["Ejecutar programas más grandes que toda la RAM física", "Que la RAM sea no volátil", "Eliminar la necesidad de MMU", "Que todos los procesos compartan el mismo espacio de direcciones"],
+      "correcta": 0,
+      "explicacion": "La memoria virtual separa el espacio lógico del físico y permite ejecutar programas cuyo tamaño es mayor que toda la RAM instalada.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 3 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-021", "unidad": "u5", "tema": "Demanda", "tipo": "unica",
+      "enunciado": "En paginación bajo demanda, el bit inválido (i) en la tabla de páginas indica que la página:",
+      "opciones": ["Está en RAM y fue modificada", "Es ilegal, o es legal pero está en disco", "Está en la TLB", "Es de solo lectura"],
+      "correcta": 1,
+      "explicacion": "Válido (v): la página es legal y está cargada en RAM. Inválido (i): la página es ilegal, o es legal pero reside en disco.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 7 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-022", "unidad": "u5", "tema": "Page fault", "tipo": "unica",
+      "enunciado": "¿Cuál es el último paso del manejo de un fallo de página?",
+      "opciones": ["Terminar el proceso", "Reiniciar la instrucción que fue interrumpida por el trap", "Borrar la TLB", "Pasar el proceso a estado nuevo"],
+      "correcta": 1,
+      "explicacion": "Se verifica la referencia, se busca un marco libre, se lee la página del disco, se actualizan las tablas y se reinicia la instrucción interrumpida; el proceso sigue como si la página siempre hubiera estado.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 10 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-023", "unidad": "u5", "tema": "EAT", "tipo": "unica",
+      "enunciado": "Con RAM de 200 ns, fallo de página de 8 ms y p = 0,01, ¿cuánto vale aproximadamente el EAT?",
+      "opciones": ["200 ns", "8 200 ns", "80 198 ns", "8 000 000 ns"],
+      "correcta": 2,
+      "explicacion": "EAT = (1 − p) × 200 + p × 8 000 000 = 0,99 × 200 + 80 000 = 198 + 80 000 = 80 198 ns: casi 400 veces más lento.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 14 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-024", "unidad": "u5", "tema": "COW", "tipo": "unica",
+      "enunciado": "Con Copy-on-Write, después de un fork():",
+      "opciones": ["Se copia toda la memoria del padre al hijo inmediatamente", "Padre e hijo comparten los marcos marcados como solo lectura y solo se copia una página cuando alguno la escribe", "El hijo no tiene memoria", "El padre pierde su memoria"],
+      "correcta": 1,
+      "explicacion": "Con COW el hijo recibe una copia de la tabla de páginas apuntando a los mismos marcos, marcados como solo lectura. Si uno escribe, la MMU genera una excepción y el SO copia solo esa página.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 16 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-025", "unidad": "u5", "tema": "Reemplazo", "tipo": "unica",
+      "enunciado": "Al reemplazar una página víctima con dirty bit = 0:",
+      "opciones": ["Hay que escribirla en disco antes de liberar el marco", "Se descarta directamente, sin page-out, porque la copia del disco sigue siendo válida", "Se produce un trap", "Se duplica en otro marco"],
+      "correcta": 1,
+      "explicacion": "Dirty = 0: la página no se modificó, así que la copia del almacenamiento es válida y se descarta sin escribir. Dirty = 1: hay que hacer page-out antes.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 19 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-026", "unidad": "u5", "tema": "Reemplazo", "tipo": "unica",
+      "enunciado": "¿Qué es la anomalía de Belady?",
+      "opciones": ["Que con más marcos FIFO puede producir más fallos de página", "Que LRU siempre da más fallos que FIFO", "Que OPT no se puede implementar", "Que el thrashing aumenta con menos procesos"],
+      "correcta": 0,
+      "explicacion": "Con FIFO, aumentar los marcos puede aumentar los fallos: en el ejemplo, 3 marcos dan 9 fallos y 4 marcos dan 10.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 23 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-027", "unidad": "u5", "tema": "Reemplazo", "tipo": "unica",
+      "enunciado": "¿Para qué se usa el algoritmo óptimo (OPT) si no se puede implementar en la práctica?",
+      "opciones": ["Como estándar de comparación (baseline) de la tasa mínima de fallos", "Para sistemas de tiempo real", "Para la TLB", "Para el buddy system"],
+      "correcta": 0,
+      "explicacion": "OPT requiere conocer el futuro. Se usa en simulaciones, con la cadena de referencias grabada, para obtener la tasa de fallos mínima y comparar a FIFO, LRU o Reloj contra ese ideal.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 24 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-028", "unidad": "u5", "tema": "Reemplazo", "tipo": "unica",
+      "enunciado": "Con la cadena 7 0 1 2 0 3 0 4 2 3 0 3 2 1 2 0 1 7 0 1 y 3 marcos, ¿cuántos fallos producen FIFO, LRU y OPT?",
+      "opciones": ["FIFO 15, LRU 12, OPT 9", "FIFO 12, LRU 15, OPT 9", "FIFO 9, LRU 12, OPT 15", "Los tres dan 12"],
+      "correcta": 0,
+      "explicacion": "Con la cadena del libro y 3 marcos: FIFO 15, LRU 12 y OPT 9 fallos. LRU y OPT no sufren la anomalía de Belady.",
+      "fuente": { "archivo": "hoja_de_estudio_SO.pdf", "pagina": 10 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-029", "unidad": "u5", "tema": "Reemplazo", "tipo": "unica",
+      "enunciado": "En el algoritmo del Reloj, si el puntero encuentra una página con R = 1:",
+      "opciones": ["La reemplaza", "Le da una segunda oportunidad: pone R en 0 y avanza", "Termina el proceso", "Escribe la página en disco"],
+      "correcta": 1,
+      "explicacion": "R = 1 indica uso reciente: recibe una segunda oportunidad (R pasa a 0) y el puntero avanza. La primera página con R = 0 es la víctima.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 29 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-030", "unidad": "u5", "tema": "Thrashing", "tipo": "unica",
+      "enunciado": "¿Qué es el thrashing?",
+      "opciones": ["Cuando el sistema pasa más tiempo paginando que ejecutando instrucciones", "Cuando la TLB tiene muchos aciertos", "Cuando un proceso termina por error", "Cuando la memoria tiene fragmentación externa"],
+      "correcta": 0,
+      "explicacion": "El thrashing es el estado en que el sistema pasa más tiempo leyendo y escribiendo páginas en disco que ejecutando instrucciones reales.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 32 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-031", "unidad": "u5", "tema": "Working set", "tipo": "unica",
+      "enunciado": "Según el modelo de working set, si D = Σ|WSi| supera los marcos disponibles, el SO debería:",
+      "opciones": ["Agregar más procesos", "Reducir el grado de multiprogramación suspendiendo procesos", "Aumentar el quantum", "Desactivar la paginación"],
+      "correcta": 1,
+      "explicacion": "Si D > marcos disponibles faltan marcos, aumentan los fallos y hay riesgo de thrashing. Para evitarlo, el SO reduce la multiprogramación suspendiendo procesos y liberando sus marcos.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 34 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-032", "unidad": "u5", "tema": "Buddy", "tipo": "unica",
+      "enunciado": "Con el Buddy System y un segmento de 256 KB, el kernel pide 21 KB. ¿Qué bloque recibe?",
+      "opciones": ["21 KB exactos", "32 KB", "64 KB", "128 KB"],
+      "correcta": 1,
+      "explicacion": "Se toma la menor potencia de 2 que contiene 21 KB, que es 32 KB, dividiendo 256 → 128 → 64 → 32. La diferencia (11 KB) es fragmentación interna.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 37 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-033", "unidad": "u5", "tema": "Slab", "tipo": "unica",
+      "enunciado": "¿Qué problema del Buddy System reduce la asignación por slabs?",
+      "opciones": ["La fragmentación externa", "La fragmentación interna producida por redondear a potencias de 2", "El thrashing", "La falta de memoria contigua"],
+      "correcta": 1,
+      "explicacion": "El buddy obtiene memoria contigua, pero redondear a potencias de 2 genera fragmentación interna. Los slabs crean cachés con espacios del tamaño justo de cada tipo de objeto del kernel.",
+      "fuente": { "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 38 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u5-034", "unidad": "u5", "tema": "Asignación de marcos", "tipo": "unica",
+      "enunciado": "Hay 62 marcos libres, un proceso de 10 páginas y otro de 127. Con asignación proporcional, ¿cuántos marcos recibe cada uno?",
+      "opciones": ["31 y 31", "4 y 57", "10 y 52", "6 y 56"],
+      "correcta": 1,
+      "explicacion": "Proporcional: ai = si / S × m. 10 / 137 × 62 ≈ 4 y 127 / 137 × 62 ≈ 57. La equitativa daría 31 y 31.",
+      "fuente": { "archivo": "hoja_de_estudio_SO.pdf", "pagina": 10 }, "origen": "generada", "estado": "verificada"
+    }
+  ]
+}

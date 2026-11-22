@@ -1,0 +1,32 @@
+{
+  "unidades": [
+    { "id": "u1", "numero": 1, "titulo": "Introducción y estructura del SO", "corto": "Introducción" },
+    { "id": "u2", "numero": 2, "titulo": "Procesos e hilos", "corto": "Procesos e hilos" },
+    { "id": "u3", "numero": 3, "titulo": "Planificación de CPU", "corto": "Planificación" },
+    { "id": "u4", "numero": 4, "titulo": "Sincronización y deadlock", "corto": "Sincronización" },
+    { "id": "u5", "numero": 5, "titulo": "Memoria principal y virtual", "corto": "Memoria" },
+    { "id": "u6", "numero": 6, "titulo": "Sistemas de archivos y E/S", "corto": "Archivos y E/S" },
+    { "id": "u7", "numero": 7, "titulo": "Distribuidos, tiempo real, virtualización y nube", "corto": "Virtualización y nube" }
+  ],
+  "archivos": [
+    "Unidad 1a.pdf",
+    "Unidad 1b.pdf",
+    "Unidad 2a.pdf",
+    "Unidad 2b.pdf",
+    "Unidad 2 - I.JPG",
+    "Unidad 2 - II.JPG",
+    "Unidad 3a.pdf",
+    "Unidad 3b.pdf",
+    "Unidad 3c.pdf",
+    "Unidad 4 - Sincronizacion de Procesos.pdf",
+    "Unidad 5 - Gestion de Memoria - A.pdf",
+    "Unidad 5 - Gestion de Memoria - B.pdf",
+    "Unidad 6 - Sistemas de Archivos y ES.pdf",
+    "Unidad 7 - Virtualizacion y otros.pdf",
+    "hoja_de_estudio_SO.pdf",
+    "Consulta.pdf",
+    "Ejercitación paginación.pdf",
+    "Sincronismo Procesos - Peterson.xlsx",
+    "Sincronismo Procesos - ProdCons.xlsx"
+  ]
+}

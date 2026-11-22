@@ -1,0 +1,321 @@
+{
+  "version": 1,
+  "descripcion": "Resumen corto por unidad, armado a partir de los apuntes de la cátedra. Formato del campo 'contenido': párrafos separados por línea en blanco, viñetas con '- ', **negrita** y `código`.",
+  "unidades": [
+    {
+      "id": "u1",
+      "secciones": [
+        {
+          "titulo": "Qué es y qué hace un sistema operativo",
+          "contenido": "Es un programa que actúa como **intermediario entre el usuario y el hardware**. Sus objetivos: ejecutar programas y facilitar la resolución de problemas, hacer el sistema fácil de usar y usar el hardware de forma eficiente.\n\nUn sistema informático tiene cuatro componentes: **hardware** (CPU, memoria, E/S), **sistema operativo** (controla y coordina el hardware), **programas de aplicación** y **usuarios**.\n\nVisto desde abajo, el SO es un **administrador de recursos**: CPU, memoria, almacenamiento y E/S.",
+          "fuentes": [{ "archivo": "Unidad 1a.pdf", "pagina": 5 }, { "archivo": "Unidad 1a.pdf", "pagina": 6 }, { "archivo": "Unidad 1a.pdf", "pagina": 37 }]
+        },
+        {
+          "titulo": "Interrupciones y E/S",
+          "contenido": "Los controladores de dispositivo tienen un búfer local y avisan a la CPU que terminaron mediante una **interrupción**. La interrupción transfiere el control a la rutina de servicio a través del **vector de interrupciones**, que tiene las direcciones de todas las rutinas. Hay que guardar la dirección de la instrucción interrumpida.\n\nUn **trap o excepción** es una interrupción generada por software (por un error o por una solicitud del usuario). El SO está **controlado por interrupciones**.\n\n- **E/S bloqueante**: el control vuelve al programa recién cuando termina la E/S.\n- **E/S no bloqueante**: el control vuelve sin esperar a que termine.\n- **DMA**: el dispositivo transfiere datos a memoria sin usar todo el tiempo la CPU.",
+          "fuentes": [{ "archivo": "Unidad 1a.pdf", "pagina": 11 }, { "archivo": "Unidad 1a.pdf", "pagina": 12 }, { "archivo": "Unidad 1a.pdf", "pagina": 16 }, { "archivo": "Unidad 1a.pdf", "pagina": 22 }]
+        },
+        {
+          "titulo": "Almacenamiento y multiprocesadores",
+          "contenido": "La **RAM** es el único almacenamiento grande al que la CPU accede directamente; es volátil. El **almacenamiento secundario** (HDD, NVM) es grande y no volátil. La **caché** copia datos a un nivel más rápido; el desafío es la coherencia.\n\nMultiprocesadores: más rendimiento, economía de escala y más fiabilidad (degradación gradual).\n\n- **Asimétrico**: cada procesador tiene una tarea específica.\n- **Simétrico (SMP)**: todos hacen todas las tareas.\n- **Clústeres**: varios sistemas que comparten almacenamiento (SAN) para alta disponibilidad.",
+          "fuentes": [{ "archivo": "Unidad 1a.pdf", "pagina": 18 }, { "archivo": "Unidad 1a.pdf", "pagina": 24 }, { "archivo": "Unidad 1a.pdf", "pagina": 27 }, { "archivo": "Unidad 1a.pdf", "pagina": 42 }]
+        },
+        {
+          "titulo": "Operaciones del SO: multiprogramación, modo dual y timer",
+          "contenido": "- **Multiprogramación** (eficiencia): varios procesos en memoria; si uno espera E/S, la CPU pasa a otro. Busca maximizar el uso de CPU.\n- **Multitarea / tiempo compartido** (interactividad): la CPU se reparte en quantums; un timer interrumpe y hay cambio de contexto.\n- **Modo dual** (protección): un bit de modo distingue modo usuario y modo kernel. Solo el kernel ejecuta instrucciones privilegiadas. Se pasa a modo kernel por interrupciones, system calls (traps) y excepciones.\n- **Timer** (control permanente): cuenta hacia atrás y al llegar a cero interrumpe, así el SO recupera la CPU (apropiación) y nadie la monopoliza.",
+          "fuentes": [{ "archivo": "Unidad 1a.pdf", "pagina": 31 }, { "archivo": "Unidad 1a.pdf", "pagina": 32 }, { "archivo": "Unidad 1a.pdf", "pagina": 33 }, { "archivo": "Unidad 1a.pdf", "pagina": 35 }]
+        },
+        {
+          "titulo": "Servicios y llamadas al sistema",
+          "contenido": "Servicios: interfaz de usuario (CLI o GUI), ejecución de programas, E/S, archivos, comunicaciones (memoria compartida o paso de mensajes) y detección de errores.\n\nUna **llamada al sistema** es la única forma de pasar de espacio de usuario a espacio de kernel. Flujo: la app llama a la API → la librería pone el número de syscall en un registro → instrucción especial (`syscall` / `int 0x80`) que provoca un trap → se salva el contexto → modo kernel y salto por la tabla de vectores → se ejecuta el servicio y se retorna.\n\nPasaje de parámetros: **registros** (el más rápido, limitado), **bloque de parámetros** apuntado por un registro (el estándar para estructuras complejas) o **pila**. El kernel debe validar los punteros.\n\nEjemplos: `fork`, `exec`, `wait`, `exit`, `open`, `read`, `write`, `close`, `lseek`, `stat`, `ioctl`, `chmod`.",
+          "fuentes": [{ "archivo": "Unidad 1b.pdf", "pagina": 3 }, { "archivo": "Unidad 1b.pdf", "pagina": 8 }, { "archivo": "Unidad 1b.pdf", "pagina": 10 }, { "archivo": "Unidad 1b.pdf", "pagina": 11 }]
+        },
+        {
+          "titulo": "Diseño y estructura del kernel",
+          "contenido": "**Mecanismo vs. política**: el mecanismo es *cómo* se hace algo; la política, *qué* se decide. Separarlos permite cambiar la política sin rediseñar el kernel.\n\n- **Monolítico** (Linux, MS-DOS): todo en un único espacio de direcciones. Máximo rendimiento, pero un error en un driver puede romper todo.\n- **Por capas**: la capa N usa solo la N−1. Modular y fácil de depurar, pero ineficiente.\n- **Microkernel** (Mach, QNX): los servicios corren como procesos de usuario; el kernel solo hace IPC. Fiable y seguro, pero más lento por el paso de mensajes.\n- **Módulos cargables (LKM)**: núcleo chico que carga módulos en ejecución. Combina velocidad y flexibilidad.\n\n**Arranque**: firmware (BIOS/UEFI, POST) → boot loader (GRUB) → carga del kernel en RAM → el kernel inicializa y lanza el primer proceso (init/systemd).",
+          "fuentes": [{ "archivo": "Unidad 1b.pdf", "pagina": 19 }, { "archivo": "Unidad 1b.pdf", "pagina": 20 }, { "archivo": "Unidad 1b.pdf", "pagina": 22 }, { "archivo": "Unidad 1b.pdf", "pagina": 24 }]
+        },
+        {
+          "titulo": "Compilación, carga y portabilidad",
+          "contenido": "Compilación (código objeto con direcciones relativas) → enlazado (resuelve referencias a librerías) → carga (el loader copia el binario a RAM) → relocalización. Con **enlace dinámico** (DLL/.so) varias apps comparten la misma copia de una librería.\n\nUn binario no corre en otro SO por el **formato ejecutable** (ELF, PE, Mach-O), el **conjunto de instrucciones** (x86-64, ARM) y las **llamadas al sistema**, que cambian entre kernels.",
+          "fuentes": [{ "archivo": "Unidad 1b.pdf", "pagina": 17 }, { "archivo": "Unidad 1b.pdf", "pagina": 18 }]
+        },
+        {
+          "titulo": "Protección, virtualización y entornos",
+          "contenido": "- **Protección**: controla el acceso de procesos y usuarios a los recursos. **Seguridad**: defiende de ataques externos e internos. UID y GID identifican usuarios y grupos.\n- **Virtualización**: el VMM o hipervisor ejecuta sistemas operativos como aplicaciones. La **emulación** traduce entre arquitecturas (lento); la virtualización corre sobre hardware real (rápido).\n- **Sistemas distribuidos**: sistemas separados, conectados por red, que el usuario ve como uno solo.\n- **Estructuras del kernel**: listas, pilas, colas, árboles (rojo-negro), hash y bitmaps.\n- **Entornos**: tradicional, móvil, cliente-servidor, P2P, nube, tiempo real embebido.",
+          "fuentes": [{ "archivo": "Unidad 1a.pdf", "pagina": 45 }, { "archivo": "Unidad 1a.pdf", "pagina": 47 }, { "archivo": "Unidad 1a.pdf", "pagina": 50 }, { "archivo": "Unidad 1a.pdf", "pagina": 53 }, { "archivo": "Unidad 1a.pdf", "pagina": 55 }]
+        }
+      ]
+    },
+    {
+      "id": "u2",
+      "secciones": [
+        {
+          "titulo": "Programa vs. proceso",
+          "contenido": "El **programa** es una entidad pasiva: un ejecutable en disco. El **proceso** es un programa en ejecución, con estado y recursos. Un mismo programa puede dar varios procesos.\n\nEn memoria, un proceso tiene: **texto** (código, solo lectura), **datos** (globales y BSS), **heap** (memoria dinámica, crece hacia arriba) y **stack** (marcos de funciones, crece hacia abajo).",
+          "fuentes": [{ "archivo": "Unidad 2a.pdf", "pagina": 4 }, { "archivo": "Unidad 2a.pdf", "pagina": 5 }]
+        },
+        {
+          "titulo": "Estados y PCB",
+          "contenido": "Estados: **nuevo**, **listo** (espera CPU), **en ejecución**, **en espera/bloqueado** (espera un evento, por ejemplo E/S) y **terminado**.\n\nEl **PCB** (en Linux, `task_struct`) guarda estado, contador de programa, registros, información de memoria, estadísticas y estado de E/S. Sin el PCB no se podría retomar un proceso después de una interrupción.\n\nColas: **cola de listos** (lista de punteros a PCB) y **colas de dispositivo**. Un proceso deja la CPU por una E/S, por fin de quantum, al crear un hijo o por una interrupción.",
+          "fuentes": [{ "archivo": "Unidad 2a.pdf", "pagina": 7 }, { "archivo": "Unidad 2a.pdf", "pagina": 9 }, { "archivo": "Unidad 2a.pdf", "pagina": 11 }]
+        },
+        {
+          "titulo": "Cambio de contexto",
+          "contenido": "Pasar de P0 a P1: interrupción o trap → se guarda el contexto de P0 en su PCB → el scheduler elige → se carga el contexto de P1.\n\nEs **overhead**: tiempo en el que no se hace trabajo útil. Depende del soporte de hardware y de la complejidad del SO.",
+          "fuentes": [{ "archivo": "Unidad 2a.pdf", "pagina": 14 }]
+        },
+        {
+          "titulo": "Creación y terminación de procesos",
+          "contenido": "- `fork()`: crea un hijo que es copia del padre (con su propio espacio de memoria).\n- `exec()`: reemplaza la memoria del proceso por un programa nuevo.\n- `exit()`: termina; el padre recoge el estado con `wait()`.\n- `init`/`systemd` es el ancestro de todos los procesos.\n\n**Zombi**: terminó pero el padre todavía no hizo `wait()`; ocupa su PID. **Huérfano**: el padre terminó sin `wait()`; lo adopta `init` (PID 1). **Terminación en cascada**: si el padre termina, el SO puede terminar a los hijos.",
+          "fuentes": [{ "archivo": "Unidad 2a.pdf", "pagina": 16 }, { "archivo": "Unidad 2a.pdf", "pagina": 20 }, { "archivo": "Unidad 2a.pdf", "pagina": 22 }]
+        },
+        {
+          "titulo": "Comunicación entre procesos (IPC)",
+          "contenido": "- **Memoria compartida**: el SO mapea una misma región en varios procesos. Es la más rápida (solo hay syscalls al configurarla), pero la sincronización queda a cargo del programador.\n- **Paso de mensajes**: `send` / `receive`, sin memoria compartida; el kernel media. Es más robusto e ideal para sistemas distribuidos. Puede ser bloqueante (síncrono) o no bloqueante (asíncrono). Con capacidad cero el emisor se bloquea hasta que el receptor toma el mensaje.",
+          "fuentes": [{ "archivo": "Unidad 2a.pdf", "pagina": 23 }, { "archivo": "Unidad 2a.pdf", "pagina": 24 }]
+        },
+        {
+          "titulo": "Hilos",
+          "contenido": "Un hilo es la **unidad básica de uso de CPU**. Cada hilo tiene su propio TID, PC, registros y **stack**; comparte con los demás hilos del proceso el código, los datos globales y los recursos del SO (archivos abiertos, señales). Cada hilo tiene su **TCB**.\n\nBeneficios: **responsividad**, **compartir recursos**, **economía** (en Solaris crear un proceso es 30 veces más lento que un hilo) y **escalabilidad** en multinúcleo.\n\nEl proceso es la unidad de protección y propiedad de recursos; el hilo, la unidad de ejecución y planificación.",
+          "fuentes": [{ "archivo": "Unidad 2b.pdf", "pagina": 3 }, { "archivo": "Unidad 2b.pdf", "pagina": 7 }, { "archivo": "Unidad 2b.pdf", "pagina": 10 }, { "archivo": "Unidad 2b.pdf", "pagina": 11 }]
+        },
+        {
+          "titulo": "Concurrencia, paralelismo y Ley de Amdahl",
+          "contenido": "**Concurrencia**: varias tareas progresan (entrelazado, incluso con un solo núcleo). **Paralelismo**: se ejecutan a la vez físicamente (necesita varios núcleos). Un sistema paralelo siempre es concurrente; al revés, no.\n\nParalelismo de **datos** (misma operación sobre partes de los datos) vs. de **tareas** (hilos distintos que hacen cosas distintas).\n\n**Ley de Amdahl**: `S = 1 / ((1 − P) + P / N)`, con P la fracción paralelizable y N los núcleos. La parte serial limita: con 25 % serial, nunca se supera 4× (1 / 0,25).",
+          "fuentes": [{ "archivo": "Unidad 2b.pdf", "pagina": 14 }, { "archivo": "Unidad 2b.pdf", "pagina": 16 }, { "archivo": "Unidad 2b.pdf", "pagina": 18 }, { "archivo": "Unidad 2b.pdf", "pagina": 20 }]
+        },
+        {
+          "titulo": "Modelos de hilos y bibliotecas",
+          "contenido": "- **Hilos de usuario**: los maneja una librería y el kernel no los ve. Son rápidos, pero una llamada bloqueante frena todo el proceso.\n- **Hilos de kernel**: el SO mantiene un TCB por hilo. Si uno se bloquea, sigue otro.\n- **Muchos a uno**: sin paralelismo real (green threads de Java antiguas).\n- **Uno a uno**: el estándar (Linux, Windows). Paralelismo real, pero cada hilo cuesta un hilo de kernel.\n- **Muchos a muchos**: multiplexa hilos de usuario sobre igual o menos hilos de kernel (Solaris). Es complejo.\n\nLinux no distingue proceso e hilo: son **tasks** creadas con `clone()`. Bibliotecas: Pthreads, Windows Threads y Java Threads. **Hilos implícitos**: thread pools, fork-join, OpenMP, GCD, TBB.",
+          "fuentes": [{ "archivo": "Unidad 2b.pdf", "pagina": 23 }, { "archivo": "Unidad 2b.pdf", "pagina": 24 }, { "archivo": "Unidad 2b.pdf", "pagina": 26 }, { "archivo": "Unidad 2b.pdf", "pagina": 30 }, { "archivo": "Unidad 2b.pdf", "pagina": 36 }]
+        }
+      ]
+    },
+    {
+      "id": "u3",
+      "secciones": [
+        {
+          "titulo": "Ráfagas, planificadores y despachador",
+          "contenido": "Los procesos alternan **ráfagas de CPU** y **ráfagas de E/S**. Los **I/O-bound** tienen muchas ráfagas cortas; los **CPU-bound**, pocas y largas.\n\n- **Largo plazo** (de trabajos): decide qué trabajos entran y crea procesos.\n- **Mediano plazo** (swapping): saca procesos de memoria temporalmente.\n- **Corto plazo** (de CPU): elige quién usa la CPU; corre muy seguido y debe ser rápido.\n\nEl **despachador** entrega la CPU: cambio de contexto, pasaje a modo usuario y salto al PC. Su demora es la **latencia de despacho**.\n\n**No apropiativo**: el proceso suelta la CPU solo al terminar o bloquearse. **Apropiativo**: el kernel puede quitársela en cualquier momento (necesita timer).",
+          "fuentes": [{ "archivo": "Unidad 3a.pdf", "pagina": 5 }, { "archivo": "Unidad 3a.pdf", "pagina": 7 }, { "archivo": "Unidad 3a.pdf", "pagina": 9 }, { "archivo": "Unidad 3a.pdf", "pagina": 10 }]
+        },
+        {
+          "titulo": "Criterios y fórmulas",
+          "contenido": "Maximizar **utilización de CPU** y **throughput**. Minimizar **turnaround** (retorno), **espera** (tiempo en la cola de listos) y **respuesta** (hasta la primera respuesta).\n\nFórmulas de la cátedra:\n\n- Tiempo de servicio: `T = Tf − Ti` (fin menos llegada).\n- Tiempo de espera: `E = T − t` (t = ráfaga).\n- Índice de servicio: `I = t / T`.",
+          "fuentes": [{ "archivo": "Unidad 3a.pdf", "pagina": 12 }, { "archivo": "Unidad 3a.pdf", "pagina": 13 }, { "archivo": "Unidad 3b.pdf", "pagina": 6 }]
+        },
+        {
+          "titulo": "FCFS, SJF y SRTF",
+          "contenido": "- **FCFS**: orden de llegada, cola FIFO, no apropiativo. Es simple, pero tiene **efecto convoy** (un proceso largo frena a los cortos).\n- **SJF**: ráfaga más corta primero, no apropiativo. Es **óptimo en espera promedio**, pero hay que predecir la ráfaga (promedio exponencial). Desempata por FCFS.\n- **SRTF**: versión apropiativa de SJF. Si llega uno con ráfaga menor que lo que le **resta** al actual, lo desaloja. Mejor espera promedio, más overhead.",
+          "fuentes": [{ "archivo": "Unidad 3b.pdf", "pagina": 8 }, { "archivo": "Unidad 3b.pdf", "pagina": 10 }, { "archivo": "Unidad 3b.pdf", "pagina": 13 }]
+        },
+        {
+          "titulo": "Round Robin",
+          "contenido": "Para tiempo compartido. Cada proceso usa como máximo un **quantum q**; si no termina, hay interrupción del timer y va al final de la cola. Con n procesos, cada uno espera como mucho (n − 1) × q para volver a ejecutar.\n\n- q muy grande → se vuelve **FCFS**.\n- q muy chico → el **cambio de contexto** se come la CPU (el cambio de contexto debería ser menos del 10 % de q).\n\nEn los ejemplos de la cátedra, si un proceso llega justo cuando vence el quantum, se considera que llegó **antes** del vencimiento, y la CPU recorre los procesos en ronda, en orden de llegada.",
+          "fuentes": [{ "archivo": "Unidad 3b.pdf", "pagina": 15 }, { "archivo": "Unidad 3b.pdf", "pagina": 16 }, { "archivo": "Unidad 3b.pdf", "pagina": 18 }]
+        },
+        {
+          "titulo": "Prioridades, inanición y envejecimiento",
+          "contenido": "La CPU va al de **mayor prioridad**, que en general es el **número más chico**. Puede ser apropiativo o no; las prioridades pueden ser estáticas o dinámicas (SJF es un caso de prioridad).\n\nRiesgo: **inanición (starvation)** de los procesos de baja prioridad. Solución: **envejecimiento (aging)**, que sube la prioridad de los que esperan mucho.\n\nCon **prioridades + RR**, los procesos de igual prioridad se turnan con quantum.",
+          "fuentes": [{ "archivo": "Unidad 3b.pdf", "pagina": 19 }, { "archivo": "Unidad 3b.pdf", "pagina": 22 }, { "archivo": "Unidad 3b.pdf", "pagina": 25 }]
+        },
+        {
+          "titulo": "Colas multinivel",
+          "contenido": "- **Multinivel**: la cola de listos se divide por tipo (foreground con RR, background con FCFS). Asignación fija y prioridad absoluta entre colas.\n- **Multinivel con retroalimentación (MLFQ)**: los procesos se mueven entre colas. Si usan mucha CPU, bajan; si esperan mucho, suben (aging). Se define con el número de colas, el algoritmo de cada una y los criterios de ascenso, descenso y entrada.",
+          "fuentes": [{ "archivo": "Unidad 3c.pdf", "pagina": 3 }, { "archivo": "Unidad 3c.pdf", "pagina": 5 }, { "archivo": "Unidad 3c.pdf", "pagina": 6 }]
+        },
+        {
+          "titulo": "Multiprocesador",
+          "contenido": "En SMP cada procesador se planifica solo, con una cola común o colas privadas. **Chip multithreading** (hyperthreading): 4 núcleos × 2 hilos = 8 procesadores lógicos. Aprovecha los **memory stalls**.\n\n- **Afinidad**: no mover el proceso para no perder la caché (soft: se intenta; hard: obligatoria).\n- **Balanceo de carga**: **push** (una tarea empuja procesos a CPUs libres) y **pull** (una CPU ociosa tira de procesos).",
+          "fuentes": [{ "archivo": "Unidad 3c.pdf", "pagina": 9 }, { "archivo": "Unidad 3c.pdf", "pagina": 12 }, { "archivo": "Unidad 3c.pdf", "pagina": 14 }]
+        },
+        {
+          "titulo": "Tiempo real y CFS de Linux",
+          "contenido": "En tiempo real importa la **predictibilidad**. **Soft**: prioridad sin garantía exacta. **Hard**: plazos estrictos. Latencias: de **interrupción** y de **despacho**.\n\n- **Rate Monotonic**: prioridad estática; período más corto = más prioridad. Su cota de utilización es menor al 100 %.\n- **EDF**: prioridad dinámica, el plazo más cercano primero. Puede llegar al 100 %.\n\n**CFS** (Linux 2.6.23): modela una CPU ideal repartida en partes iguales. Elige el menor **vruntime**. El valor **nice** va de −20 a +19 (por defecto 0); cada punto equivale a ~10 % de CPU. Los I/O-bound tienen vruntime bajo y por eso responden rápido.",
+          "fuentes": [{ "archivo": "Unidad 3c.pdf", "pagina": 15 }, { "archivo": "Unidad 3c.pdf", "pagina": 20 }, { "archivo": "Unidad 3c.pdf", "pagina": 22 }, { "archivo": "Unidad 3c.pdf", "pagina": 23 }, { "archivo": "Unidad 3c.pdf", "pagina": 24 }]
+        }
+      ]
+    },
+    {
+      "id": "u4",
+      "secciones": [
+        {
+          "titulo": "Productor-consumidor y condición de carrera",
+          "contenido": "Buffer circular con `in` (próxima posición libre) y `out` (próximo dato a leer):\n\n- **Vacío** si `in == out`.\n- **Lleno** si `(in + 1) % N == out`.\n- Se desperdicia una posición: con N = 8 se guardan 7 elementos.\n\nCon una variable `counter` se usa el 100 %, pero `counter++` y `counter--` son tres pasos de máquina (leer, operar, guardar). Si se intercalan, con counter = 5 puede quedar 4, 5 o 6: es una **condición de carrera** (el resultado depende del orden de ejecución).",
+          "fuentes": [{ "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 8 }, { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 17 }, { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 20 }]
+        },
+        {
+          "titulo": "Sección crítica",
+          "contenido": "Es el código que accede a datos compartidos. Estructura: sección de **entrada**, **crítica**, de **salida** y **restante**.\n\nToda solución debe cumplir:\n\n- **Exclusión mutua**: solo uno a la vez adentro.\n- **Progreso**: si nadie está adentro, la decisión no se posterga indefinidamente (solo deciden los que no están en su sección restante).\n- **Espera limitada**: hay un límite de cuántos pueden pasar antes que uno que ya pidió entrar.\n\nKernel **apropiativo** (Linux, Windows NT, macOS): responde mejor y sirve para tiempo real, pero necesita sincronización. **No apropiativo**: libre de carreras en el kernel, más simple, responde peor.",
+          "fuentes": [{ "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 21 }, { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 22 }, { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 24 }]
+        },
+        {
+          "titulo": "Peterson y soporte de hardware",
+          "contenido": "**Peterson**: solución por software para 2 procesos con `flag[2]` y `turn`. Pi hace `flag[i] = true`, `turn = j` y espera `while (flag[j] && turn == j)`; al salir, `flag[i] = false`. En teoría cumple las 3 condiciones, pero **falla en hardware moderno** por el reordenamiento de instrucciones, las cachés y los varios núcleos.\n\nSoporte de hardware:\n\n- **Memory barriers**: garantizan el orden y la visibilidad de las operaciones de memoria.\n- **Instrucciones atómicas**: `test_and_set()` y `compare_and_swap()` son indivisibles. Dan exclusión mutua, pero **no espera limitada** (puede haber inanición).\n- **Variables atómicas**: operaciones atómicas sobre enteros (se implementan con CAS).",
+          "fuentes": [{ "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 25 }, { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 29 }, { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 32 }, { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 33 }, { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 34 }]
+        },
+        {
+          "titulo": "Mutex y spinlocks",
+          "contenido": "**Mutex**: variable booleana `available`. Se toma con `acquire()` y se libera con `release()`.\n\n**Spinlock**: espera activa en un bucle. Gasta CPU y es pésimo con un solo núcleo, pero **no tiene costo de cambio de contexto**, así que sirve en multinúcleo si la espera es corta.",
+          "fuentes": [{ "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 38 }, { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 39 }]
+        },
+        {
+          "titulo": "Semáforos",
+          "contenido": "Entero protegido (Dijkstra) con dos operaciones atómicas:\n\n- `wait(S)`: si S > 0 resta 1 y pasa; si no, se bloquea.\n- `signal(S)`: suma 1 y despierta a uno que espera.\n\n**Binario** (0/1, como un mutex) y **contador** (0..N, para recursos con varias instancias; se inicializa en la cantidad de recursos).\n\nSirven para **forzar un orden**: con `synch = 0`, P1 hace D1 y `signal(synch)`; P2 hace `wait(synch)` antes de D2.\n\nEjercicio HOLAS/HOALS: S1 = 1 y S2 = S3 = S4 = 0. P1: `wait(S1)`, H, `signal(S2)`, `wait(S3)`, L, `wait(S4)`, S. P2: `wait(S2)`, O, `signal(S3)`, A, `signal(S4)`.",
+          "fuentes": [{ "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 40 }, { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 42 }, { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 45 }, { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 46 }]
+        },
+        {
+          "titulo": "Problemas clásicos (libro)",
+          "contenido": "- **Búfer limitado**: `mutex = 1`, `empty = n`, `full = 0`. Productor: `wait(empty)`, `wait(mutex)`, agrega, `signal(mutex)`, `signal(full)`. El orden importa: `wait(mutex)` antes que `wait(empty)` con el búfer lleno provoca deadlock.\n- **Lectores-escritores**: varios lectores a la vez, un escritor exclusivo. El primer lector hace `wait(wrt)` y el último `signal(wrt)`.\n- **Filósofos**: si los 5 toman el palillo izquierdo, hay deadlock. Soluciones: máximo 4 sentados, tomar ambos palillos en una sección crítica o una solución asimétrica.",
+          "fuentes": [{ "archivo": "hoja_de_estudio_SO.pdf", "pagina": 4 }, { "archivo": "hoja_de_estudio_SO.pdf", "pagina": 5 }]
+        },
+        {
+          "titulo": "Monitores",
+          "contenido": "Tipo de dato abstracto que agrupa datos compartidos y procedimientos, con **exclusión mutua automática**: solo un hilo activo adentro.\n\nLas **variables de condición** son colas de espera: `x.wait()` suspende y **libera el monitor**; `x.signal()` despierta a uno (si nadie espera, no pasa nada). En el monitor de **Hoare**, el que hace signal va a la **Urgent Queue** y el despertado entra enseguida.",
+          "fuentes": [{ "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 47 }, { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 49 }, { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 51 }]
+        },
+        {
+          "titulo": "Deadlock",
+          "contenido": "Varios procesos esperan un evento que solo otro del grupo puede causar. Hacen falta **las 4 condiciones a la vez**: exclusión mutua, retención y espera, sin desalojo y espera circular.\n\n**Grafo de asignación (RAG)**: Pi → Rj es una solicitud; Rj → Pi, una asignación. Sin ciclo no hay deadlock. Con ciclo: si los recursos tienen **una instancia**, hay deadlock seguro; si tienen varias, es solo posible.\n\nCómo tratarlo (libro): **prevenir** (romper una condición; por ejemplo, numerar los recursos y pedirlos en orden creciente), **evitar** (banquero: conceder solo si el estado queda **seguro**, con `Need = Max − Allocation`), **detectar y recuperar**, o **ignorar** (UNIX y Windows). Un estado seguro implica que no hay deadlock; uno inseguro *puede* llevar a deadlock.",
+          "fuentes": [{ "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 57 }, { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 59 }, { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 60 }, { "archivo": "hoja_de_estudio_SO.pdf", "pagina": 6 }]
+        }
+      ]
+    },
+    {
+      "id": "u5",
+      "secciones": [
+        {
+          "titulo": "Protección y enlace de direcciones",
+          "contenido": "**Base y límite**: una dirección en modo usuario es válida si `base ≤ dir < base + límite`; si no, trap. Lo hace el **hardware**, porque el SO no puede intervenir en cada acceso. Ejemplo: base 300040 y límite 120900 → direcciones de 300040 a 420939.\n\nDirecciones **simbólicas** → **reubicables** → **absolutas**. El enlace puede hacerse en **compilación** (código absoluto), **carga** (código reubicable) o **ejecución** (el estándar moderno; necesita MMU y permite mover el proceso).\n\nLa **MMU** traduce lógica → física; en su forma más simple suma un **registro de reubicación** (14000 + 346 = 14346).",
+          "fuentes": [{ "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 8 }, { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 9 }, { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 13 }, { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 17 }]
+        },
+        {
+          "titulo": "Asignación contigua y fragmentación",
+          "contenido": "Cada proceso ocupa un bloque contiguo; con el tiempo quedan **huecos**.\n\n- **First-fit**: el primer hueco que alcance (rápido).\n- **Best-fit**: el más chico que sirva (deja sobrantes diminutos).\n- **Worst-fit**: el más grande. First-fit y best-fit son mejores que worst-fit.\n\n**Fragmentación externa**: hay memoria libre suficiente pero dispersa. **Interna**: espacio desperdiciado dentro de lo asignado. La **compactación** resuelve la externa, pero es cara y necesita reubicación dinámica.",
+          "fuentes": [{ "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 20 }, { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 21 }, { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 22 }]
+        },
+        {
+          "titulo": "Paginación",
+          "contenido": "La memoria física se divide en **marcos** y la lógica en **páginas** del mismo tamaño (potencia de 2). Elimina la fragmentación externa (queda interna: en promedio media página por proceso).\n\nCon espacio lógico 2^m y página 2^n: **p** ocupa m − n bits y **d** ocupa n bits. Física = `marco × tamaño de página + d` (d no cambia).\n\nEjemplo de la cátedra: m = 4, n = 2, tabla 0→5, 1→6, 2→1, 3→2. La lógica 13 = (11|01) da p = 3, d = 1 → marco 2 → 2 × 4 + 1 = 9.\n\nLa **tabla de páginas** es por proceso y la **tabla de marcos**, global.",
+          "fuentes": [{ "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 24 }, { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 28 }, { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 29 }, { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 30 }]
+        },
+        {
+          "titulo": "TLB, bits de control y tipos de tabla",
+          "contenido": "La tabla de páginas vive en RAM (apuntada por el **PTBR**), así que cada acceso se vuelve **doble** (100 ns → 200 ns). La **TLB** es una memoria asociativa en la MMU: con un **hit** se accede directo; con un **miss** se va a la tabla y se actualiza la TLB. Los **ASID** permiten que convivan traducciones de varios procesos.\n\nBits por entrada: lectura/escritura (escribir en una página de solo lectura da trap) y **válido/inválido**.\n\n**Páginas compartidas**: el código reentrante (libc) tiene una sola copia. Tablas **jerárquicas** (se pagina la tabla), **invertidas** (una entrada por marco, con PID) y **hash** (con listas de colisión).",
+          "fuentes": [{ "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 33 }, { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 34 }, { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 36 }, { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 38 }, { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 39 }]
+        },
+        {
+          "titulo": "Segmentación y swapping",
+          "contenido": "**Segmentación**: el espacio lógico se divide en segmentos de tamaño variable según la visión del programador (código, pila, heap). La dirección es (s, d); la tabla tiene **base** y **límite**. Si `d < límite`, física = base + d; si no, trap.\n\nPaginación: tamaño fijo, visión del hardware, fragmentación **interna**. Segmentación: tamaño variable, visión del programador, fragmentación **externa**, compartir es natural.\n\n**Swapping**: sacar memoria a disco. El de procesos completos ya casi no se usa (es lento); hoy se intercambian páginas (**page out / page in**).",
+          "fuentes": [{ "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 44 }, { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 45 }, { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 50 }, { "archivo": "Unidad 5 - Gestion de Memoria - A.pdf", "pagina": 53 }]
+        },
+        {
+          "titulo": "Memoria virtual, page fault y COW",
+          "contenido": "La memoria virtual separa el espacio lógico del físico: permite ejecutar programas **más grandes que la RAM**. El espacio es disperso (el hueco entre heap y stack no ocupa marcos).\n\n**Paginación bajo demanda**: el *lazy pager* trae una página solo cuando la CPU la pide. El bit **v** indica que está en RAM; el **i**, que es ilegal o que está en disco.\n\n**Page fault**: trap → se verifica que el acceso sea válido (si no, se termina el proceso) → se busca un marco libre → se lee del disco → se actualiza la tabla → se **reinicia la instrucción**.\n\n**EAT** = `(1 − p) × 200 + p × 8 000 000` ns. Con p = 0,01 da 80 198 ns (casi 400 veces más lento); para perder menos del 10 % hace falta p < 1/400 000.\n\n**Copy-on-Write**: tras `fork()`, padre e hijo comparten páginas de solo lectura; se copia solo la página que alguien escribe.",
+          "fuentes": [{ "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 3 }, { "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 7 }, { "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 10 }, { "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 14 }, { "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 16 }]
+        },
+        {
+          "titulo": "Reemplazo de páginas",
+          "contenido": "Si no hay marcos libres se elige una **víctima**. El **dirty bit** dice si hay que escribirla antes: con 0 se descarta; con 1 hace falta page-out.\n\n- **FIFO**: la más antigua. Sufre la **anomalía de Belady** (más marcos pueden dar más fallos: 3 marcos → 9, 4 → 10).\n- **OPT**: la que no se usará por más tiempo. Es imposible (requiere conocer el futuro); sirve de referencia.\n- **LRU**: la usada hace más tiempo. No sufre Belady; se implementa con contadores o una pila (costoso).\n- **Reloj (segunda oportunidad)**: FIFO circular con bit R. Si R = 1, pasa a 0 y se salva; si R = 0, es la víctima.\n\nCadena 7 0 1 2 0 3 0 4 2 3 0 3 2 1 2 0 1 7 0 1 con 3 marcos: FIFO 15, LRU 12, OPT 9 fallos.",
+          "fuentes": [{ "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 19 }, { "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 22 }, { "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 23 }, { "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 24 }, { "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 29 }, { "archivo": "hoja_de_estudio_SO.pdf", "pagina": 10 }]
+        },
+        {
+          "titulo": "Thrashing, working set y memoria del kernel",
+          "contenido": "**Thrashing**: el sistema pagina más de lo que ejecuta. Círculo vicioso: la CPU parece ociosa → el SO mete más procesos → faltan marcos → más fallos.\n\n**Working set** WS(t): páginas distintas usadas en las últimas Δ referencias. Si `D = Σ|WSi|` supera los marcos disponibles, se suspenden procesos.\n\nAsignación de marcos (libro): **equitativa** (m / n) o **proporcional** (ai = si / S × m).\n\nMemoria del kernel (necesita bloques contiguos):\n\n- **Buddy System**: divide en mitades potencia de 2 y fusiona compañeros al liberar. Sin fragmentación externa, pero con interna (21 KB → bloque de 32 KB).\n- **Slab**: cachés de objetos del mismo tipo sobre páginas del buddy; reduce la fragmentación interna.",
+          "fuentes": [{ "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 32 }, { "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 34 }, { "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 36 }, { "archivo": "Unidad 5 - Gestion de Memoria - B.pdf", "pagina": 38 }, { "archivo": "hoja_de_estudio_SO.pdf", "pagina": 10 }]
+        }
+      ]
+    },
+    {
+      "id": "u6",
+      "secciones": [
+        {
+          "titulo": "Archivo y metadatos",
+          "contenido": "El archivo es la **unidad lógica mínima de almacenamiento no volátil**. UNIX y Windows lo ven como un **flujo de bytes** y la aplicación lo interpreta. La excepción es el **ejecutable** (ELF/PE), que el loader debe entender.\n\nMetadatos: nombre, identificador (**inodo / FCB**), tipo, tamaño, ubicación, permisos y tiempos (atime, mtime, ctime). El directorio traduce **nombre → identificador → metadatos + datos**; así se puede renombrar o mover sin copiar datos.\n\nLos datos se empaquetan en **bloques** fijos y el último queda a medias (**fragmentación interna**): 5000 B en bloques de 4096 ocupan 2 bloques y desperdician 3192 B.",
+          "fuentes": [{ "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 3 }, { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 5 }, { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 7 }, { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 12 }]
+        },
+        {
+          "titulo": "Llamadas al sistema y tablas de apertura",
+          "contenido": "- `create` / `delete`: crean o quitan la entrada y el inodo.\n- `open`: busca el archivo **una sola vez**, verifica permisos, carga los metadatos en RAM y devuelve un **descriptor (fd)**.\n- `read` / `write`: usan el **file offset**.\n- `lseek`: mueve el offset sin leer.\n- `truncate`: vacía el archivo pero conserva los metadatos.\n- `close`: libera el fd.\n\nHay una **tabla global** de archivos abiertos (con `open_count`) y una **tabla por proceso** indexada por el fd.",
+          "fuentes": [{ "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 13 }, { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 14 }, { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 47 }]
+        },
+        {
+          "titulo": "Locking y métodos de acceso",
+          "contenido": "**Bloqueos**: **compartido** (varios lectores) y **exclusivo** (un escritor). **Obligatorio**: el kernel lo impone (por defecto en Windows). **De aviso**: los programas deben respetarlo (por defecto en UNIX/Linux).\n\nAcceso **secuencial** (`read_next`), **directo** (salta al bloque n con `lseek`; bases de datos) e **indexado** (índice en RAM con punteros a los bloques).",
+          "fuentes": [{ "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 16 }, { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 18 }]
+        },
+        {
+          "titulo": "Directorios, enlaces y permisos",
+          "contenido": "Evolución: un nivel → dos niveles (MFD/UFD) → **árbol** (rutas absolutas y relativas) → **grafo acíclico** (compartir).\n\n- **Enlace duro**: otra entrada al **mismo inodo**; el archivo sigue mientras quede alguna.\n- **Enlace simbólico**: archivo aparte con la **ruta** del destino; si se borra el original, queda roto.\n\n**UGO**: rwx para User, Group y Others (**9 bits** en el inodo). En directorios, r lista, w crea o borra y x permite entrar. **ACL**: lista <usuario/grupo, derechos>, más fina pero más costosa. Windows usa ACL; Linux, UGO más ACL cuando hace falta.",
+          "fuentes": [{ "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 20 }, { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 24 }, { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 27 }, { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 29 }]
+        },
+        {
+          "titulo": "mmap y arquitectura en capas",
+          "contenido": "**mmap** asocia un archivo a direcciones virtuales. El primer acceso causa un page fault; después se trabaja a velocidad de RAM, sin copias por `read`/`write`. Con `MAP_SHARED` los cambios se ven entre procesos (hay que sincronizar); el mapeo privado usa **COW**. `msync` baja las dirty pages a disco.\n\nCapas del sistema de archivos: **lógico** (directorios, inodos, permisos) → **organización de archivos** (bloque lógico → físico, espacio libre) → **básico** (comandos genéricos a búferes) → **control de E/S** (drivers e interrupciones).",
+          "fuentes": [{ "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 31 }, { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 33 }, { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 35 }]
+        },
+        {
+          "titulo": "Asignación física y espacio libre",
+          "contenido": "- **Contigua / extents**: lo más rápido; física = inicio + i. Problemas: fragmentación externa y que hay que conocer el tamaño final.\n- **Enlazada / FAT**: sin fragmentación externa; la FAT junta los punteros en RAM. El acceso aleatorio es lento y la FAT consume RAM.\n- **Indexada**: un bloque de índice con los punteros; acceso directo sin fragmentación externa. Desperdicia en archivos chicos.\n- **Inodo UNIX**: 15 punteros = 12 directos + indirecto simple, doble y triple. Con bloques de 4 KB y punteros de 4 B: 1024 punteros por bloque → 48 KB, 4 MB, 4 GB y 4 TB.\n\nEspacio libre: **bitmap** (1 bit por bloque; rápido, pero en RAM) o **lista enlazada** (sin RAM extra, pero lenta), con variantes de agrupamiento y conteo.",
+          "fuentes": [{ "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 36 }, { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 37 }, { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 39 }, { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 41 }, { "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 42 }]
+        },
+        {
+          "titulo": "E/S: polling, interrupciones y DMA",
+          "contenido": "Las controladoras exponen registros **Status, Control, Data-In y Data-Out**, que manejan los drivers.\n\n- **Polling**: la CPU pregunta una y otra vez por el busy bit (espera activa).\n- **Interrupciones**: la CPU inicia la operación y sigue con otra cosa; el dispositivo avisa al terminar.\n- **DMA**: la controladora copia bloques entre el dispositivo y la RAM y genera **una sola interrupción** al final.\n\nServicios del kernel (libro): planificación de E/S, **buffering**, **caché**, **spooling** (cola para la impresora), reserva de dispositivos y manejo de errores.",
+          "fuentes": [{ "archivo": "Unidad 6 - Sistemas de Archivos y ES.pdf", "pagina": 43 }, { "archivo": "hoja_de_estudio_SO.pdf", "pagina": 15 }]
+        },
+        {
+          "titulo": "Disco, RAID y recuperación (libro)",
+          "contenido": "Planificación de disco (cola 98, 183, 37, 122, 14, 124, 65, 67 con el cabezal en 53):\n\n- **FCFS**: 640 cilindros.\n- **SSTF**: el pedido más cercano; 236 cilindros, pero puede causar inanición.\n- **SCAN**: como un ascensor, va hasta un extremo y vuelve.\n- **C-SCAN**: atiende en un solo sentido y vuelve al inicio sin atender (tiempos más parejos).\n- **LOOK / C-LOOK**: solo llegan hasta el último pedido de cada sentido.\n\n**RAID 0** (bandas): velocidad sin redundancia. **RAID 1** (espejo): fiable, pero con el doble de discos. **Paridad** (RAID 5): reconstruye un disco con menos costo.\n\nRecuperación: **comprobación de coherencia** (fsck, chkdsk), **backups** y sistemas con **registro (log)**.",
+          "fuentes": [{ "archivo": "hoja_de_estudio_SO.pdf", "pagina": 14 }, { "archivo": "hoja_de_estudio_SO.pdf", "pagina": 15 }]
+        }
+      ]
+    },
+    {
+      "id": "u7",
+      "secciones": [
+        {
+          "titulo": "Sistemas distribuidos",
+          "contenido": "En **SMP**, agregar CPUs satura el bus y la memoria. Un **sistema distribuido** (acoplamiento débil) usa nodos autónomos, cada uno con su CPU, RAM y reloj, unidos por red y comunicados con **paso de mensajes**.\n\nVentajas: escalabilidad horizontal (scale-out), paralelismo masivo y tolerancia a fallos. Desventajas: latencia de red, no hay estado global y es difícil sincronizar sin un reloj común.\n\n**RPC**: ejecutar una función en otro nodo como si fuera local. El **stub** hace de representante; empaqueta los parámetros (**marshaling**), los envía, el stub del servidor desempaqueta, ejecuta y devuelve el resultado.\n\nMigración de **datos** (llevar los datos al programa), de **cómputo** (llevar la función a los datos: RPC) y de **procesos**.",
+          "fuentes": [{ "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 5 }, { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 11 }, { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 12 }]
+        },
+        {
+          "titulo": "Sistemas de archivos distribuidos (DFS)",
+          "contenido": "Permiten acceder a archivos remotos como si fueran locales. Componentes: **servicio de directorios**, **servicio de archivos** y la capa **VFS**, que deriva al driver local o al cliente DFS.\n\n- **Transparencia de ubicación**: el nombre no revela en qué servidor está el archivo.\n- **Independencia de ubicación**: se puede mover el archivo sin cambiar su nombre.\n\nLa **caché del cliente** reduce el tráfico, pero trae incoherencia, así que hacen falta semánticas:\n\n- **UNIX**: cada escritura se ve al instante; difícil en un DFS.\n- **De sesión** (AFS): los cambios son privados hasta el `close()`.\n- **Archivos inmutables**: cada edición crea una versión nueva.\n\n**NFS** (Sun): usa RPC y XDR, con servidor **sin estado** (v2/v3): si se reinicia, el cliente reintenta. El cliente valida su caché con mtime.",
+          "fuentes": [{ "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 15 }, { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 18 }, { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 21 }, { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 22 }]
+        },
+        {
+          "titulo": "Sistemas de tiempo real",
+          "contenido": "Una respuesta correcta pero tardía es una falla. Garantizan **determinismo**.\n\n- **Hard real-time**: plazos absolutos (airbag, ABS). Usan kernel apropiativo, **sin paginación**, latencias acotadas y tiempo máximo calculado.\n- **Soft real-time**: perder un plazo degrada la calidad de servicio (streaming).\n\n**Latencia de interrupción**: desde que llega la señal hasta que empieza la ISR (crítica cuando hay interrupciones deshabilitadas). **Latencia de despacho**: pasar a la tarea de tiempo real. Tiene una fase de **conflicto** (esperar al kernel no apropiable o a recursos) y una de **despacho**.\n\nEn el ejemplo del airbag: latencia de interrupción de 2 ms y de despacho de 10 ms.\n\n**Inversión de prioridad**: una tarea alta espera un recurso de una baja desalojada por tareas medias. Se resuelve con **herencia de prioridad**.",
+          "fuentes": [{ "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 25 }, { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 28 }, { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 30 }, { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 89 }]
+        },
+        {
+          "titulo": "RMS y EDF",
+          "contenido": "**Rate-Monotonic (RMS)**: prioridad **estática** inversamente proporcional al período (el período más corto tiene más prioridad). Utilización `Ui = ti / pi`. Cota de Liu y Layland: `U ≤ N(2^(1/N) − 1)`. Con N = 1 es 100 %; con N = 2, 82,8 %; con N → ∞, ln 2 ≈ 69,3 %.\n\nEjemplo de la cátedra: sensor (2 ms cada 10) y motor (4 cada 20) → U = 20 % + 20 % = 40 % < 82,8 % → garantizado.\n\nRMS desperdicia entre ~17 y 31 % de CPU. **EDF**: prioridad **dinámica**, el plazo más cercano primero. No exige tareas periódicas y es planificable si `U ≤ 100 %`.",
+          "fuentes": [{ "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 32 }, { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 33 }, { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 34 }]
+        },
+        {
+          "titulo": "Hipervisores",
+          "contenido": "La virtualización surge por servidores subutilizados (10–15 %), por la rigidez para probar sistemas y por la falta de aislamiento. El **VMM** crea la ilusión de hardware privado.\n\n- **Tipo 0**: en el firmware (IBM LPARs). Particiones rígidas y overhead casi nulo.\n- **Tipo 1 (bare-metal)**: corre directo sobre el hardware (ESXi, Xen, KVM, Hyper-V). Es lo que usan los centros de datos y la nube.\n- **Tipo 2 (hosted)**: es una aplicación sobre un SO anfitrión (VirtualBox, VMware Workstation). Tiene más overhead y, si cae el anfitrión, caen todas las VMs.",
+          "fuentes": [{ "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 42 }, { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 50 }]
+        },
+        {
+          "titulo": "Virtualización de CPU y de memoria",
+          "contenido": "El modelo clásico **trap-and-emulate** fallaba en x86 porque instrucciones como `popf` no generan trap en modo usuario: fallan en silencio. La **traducción binaria** (VMware) reescribe en tiempo real el código del kernel invitado y guarda lo traducido en una caché. Funciona, pero con mucho overhead.\n\n**Virtualización asistida por hardware** (Intel VT-x / AMD-V): modo **root** (hipervisor) y **non-root** (invitado), transiciones **VM Entry / VM Exit** y la estructura **VMCS**, que guarda el estado automáticamente. El rendimiento es casi nativo.\n\nMemoria: antes se usaban **shadow page tables** (con muchos VM Exits). Con **EPT / NPT** la MMU hace la doble traducción GVA → GPA → HPA. En el peor caso son hasta **24 accesos** a RAM (2D page walk).",
+          "fuentes": [{ "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 51 }, { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 55 }, { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 57 }, { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 58 }, { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 59 }]
+        },
+        {
+          "titulo": "Ballooning, virtio, contenedores y migración",
+          "contenido": "- **Ballooning**: un driver dentro de la VM pide memoria al invitado (**inflado**); el invitado libera con su LRU y el hipervisor recupera esos marcos. Al **desinflar** se devuelven. Sirve con **overcommitment**.\n- **virtio** (paravirtualización de E/S): drivers virtio-net/blk con **virtqueues** en memoria compartida. Las peticiones se envían en lote con una sola hypercall. El invitado sabe que está virtualizado.\n- **Contenedores**: comparten el **kernel del anfitrión**. **Namespaces** aíslan lo que se ve (PID, NET, MNT, IPC, UTS, USER) y **cgroups** limitan lo que se consume (CPU, RAM, E/S). Son livianos y arrancan rápido, pero un escape al kernel afecta a todos.\n- **Migración en vivo (pre-copy)**: se copia la RAM mientras la VM corre y se reenvían las **páginas sucias** hasta que quedan pocas. Después, **stop-and-copy** (< 50 ms) y un ARP gratuito para redirigir la red.\n- **Seguridad**: VM escape, hyperjacking y canales laterales (Spectre, Meltdown). Defensas: TCB mínimo e **IOMMU / VT-d**.",
+          "fuentes": [{ "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 61 }, { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 65 }, { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 67 }, { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 69 }, { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 73 }, { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 75 }]
+        },
+        {
+          "titulo": "Computación en la nube",
+          "contenido": "Recursos elásticos bajo demanda con pago por uso, en lugar de un centro de datos propio (CapEx).\n\n- **IaaS**: el proveedor da hardware, red e hipervisor; el cliente maneja el SO y las apps (EC2).\n- **PaaS**: el proveedor también da el SO y el runtime; el cliente solo sube su código (App Engine, Beanstalk).\n- **SaaS**: todo lo gestiona el proveedor (Microsoft 365, Google Workspace).\n\nDespliegue **público**, **privado** o **híbrido** (cloud bursting). **Elasticidad**: un balanceador más un auto-scaler (por ejemplo, CPU > 80 %) hacen **scale-out / scale-in**. **Región** y **zona de disponibilidad** (centros de datos aislados, con latencia de 1–2 ms entre ellos) y **edge / CDN**.\n\n**Object storage** (S3): objetos con datos, metadatos y una clave, accedidos por HTTP (GET, PUT, DELETE, HEAD), sin sesión abierta. Escala horizontalmente.",
+          "fuentes": [{ "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 77 }, { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 80 }, { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 83 }, { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 85 }]
+        }
+      ]
+    }
+  ]
+}

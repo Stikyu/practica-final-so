@@ -1,0 +1,245 @@
+{
+  "unidad": "u4",
+  "preguntas": [
+    {
+      "id": "u4-001", "unidad": "u4", "tema": "Buffer circular", "tipo": "unica",
+      "enunciado": "En el buffer circular con punteros in y out, ¿cuándo está lleno?",
+      "opciones": ["Cuando in == out", "Cuando (in + 1) % BUFFER_SIZE == out", "Cuando out == BUFFER_SIZE", "Cuando in == 0"],
+      "correcta": 1,
+      "explicacion": "El búfer está vacío si in == out y lleno si (in + 1) % BUFFER_SIZE == out. Por eso se desperdicia una posición.",
+      "fuente": { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 8 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-002", "unidad": "u4", "tema": "Buffer circular", "tipo": "unica",
+      "enunciado": "Con BUFFER_SIZE = 8 y la lógica de punteros in/out, ¿cuántos elementos se pueden guardar como máximo?",
+      "opciones": ["8", "7", "4", "9"],
+      "correcta": 1,
+      "explicacion": "Se sacrifica una posición para distinguir lleno de vacío: si el productor llenara el 100 %, in daría la vuelta y valdría igual que out (la misma condición que vacío). Con 8 lugares se guardan 7.",
+      "fuente": { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 8 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-003", "unidad": "u4", "tema": "Condición de carrera", "tipo": "unica",
+      "enunciado": "Con counter = 5 se ejecutan concurrentemente counter++ y counter--. ¿Qué valores finales son posibles?",
+      "opciones": ["Solo 5", "4, 5 o 6", "Solo 4 o 6", "Cualquier valor entre 0 y 10"],
+      "correcta": 1,
+      "explicacion": "Cada sentencia son tres pasos de máquina (leer, operar, guardar). Según el intercalado, el resultado puede ser 4, 5 o 6: queda lo de quien escribió último.",
+      "fuente": { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 17 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-004", "unidad": "u4", "tema": "Condición de carrera", "tipo": "unica",
+      "enunciado": "¿Qué es una condición de carrera?",
+      "opciones": ["Cuando dos procesos compiten por la CPU", "Cuando el resultado de la ejecución depende del orden particular en que los procesos acceden a datos compartidos", "Cuando un proceso espera indefinidamente", "Cuando el planificador elige al más rápido"],
+      "correcta": 1,
+      "explicacion": "Una condición de carrera ocurre cuando varios procesos acceden concurrentemente a un dato compartido y el resultado depende del orden particular de acceso.",
+      "fuente": { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 20 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-005", "unidad": "u4", "tema": "Sección crítica", "tipo": "unica",
+      "enunciado": "¿Cómo se llama el código que precede a la sección crítica y controla el acceso a ella?",
+      "opciones": ["Sección de salida", "Sección restante", "Sección de entrada", "Sección atómica"],
+      "correcta": 2,
+      "explicacion": "El código que precede a la sección crítica y controla el acceso se llama sección de entrada; el que la sigue, sección de salida; el resto, sección restante.",
+      "fuente": { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 21 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-006", "unidad": "u4", "tema": "Sección crítica", "tipo": "unica",
+      "enunciado": "La condición de \"espera limitada\" exige que:",
+      "opciones": ["Solo un proceso esté en la sección crítica", "Exista un límite de cuántos otros procesos pueden entrar a su sección crítica después de que un proceso pidió entrar y antes de que se le conceda", "Si nadie está adentro, la decisión no se postergue indefinidamente", "El proceso salga de la sección crítica en un tiempo fijo"],
+      "correcta": 1,
+      "explicacion": "Espera limitada: hay un límite de cuántos otros procesos pueden acceder antes que uno que ya solicitó entrar. La primera opción es la exclusión mutua y la tercera, el progreso.",
+      "fuente": { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 22 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-007", "unidad": "u4", "tema": "Kernel apropiativo", "tipo": "unica",
+      "enunciado": "¿Por qué es preferible un kernel apropiativo?",
+      "opciones": ["Porque está libre de condiciones de carrera", "Porque responde mejor y es más adecuado para tiempo real, aunque requiere sincronización", "Porque es más simple de programar", "Porque nunca hace cambios de contexto"],
+      "correcta": 1,
+      "explicacion": "Un kernel apropiativo responde mejor y es apto para tiempo real, pero no está libre de condiciones de carrera y requiere sincronización. El no apropiativo es más simple pero responde peor.",
+      "fuente": { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 24 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-008", "unidad": "u4", "tema": "Peterson", "tipo": "unica",
+      "enunciado": "¿Qué variables compartidas usa la solución de Peterson?",
+      "opciones": ["Un semáforo y un mutex", "int turn y boolean flag[2]", "Un contador y una cola", "Un lock y una variable de condición"],
+      "correcta": 1,
+      "explicacion": "Peterson usa int turn (de quién es el turno) y boolean flag[2] (si cada proceso está listo para entrar). Está restringida a dos procesos.",
+      "fuente": { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 25 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-009", "unidad": "u4", "tema": "Peterson", "tipo": "unica",
+      "enunciado": "En Peterson, el proceso i espera en el bucle mientras:",
+      "opciones": ["flag[i] == true", "flag[j] == true && turn == j", "turn == i", "flag[j] == false"],
+      "correcta": 1,
+      "explicacion": "Pi levanta su bandera, pone turn = j y espera mientras el proceso j quiera entrar (flag[j]) y sea su turno (turn == j).",
+      "fuente": { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 25 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-010", "unidad": "u4", "tema": "Peterson", "tipo": "unica",
+      "enunciado": "¿Por qué Peterson puede fallar en computadoras modernas?",
+      "opciones": ["Porque solo funciona con un proceso", "Porque los procesadores y compiladores reordenan instrucciones y usan cachés, y ambos procesos pueden quedar en la sección crítica", "Porque necesita instrucciones atómicas que no existen", "Porque no cumple progreso ni en teoría"],
+      "correcta": 1,
+      "explicacion": "Peterson supone que los accesos a memoria ocurren en el orden escrito. El reordenamiento de instrucciones, las cachés y los múltiples núcleos pueden dejar a ambos procesos en la sección crítica.",
+      "fuente": { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 29 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-011", "unidad": "u4", "tema": "Hardware", "tipo": "unica",
+      "enunciado": "¿Qué garantizan las memory barriers?",
+      "opciones": ["Que una operación sea indivisible", "Que las cargas y escrituras pendientes se completen y sean visibles antes de cualquier operación posterior (orden de visibilidad)", "Que no haya inanición", "Que la caché se desactive"],
+      "correcta": 1,
+      "explicacion": "Las memory barriers fuerzan a propagar los cambios de memoria y garantizan que los loads y stores pendientes se completen antes de seguir. Las operaciones atómicas garantizan indivisibilidad; las barreras, el orden de visibilidad.",
+      "fuente": { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 32 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-012", "unidad": "u4", "tema": "Hardware", "tipo": "unica",
+      "enunciado": "Si test_and_set() sobre un cerrojo devuelve false, significa que:",
+      "opciones": ["El cerrojo ya estaba tomado por otro y hay que esperar", "El cerrojo estaba libre; ahora quedó en true y el proceso puede entrar", "Hubo un error de hardware", "El proceso debe liberar el cerrojo"],
+      "correcta": 1,
+      "explicacion": "test_and_set lee el valor y lo pone en true atómicamente. Si devuelve false, el recurso estaba libre y el proceso lo trabó y entra; si devuelve true, ya estaba trabado.",
+      "fuente": { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 33 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-013", "unidad": "u4", "tema": "Hardware", "tipo": "unica",
+      "enunciado": "¿Qué condición NO garantizan por sí solas las instrucciones atómicas como test_and_set o compare_and_swap?",
+      "opciones": ["Exclusión mutua", "Indivisibilidad", "Espera limitada (pueden producir inanición)", "Que dos procesos no entren a la vez"],
+      "correcta": 2,
+      "explicacion": "Estas instrucciones dan exclusión mutua, pero por sí solas no garantizan acceso equitativo ni evitan la inanición: un proceso podría esperar indefinidamente.",
+      "fuente": { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 36 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-014", "unidad": "u4", "tema": "Spinlock", "tipo": "unica",
+      "enunciado": "¿En qué situación conviene un spinlock?",
+      "opciones": ["En una máquina de un solo núcleo con esperas largas", "En máquinas multinúcleo cuando se espera que el bloqueo se libere en poco tiempo, porque evita el cambio de contexto", "Siempre, porque no consume CPU", "Nunca"],
+      "correcta": 1,
+      "explicacion": "El spinlock gasta ciclos y es pésimo en un solo núcleo, pero no tiene la sobrecarga de un cambio de contexto: sirve en multinúcleo si la espera es breve.",
+      "fuente": { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 39 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-015", "unidad": "u4", "tema": "Semáforos", "tipo": "unica",
+      "enunciado": "¿Qué hace wait(S) sobre un semáforo?",
+      "opciones": ["Suma 1 a S y despierta a un proceso", "Si S > 0 resta 1 y continúa; si no, el proceso se bloquea", "Pone S en 0", "Espera un tiempo fijo"],
+      "correcta": 1,
+      "explicacion": "wait(S): si S > 0 resta 1 y pasa; si no, se bloquea. signal(S) suma 1 y, si había procesos esperando, despierta a uno.",
+      "fuente": { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 40 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-016", "unidad": "u4", "tema": "Semáforos", "tipo": "unica",
+      "enunciado": "Una base de datos permite 10 conexiones simultáneas. ¿Qué semáforo se usa y con qué valor inicial?",
+      "opciones": ["Binario inicializado en 1", "Contador inicializado en 10", "Contador inicializado en 0", "Binario inicializado en 0"],
+      "correcta": 1,
+      "explicacion": "Para recursos con varias instancias se usa un semáforo contador inicializado en la cantidad de recursos: arranca en 10 y baja con cada conexión.",
+      "fuente": { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 44 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-017", "unidad": "u4", "tema": "Semáforos", "tipo": "unica",
+      "enunciado": "Para que la declaración D2 de P2 se ejecute solo después de D1 de P1, con un semáforo synch:",
+      "opciones": ["synch = 1; P1 hace wait(synch) antes de D1", "synch = 0; P1 hace D1 y luego signal(synch); P2 hace wait(synch) antes de D2", "synch = 0; P2 hace signal(synch) antes de D2", "synch = 2; ambos hacen wait"],
+      "correcta": 1,
+      "explicacion": "Con synch inicializado en 0, P2 se bloquea en wait(synch) hasta que P1 ejecuta D1 y hace signal(synch).",
+      "fuente": { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 45 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-018", "unidad": "u4", "tema": "Semáforos", "tipo": "unica",
+      "enunciado": "En la solución del ejercicio HOLAS/HOALS de la cátedra, ¿con qué valores se inicializan S1, S2, S3 y S4?",
+      "opciones": ["Todos en 1", "S1 = 1 y S2 = S3 = S4 = 0", "Todos en 0", "S1 = 0 y el resto en 1"],
+      "correcta": 1,
+      "explicacion": "S1 = 1 (P1 puede arrancar imprimiendo H) y S2 = S3 = S4 = 0. P1: wait(S1), H, signal(S2), wait(S3), L, wait(S4), S. P2: wait(S2), O, signal(S3), A, signal(S4).",
+      "fuente": { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 46 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-019", "unidad": "u4", "tema": "Monitores", "tipo": "unica",
+      "enunciado": "¿Cuál es la principal ventaja de un monitor frente a los semáforos?",
+      "opciones": ["Es más rápido que cualquier instrucción atómica", "Garantiza exclusión mutua automática: solo un hilo puede estar activo dentro", "Permite que varios hilos modifiquen los datos a la vez", "No necesita variables de condición"],
+      "correcta": 1,
+      "explicacion": "Un monitor es un tipo de dato abstracto que agrupa datos y procedimientos con exclusión mutua automática; evita errores humanos como olvidar un signal().",
+      "fuente": { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 47 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-020", "unidad": "u4", "tema": "Monitores", "tipo": "unica",
+      "enunciado": "¿Qué hace x.wait() sobre una variable de condición dentro de un monitor?",
+      "opciones": ["Suspende al proceso y libera el monitor", "Despierta a un proceso", "Bloquea el monitor para siempre", "Incrementa un contador"],
+      "correcta": 0,
+      "explicacion": "wait() suspende al proceso y libera el monitor, así otro puede entrar. signal() despierta a un proceso que esperaba; si no hay ninguno, no pasa nada.",
+      "fuente": { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 49 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-021", "unidad": "u4", "tema": "Monitores", "tipo": "unica",
+      "enunciado": "En el monitor de Hoare, ¿qué pasa con el proceso que ejecuta csignal()?",
+      "opciones": ["Sigue ejecutando y el despertado espera", "Pasa a la Urgent Queue mientras el despertado entra inmediatamente al monitor", "Termina", "Vuelve a la cola de entrada"],
+      "correcta": 1,
+      "explicacion": "En el monitor de Hoare, el proceso despertado entra inmediatamente y el que hizo csignal() pasa a la Urgent Queue, donde espera a recuperar el monitor.",
+      "fuente": { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 51 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-022", "unidad": "u4", "tema": "Deadlock", "tipo": "unica",
+      "enunciado": "¿Cuál de estas NO es una de las 4 condiciones necesarias para un deadlock?",
+      "opciones": ["Exclusión mutua", "Retención y espera", "Sin desalojo", "Apropiación de la CPU por el timer"],
+      "correcta": 3,
+      "explicacion": "Las 4 condiciones (que deben darse a la vez) son exclusión mutua, retención y espera, sin desalojo (no preemption) y espera circular.",
+      "fuente": { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 57 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-023", "unidad": "u4", "tema": "Grafo de asignación", "tipo": "unica",
+      "enunciado": "En el grafo de asignación de recursos, una flecha Pi → Rj significa:",
+      "opciones": ["Que el recurso Rj está asignado a Pi", "Que Pi solicita Rj (arista de solicitud)", "Que Pi liberó Rj", "Que hay un deadlock"],
+      "correcta": 1,
+      "explicacion": "Pi → Rj es una arista de solicitud: el proceso espera ese recurso. Rj → Pi es una arista de asignación.",
+      "fuente": { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 59 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-024", "unidad": "u4", "tema": "Grafo de asignación", "tipo": "unica",
+      "enunciado": "Si el grafo de asignación tiene un ciclo y los recursos involucrados tienen varias instancias:",
+      "opciones": ["Hay deadlock con certeza", "El deadlock es solo una posibilidad", "No puede haber deadlock", "El sistema está en estado seguro"],
+      "correcta": 1,
+      "explicacion": "Con un ciclo: si cada recurso tiene una sola instancia, hay deadlock con certeza; si tiene varias, el ciclo solo indica una posibilidad.",
+      "fuente": { "archivo": "Unidad 4 - Sincronizacion de Procesos.pdf", "pagina": 60 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-025", "unidad": "u4", "tema": "Tratamiento del deadlock", "tipo": "unica",
+      "enunciado": "Según el libro, ¿qué estrategia frente a los interbloqueos usan UNIX y Windows?",
+      "opciones": ["Prevención", "Evasión con el banquero", "Detección y recuperación", "Ignorar el problema"],
+      "correcta": 3,
+      "explicacion": "UNIX y Windows ignoran el problema, porque el interbloqueo es raro y las alternativas cuestan más; queda en manos del programador de aplicaciones.",
+      "fuente": { "archivo": "hoja_de_estudio_SO.pdf", "pagina": 6 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-026", "unidad": "u4", "tema": "Banquero", "tipo": "unica",
+      "enunciado": "En el algoritmo del banquero, la matriz Need se calcula como:",
+      "opciones": ["Need = Max + Allocation", "Need = Max − Allocation", "Need = Available − Max", "Need = Allocation − Available"],
+      "correcta": 1,
+      "explicacion": "Need (lo que cada proceso todavía puede pedir) = Max − Allocation.",
+      "fuente": { "archivo": "Consulta.pdf", "pagina": 4 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-027", "unidad": "u4", "tema": "Estado seguro", "tipo": "unica",
+      "enunciado": "¿Qué relación hay entre estado inseguro y deadlock?",
+      "opciones": ["Un estado inseguro siempre es deadlock", "Un estado inseguro no implica deadlock, pero puede llevar a uno", "Un estado seguro puede tener deadlock", "No hay relación"],
+      "correcta": 1,
+      "explicacion": "Un estado seguro implica que no hay deadlock; uno inseguro no implica deadlock, pero puede llevar a uno.",
+      "fuente": { "archivo": "hoja_de_estudio_SO.pdf", "pagina": 6 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-028", "unidad": "u4", "tema": "Estado seguro", "tipo": "unica",
+      "enunciado": "Con 12 cintas: P0 (máx. 10) tiene 5, P1 (máx. 4) tiene 2, P2 (máx. 9) tiene 2. ¿Cuál es una secuencia segura?",
+      "opciones": ["⟨P0, P1, P2⟩", "⟨P1, P0, P2⟩", "⟨P2, P1, P0⟩", "No existe: el estado es inseguro"],
+      "correcta": 1,
+      "explicacion": "Quedan 3 libres. P1 necesita 2 → termina y devuelve 4 (quedan 5). P0 necesita 5 → termina (quedan 10). P2 necesita 7 → termina. Secuencia ⟨P1, P0, P2⟩.",
+      "fuente": { "archivo": "hoja_de_estudio_SO.pdf", "pagina": 6 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-029", "unidad": "u4", "tema": "Prevención", "tipo": "unica",
+      "enunciado": "¿Cómo se previene la espera circular?",
+      "opciones": ["Pidiendo todos los recursos al inicio", "Numerando los recursos y pidiéndolos siempre en orden creciente", "Quitándole los recursos al proceso que espera", "Haciendo compartibles todos los recursos"],
+      "correcta": 1,
+      "explicacion": "Para la espera circular se numeran los recursos con una función F y se piden siempre en orden creciente. Pedir todo al inicio ataca la retención y espera.",
+      "fuente": { "archivo": "hoja_de_estudio_SO.pdf", "pagina": 6 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u4-030", "unidad": "u4", "tema": "Problemas clásicos", "tipo": "unica",
+      "enunciado": "En el problema del búfer limitado con semáforos, ¿con qué valores se inicializan mutex, empty y full?",
+      "opciones": ["mutex = 1, empty = n, full = 0", "mutex = 0, empty = 0, full = n", "mutex = 1, empty = 0, full = n", "mutex = n, empty = 1, full = 1"],
+      "correcta": 0,
+      "explicacion": "mutex = 1 (exclusión mutua sobre el búfer), empty = n (lugares vacíos) y full = 0 (lugares llenos). El productor hace wait(empty), wait(mutex), agrega, signal(mutex), signal(full).",
+      "fuente": { "archivo": "hoja_de_estudio_SO.pdf", "pagina": 4 }, "origen": "generada", "estado": "verificada"
+    }
+  ]
+}

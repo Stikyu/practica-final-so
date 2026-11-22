@@ -1,0 +1,229 @@
+{
+  "unidad": "u2",
+  "preguntas": [
+    {
+      "id": "u2-001", "unidad": "u2", "tema": "Proceso", "tipo": "unica",
+      "enunciado": "¿Cuál es la diferencia entre programa y proceso?",
+      "opciones": ["El programa es una entidad pasiva (ejecutable en disco) y el proceso es un programa en ejecución", "Son lo mismo", "El proceso está en disco y el programa en RAM", "Un programa solo puede generar un proceso"],
+      "correcta": 0,
+      "explicacion": "El programa es la entidad pasiva (archivo ejecutable en disco) y el proceso, la entidad activa: un programa en ejecución con ciclo de vida, estado y recursos. Un programa puede dar varios procesos.",
+      "fuente": { "archivo": "Unidad 2a.pdf", "pagina": 4 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-002", "unidad": "u2", "tema": "Memoria del proceso", "tipo": "unica",
+      "enunciado": "¿En qué sección de memoria del proceso se guardan los parámetros, direcciones de retorno y variables locales de las funciones?",
+      "opciones": ["Texto", "Datos", "Heap", "Stack"],
+      "correcta": 3,
+      "explicacion": "El stack almacena los marcos de activación de las funciones (parámetros, direcciones de retorno y variables locales) y crece hacia direcciones inferiores.",
+      "fuente": { "archivo": "Unidad 2a.pdf", "pagina": 5 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-003", "unidad": "u2", "tema": "Memoria del proceso", "tipo": "unica",
+      "enunciado": "La memoria pedida con malloc() en C o new en Java se ubica en:",
+      "opciones": ["El heap, que crece hacia direcciones superiores", "El stack, que crece hacia direcciones superiores", "La sección de texto", "El BSS"],
+      "correcta": 0,
+      "explicacion": "El heap es memoria asignada dinámicamente en tiempo de ejecución (malloc, new) y crece hacia direcciones de memoria superiores.",
+      "fuente": { "archivo": "Unidad 2a.pdf", "pagina": 5 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-004", "unidad": "u2", "tema": "Estados", "tipo": "unica",
+      "enunciado": "Un proceso que tiene todos los recursos y solo espera que el scheduler le asigne la CPU está en estado:",
+      "opciones": ["Nuevo", "Listo (Ready)", "En espera (Waiting)", "Terminado"],
+      "correcta": 1,
+      "explicacion": "En estado Listo el proceso tiene todo lo necesario y espera en una cola que el scheduler le asigne CPU. En Espera, en cambio, aguarda un evento como una E/S.",
+      "fuente": { "archivo": "Unidad 2a.pdf", "pagina": 7 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-005", "unidad": "u2", "tema": "PCB", "tipo": "unica",
+      "enunciado": "¿Cómo se llama la estructura que implementa el PCB en Linux?",
+      "opciones": ["inode", "task_struct", "vm_area", "file_struct"],
+      "correcta": 1,
+      "explicacion": "El PCB es la unidad de información que permite al kernel gestionar la multiprogramación; en Linux se implementa con la estructura task_struct.",
+      "fuente": { "archivo": "Unidad 2a.pdf", "pagina": 9 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-006", "unidad": "u2", "tema": "PCB", "tipo": "unica",
+      "enunciado": "¿Qué campo del PCB indica la dirección de la próxima instrucción a ejecutar?",
+      "opciones": ["El estado del proceso", "El contador de programa (PC)", "El estado de E/S", "El PID"],
+      "correcta": 1,
+      "explicacion": "El contador de programa guarda la dirección de memoria de la próxima instrucción; es el marcador de progreso del proceso.",
+      "fuente": { "archivo": "Unidad 2a.pdf", "pagina": 9 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-007", "unidad": "u2", "tema": "Colas", "tipo": "unica",
+      "enunciado": "¿Cuál de estas situaciones NO hace que un proceso salga de la CPU según la cátedra?",
+      "opciones": ["Una solicitud de E/S", "La expiración de su quantum", "La creación de un proceso hijo cuya terminación espera", "Leer una variable local de su propio stack"],
+      "correcta": 3,
+      "explicacion": "Un proceso sale de la CPU por una solicitud de E/S, por la expiración del quantum, por crear un hijo y esperarlo, o por una interrupción externa. Leer una variable local es una operación normal.",
+      "fuente": { "archivo": "Unidad 2a.pdf", "pagina": 11 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-008", "unidad": "u2", "tema": "Cambio de contexto", "tipo": "unica",
+      "enunciado": "¿Por qué se dice que el cambio de contexto es overhead?",
+      "opciones": ["Porque durante ese tiempo el sistema no realiza trabajo útil para el usuario", "Porque borra la memoria del proceso", "Porque solo ocurre cuando hay errores", "Porque aumenta el tamaño del PCB"],
+      "correcta": 0,
+      "explicacion": "El cambio de contexto es un proceso puramente administrativo (guardar el contexto en un PCB y restaurar otro); durante ese tiempo no se hace trabajo útil. Es el precio de la multitarea.",
+      "fuente": { "archivo": "Unidad 2a.pdf", "pagina": 14 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-009", "unidad": "u2", "tema": "Creación", "tipo": "unica",
+      "enunciado": "¿Qué hace la llamada fork()?",
+      "opciones": ["Reemplaza la memoria del proceso con un programa nuevo", "Crea un proceso hijo que es una copia del padre, con su propio espacio de memoria", "Termina al proceso padre", "Crea un hilo que comparte toda la memoria"],
+      "correcta": 1,
+      "explicacion": "fork() crea un proceso hijo, copia idéntica del padre, que hereda el contexto pero tiene su propio espacio de memoria. exec() es la que reemplaza el programa.",
+      "fuente": { "archivo": "Unidad 2a.pdf", "pagina": 16 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-010", "unidad": "u2", "tema": "Zombi y huérfano", "tipo": "unica",
+      "enunciado": "Un proceso zombi es:",
+      "opciones": ["Un proceso cuyo padre terminó sin llamar a wait()", "Un proceso que terminó (exit) pero cuya entrada sigue en la tabla de procesos porque el padre no llamó a wait()", "Un proceso bloqueado esperando E/S", "Un proceso que consume el 100 % de la CPU"],
+      "correcta": 1,
+      "explicacion": "El zombi ya ejecutó exit pero su entrada permanece en la tabla porque el padre aún no llamó a wait(); no consume CPU ni RAM, pero ocupa su PID. El otro caso (el padre terminó sin wait) es el huérfano.",
+      "fuente": { "archivo": "Unidad 2a.pdf", "pagina": 22 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-011", "unidad": "u2", "tema": "Zombi y huérfano", "tipo": "unica",
+      "enunciado": "¿Qué hace el kernel con los procesos huérfanos?",
+      "opciones": ["Los termina inmediatamente", "El proceso init (PID 1) los adopta y llama a wait() para recolectarlos", "Los convierte en hilos", "Los mueve al disco"],
+      "correcta": 1,
+      "explicacion": "El proceso init (PID 1) adopta a los huérfanos y llama periódicamente a wait() para recolectar su estado y eliminarlos de la tabla.",
+      "fuente": { "archivo": "Unidad 2a.pdf", "pagina": 22 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-012", "unidad": "u2", "tema": "Terminación", "tipo": "unica",
+      "enunciado": "¿Qué es la terminación en cascada?",
+      "opciones": ["Cuando un hijo termina y el padre también", "Cuando el padre va a terminar y el SO no permite que los hijos sigan, por lo que los termina", "Cuando varios procesos terminan por deadlock", "Cuando el SO se apaga"],
+      "correcta": 1,
+      "explicacion": "Un padre puede terminar a un hijo; en particular, si el padre va a terminar y el SO no permite que los hijos continúen, se produce la terminación en cascada.",
+      "fuente": { "archivo": "Unidad 2a.pdf", "pagina": 20 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-013", "unidad": "u2", "tema": "IPC", "tipo": "unica",
+      "enunciado": "¿Por qué la memoria compartida es el método de IPC más rápido?",
+      "opciones": ["Porque no requiere llamadas al sistema en cada intercambio, solo para la configuración inicial", "Porque el kernel copia los datos más rápido", "Porque no necesita sincronización", "Porque usa la red"],
+      "correcta": 0,
+      "explicacion": "Una vez establecida la región compartida, el kernel sale del camino y los procesos leen y escriben directamente: solo hay syscalls al configurarla. La sincronización queda a cargo del programador.",
+      "fuente": { "archivo": "Unidad 2a.pdf", "pagina": 24 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-014", "unidad": "u2", "tema": "IPC", "tipo": "unica",
+      "enunciado": "En paso de mensajes con capacidad cero:",
+      "opciones": ["El emisor nunca se bloquea", "El emisor debe bloquearse hasta que el receptor tome el mensaje", "Los mensajes se pierden", "El receptor recibe siempre un mensaje nulo"],
+      "correcta": 1,
+      "explicacion": "Con capacidad cero no hay cola: el emisor debe bloquearse hasta que el receptor tome el mensaje. Con capacidad limitada solo se bloquea si el buffer está lleno.",
+      "fuente": { "archivo": "Unidad 2a.pdf", "pagina": 23 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-015", "unidad": "u2", "tema": "Hilos", "tipo": "unica",
+      "enunciado": "¿Qué elemento es PROPIO de cada hilo (no se comparte con los otros hilos del proceso)?",
+      "opciones": ["La sección de código", "Las variables globales", "Los archivos abiertos", "El stack"],
+      "correcta": 3,
+      "explicacion": "Cada hilo tiene su propio TID, contador de programa, registros y stack. El código, los datos globales y los recursos del SO (archivos abiertos, señales) se comparten.",
+      "fuente": { "archivo": "Unidad 2b.pdf", "pagina": 3 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-016", "unidad": "u2", "tema": "Hilos", "tipo": "unica",
+      "enunciado": "¿Por qué el cambio de contexto entre hilos del mismo proceso es más rápido que entre procesos?",
+      "opciones": ["Porque no hay que cambiar el mapa de memoria (las tablas de páginas se mantienen)", "Porque los hilos no tienen registros", "Porque los hilos no usan la CPU", "Porque el kernel no participa nunca"],
+      "correcta": 0,
+      "explicacion": "Cambiar entre hilos del mismo proceso no requiere cambiar el mapa de memoria: las tablas de páginas de la MMU se mantienen.",
+      "fuente": { "archivo": "Unidad 2b.pdf", "pagina": 7 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-017", "unidad": "u2", "tema": "Hilos", "tipo": "unica",
+      "enunciado": "Según el dato técnico de Solaris que da la cátedra, crear un proceso es:",
+      "opciones": ["5 veces más lento que crear un hilo", "30 veces más lento que crear un hilo", "Igual de rápido que crear un hilo", "2 veces más rápido que crear un hilo"],
+      "correcta": 1,
+      "explicacion": "En Solaris la creación de un proceso es 30 veces más lenta que la de un hilo, y el cambio de contexto es 5 veces más lento.",
+      "fuente": { "archivo": "Unidad 2b.pdf", "pagina": 11 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-018", "unidad": "u2", "tema": "Concurrencia", "tipo": "unica",
+      "enunciado": "¿Cuál afirmación es correcta?",
+      "opciones": ["Un sistema concurrente siempre es paralelo", "Un sistema paralelo es, por definición, concurrente; pero puede haber concurrencia sin paralelismo", "Concurrencia y paralelismo requieren varios núcleos", "El paralelismo es solo una ilusión lógica"],
+      "correcta": 1,
+      "explicacion": "La concurrencia permite que varias tareas progresen (entrelazado, incluso con un núcleo); el paralelismo las ejecuta simultáneamente y requiere varias unidades de procesamiento. Un sistema paralelo es concurrente, pero no al revés.",
+      "fuente": { "archivo": "Unidad 2b.pdf", "pagina": 14 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-019", "unidad": "u2", "tema": "Paralelismo", "tipo": "unica",
+      "enunciado": "Sumar dos vectores de un millón de elementos repartiendo mitades entre dos núcleos es un ejemplo de:",
+      "opciones": ["Paralelismo de tareas", "Paralelismo de datos", "Concurrencia sin paralelismo", "Multiprogramación"],
+      "correcta": 1,
+      "explicacion": "En el paralelismo de datos se reparten subconjuntos de los mismos datos y cada núcleo hace la misma operación. En el de tareas, cada hilo hace una operación distinta (física, IA, sonido).",
+      "fuente": { "archivo": "Unidad 2b.pdf", "pagina": 16 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-020", "unidad": "u2", "tema": "Amdahl", "tipo": "unica",
+      "enunciado": "Un programa tiene 80 % de código paralelizable y se ejecuta en 4 núcleos. Según la Ley de Amdahl, ¿cuál es la aceleración?",
+      "opciones": ["4", "3,2", "2,5", "1,25"],
+      "correcta": 2,
+      "explicacion": "S = 1 / ((1 − 0,8) + 0,8/4) = 1 / (0,2 + 0,2) = 1 / 0,4 = 2,5. El programa corre 2,5 veces más rápido.",
+      "fuente": { "archivo": "Unidad 2b.pdf", "pagina": 20 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-021", "unidad": "u2", "tema": "Amdahl", "tipo": "unica",
+      "enunciado": "Si el 25 % de un programa es serial, ¿cuál es la máxima aceleración posible aunque se usen 1000 núcleos?",
+      "opciones": ["1000 veces", "250 veces", "4 veces", "25 veces"],
+      "correcta": 2,
+      "explicacion": "Con 25 % serial, el límite es 1 / 0,25 = 4: el programa nunca será más de 4 veces más rápido, sin importar la cantidad de núcleos.",
+      "fuente": { "archivo": "Unidad 2b.pdf", "pagina": 18 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-022", "unidad": "u2", "tema": "Multinúcleo", "tipo": "unica",
+      "enunciado": "En la jerarquía de caché típica de un multinúcleo:",
+      "opciones": ["L1 y L2 suelen ser privadas por núcleo y L3 suele ser compartida", "Todas las cachés son compartidas", "L1 es compartida y L3 privada", "No hay caché en multinúcleo"],
+      "correcta": 0,
+      "explicacion": "L1 y L2 suelen ser privadas por núcleo y L3 suele ser compartida. Por eso aparece el problema de coherencia de caché.",
+      "fuente": { "archivo": "Unidad 2b.pdf", "pagina": 22 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-023", "unidad": "u2", "tema": "Modelos de hilos", "tipo": "unica",
+      "enunciado": "¿Cuál es la desventaja de los hilos de usuario (sin soporte del kernel)?",
+      "opciones": ["Su creación es muy lenta", "Si un hilo hace una llamada bloqueante, todo el proceso se detiene", "Necesitan un TCB en el kernel", "No pueden compartir memoria"],
+      "correcta": 1,
+      "explicacion": "Los hilos de usuario se crean y cambian muy rápido (sin traps), pero el SO solo ve un proceso: si un hilo hace una llamada bloqueante, todo el proceso se detiene.",
+      "fuente": { "archivo": "Unidad 2b.pdf", "pagina": 23 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-024", "unidad": "u2", "tema": "Modelos de hilos", "tipo": "unica",
+      "enunciado": "¿Por qué el modelo muchos-a-uno no aprovecha los sistemas multinúcleo?",
+      "opciones": ["Porque el kernel solo ve un flujo de ejecución, así que no hay paralelismo real", "Porque crea demasiados hilos de kernel", "Porque no permite hilos de usuario", "Porque usa memoria compartida"],
+      "correcta": 0,
+      "explicacion": "En muchos-a-uno, muchos hilos de usuario se mapean a un único hilo de kernel: el kernel solo ve un flujo, no hay paralelismo y solo un hilo accede al kernel a la vez.",
+      "fuente": { "archivo": "Unidad 2b.pdf", "pagina": 24 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-025", "unidad": "u2", "tema": "Modelos de hilos", "tipo": "unica",
+      "enunciado": "¿Qué modelo de hilos usan Linux y Windows?",
+      "opciones": ["Muchos a uno", "Uno a uno", "Muchos a muchos", "Dos niveles"],
+      "correcta": 1,
+      "explicacion": "Linux y Windows (desde NT) usan el modelo uno a uno: cada hilo de usuario tiene su hilo de kernel, lo que permite paralelismo real a cambio de mayor costo por hilo.",
+      "fuente": { "archivo": "Unidad 2b.pdf", "pagina": 26 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-026", "unidad": "u2", "tema": "Linux", "tipo": "unica",
+      "enunciado": "En Linux, ¿qué llamada permite crear una tarea que comparte o no el espacio de direcciones con el padre?",
+      "opciones": ["fork()", "exec()", "clone()", "spawn()"],
+      "correcta": 2,
+      "explicacion": "Linux no distingue estrictamente proceso e hilo (los llama tasks). clone() crea una tarea compartiendo el espacio de direcciones (como hilo) o sin compartirlo (como proceso).",
+      "fuente": { "archivo": "Unidad 2b.pdf", "pagina": 30 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-027", "unidad": "u2", "tema": "Hilos implícitos", "tipo": "unica",
+      "enunciado": "¿Cuál es una ventaja del thread pool?",
+      "opciones": ["Atender una solicitud con un hilo existente es más rápido que crear uno, y se limita la cantidad de hilos", "Crea un hilo nuevo por cada solicitud", "Elimina la necesidad de sincronizar", "Solo funciona con un núcleo"],
+      "correcta": 0,
+      "explicacion": "El thread pool crea hilos al inicio. Atender con un hilo existente es más rápido que crear uno, limita el número de hilos y separa la tarea de la mecánica de creación.",
+      "fuente": { "archivo": "Unidad 2b.pdf", "pagina": 36 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u2-028", "unidad": "u2", "tema": "Hilos implícitos", "tipo": "unica",
+      "enunciado": "¿Qué es OpenMP?",
+      "opciones": ["Un sistema operativo de código abierto", "Un conjunto de directivas de compilación y una API para programación paralela en memoria compartida (C, C++, FORTRAN)", "Un protocolo de red", "Un tipo de semáforo"],
+      "correcta": 1,
+      "explicacion": "OpenMP es un conjunto de directivas de compilación y una API para C, C++ y FORTRAN que da soporte a la programación paralela en memoria compartida, identificando regiones paralelas.",
+      "fuente": { "archivo": "Unidad 2b.pdf", "pagina": 39 }, "origen": "generada", "estado": "verificada"
+    }
+  ]
+}

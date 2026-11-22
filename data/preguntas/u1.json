@@ -1,0 +1,245 @@
+{
+  "unidad": "u1",
+  "preguntas": [
+    {
+      "id": "u1-001", "unidad": "u1", "tema": "Definición", "tipo": "unica",
+      "enunciado": "¿Cuál es la definición de sistema operativo que da la cátedra?",
+      "opciones": ["Un programa que actúa como intermediario entre el usuario y el hardware", "El conjunto de aplicaciones que vienen instaladas con la computadora", "El firmware que realiza el autodiagnóstico al encender", "Un compilador que traduce programas a código máquina"],
+      "correcta": 0,
+      "explicacion": "La Unidad 1 define al SO como un programa que actúa como intermediario entre el usuario de una computadora y el hardware, con el objetivo de ejecutar programas, facilitar el uso y usar el hardware eficientemente.",
+      "fuente": { "archivo": "Unidad 1a.pdf", "pagina": 5 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-002", "unidad": "u1", "tema": "Componentes", "tipo": "unica",
+      "enunciado": "¿Cuáles son los cuatro componentes en que se divide un sistema informático?",
+      "opciones": ["CPU, memoria, disco y red", "Hardware, sistema operativo, programas de aplicación y usuarios", "Kernel, shell, drivers y aplicaciones", "Procesos, hilos, archivos y dispositivos"],
+      "correcta": 1,
+      "explicacion": "El sistema informático se divide en hardware (recursos básicos), sistema operativo (controla y coordina el hardware), programas de aplicación (resuelven problemas de los usuarios) y usuarios (personas, máquinas, otras computadoras).",
+      "fuente": { "archivo": "Unidad 1a.pdf", "pagina": 6 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-003", "unidad": "u1", "tema": "Interrupciones", "tipo": "unica",
+      "enunciado": "¿Qué estructura usa el hardware para transferir el control a la rutina de servicio correcta cuando ocurre una interrupción?",
+      "opciones": ["La tabla de páginas", "El PCB del proceso actual", "El vector de interrupciones", "La cola de listos"],
+      "correcta": 2,
+      "explicacion": "La interrupción transfiere el control a la rutina de servicio, generalmente a través del vector de interrupciones, que contiene las direcciones de todas las rutinas de servicio.",
+      "fuente": { "archivo": "Unidad 1a.pdf", "pagina": 12 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-004", "unidad": "u1", "tema": "Interrupciones", "tipo": "unica",
+      "enunciado": "Un trap o excepción es:",
+      "opciones": ["Una interrupción de hardware generada por un dispositivo de E/S", "Una interrupción generada por software, causada por un error o por una solicitud del usuario", "Un fallo de energía que reinicia el sistema", "Una instrucción privilegiada que solo ejecuta el usuario"],
+      "correcta": 1,
+      "explicacion": "La cátedra define el trap o excepción como una interrupción generada por software, causada por un error o por una solicitud del usuario (por ejemplo, una llamada al sistema).",
+      "fuente": { "archivo": "Unidad 1a.pdf", "pagina": 12 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-005", "unidad": "u1", "tema": "E/S", "tipo": "unica",
+      "enunciado": "En la E/S no bloqueante:",
+      "opciones": ["El control vuelve al programa recién cuando termina la E/S", "El control vuelve al programa sin esperar a que termine la E/S", "La CPU queda en un bucle de espera activa", "Solo puede haber una solicitud de E/S pendiente a la vez"],
+      "correcta": 1,
+      "explicacion": "En la E/S no bloqueante, tras iniciar la operación el control regresa al programa de usuario sin esperar a que finalice. En la bloqueante, vuelve solo al finalizar.",
+      "fuente": { "archivo": "Unidad 1a.pdf", "pagina": 16 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-006", "unidad": "u1", "tema": "Almacenamiento", "tipo": "unica",
+      "enunciado": "¿Cuál es el único almacenamiento de gran tamaño al que la CPU puede acceder directamente?",
+      "opciones": ["El disco duro (HDD)", "La memoria NVM", "La memoria principal (RAM)", "La memoria caché L3"],
+      "correcta": 2,
+      "explicacion": "La memoria principal (RAM) es el único medio de almacenamiento de gran tamaño al que la CPU puede acceder directamente; es de acceso aleatorio y normalmente volátil.",
+      "fuente": { "archivo": "Unidad 1a.pdf", "pagina": 18 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-007", "unidad": "u1", "tema": "E/S", "tipo": "unica",
+      "enunciado": "¿Qué mecanismo permite que un dispositivo transfiera datos a memoria sin usar constantemente la CPU?",
+      "opciones": ["Polling", "DMA", "Spooling", "Trap"],
+      "correcta": 1,
+      "explicacion": "El DMA (acceso directo a memoria) permite que los dispositivos transfieran datos a memoria sin usar constantemente la CPU.",
+      "fuente": { "archivo": "Unidad 1a.pdf", "pagina": 22 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-008", "unidad": "u1", "tema": "Multiprocesadores", "tipo": "unica",
+      "enunciado": "En el multiprocesamiento simétrico (SMP):",
+      "opciones": ["Cada procesador tiene asignada una tarea específica", "Cada procesador realiza todas las tareas", "Hay una máquina en espera activa por si falla la otra", "Los procesadores no comparten memoria"],
+      "correcta": 1,
+      "explicacion": "En el multiprocesamiento simétrico cada procesador realiza todas las tareas; en el asimétrico, a cada procesador se le asigna una tarea específica.",
+      "fuente": { "archivo": "Unidad 1a.pdf", "pagina": 24 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-009", "unidad": "u1", "tema": "Multiprocesadores", "tipo": "unica",
+      "enunciado": "¿Cuál de estas NO es una ventaja de los sistemas multiprocesador según la cátedra?",
+      "opciones": ["Mayor rendimiento", "Economía de escala", "Mayor fiabilidad (degradación gradual)", "Eliminan la necesidad de sincronizar procesos"],
+      "correcta": 3,
+      "explicacion": "Las ventajas listadas son mayor rendimiento, economía de escala y mayor fiabilidad. Tener varios procesadores no elimina la sincronización; al contrario, la vuelve más necesaria.",
+      "fuente": { "archivo": "Unidad 1a.pdf", "pagina": 24 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-010", "unidad": "u1", "tema": "Clústeres", "tipo": "unica",
+      "enunciado": "En un clúster asimétrico:",
+      "opciones": ["Todos los nodos ejecutan aplicaciones y se supervisan entre sí", "Una máquina está en modo de espera activa", "No se comparte almacenamiento", "Solo se usa para computación de alto rendimiento"],
+      "correcta": 1,
+      "explicacion": "La agrupación en clústeres asimétrica tiene una máquina en modo de espera activa; la simétrica tiene múltiples nodos que ejecutan aplicaciones y se supervisan entre sí.",
+      "fuente": { "archivo": "Unidad 1a.pdf", "pagina": 27 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-011", "unidad": "u1", "tema": "Multiprogramación", "tipo": "unica",
+      "enunciado": "¿Cuál es el objetivo principal de la multiprogramación?",
+      "opciones": ["Dar sensación de ejecución simultánea al usuario", "Maximizar la utilización de la CPU", "Proteger la memoria del kernel", "Reducir el consumo de energía"],
+      "correcta": 1,
+      "explicacion": "La multiprogramación mantiene varios procesos en memoria para que, cuando uno se bloquea esperando E/S, la CPU pase a otro. Su objetivo es maximizar el uso de CPU (eficiencia), no necesariamente la interactividad.",
+      "fuente": { "archivo": "Unidad 1a.pdf", "pagina": 31 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-012", "unidad": "u1", "tema": "Multitarea", "tipo": "unica",
+      "enunciado": "La multitarea (tiempo compartido) se diferencia de la multiprogramación porque:",
+      "opciones": ["Busca interactividad y respuesta rápida repartiendo la CPU en quantums", "No necesita un timer", "Solo permite un proceso en memoria", "No produce cambios de contexto"],
+      "correcta": 0,
+      "explicacion": "La multitarea es una extensión de la multiprogramación orientada a sistemas interactivos: divide la CPU en quantums, un timer interrumpe y hay cambio de contexto. Busca reducir el tiempo de respuesta.",
+      "fuente": { "archivo": "Unidad 1a.pdf", "pagina": 32 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-013", "unidad": "u1", "tema": "Modo dual", "tipo": "unica",
+      "enunciado": "¿Para qué existe el modo dual (usuario/kernel)?",
+      "opciones": ["Para ejecutar dos sistemas operativos a la vez", "Para que solo el kernel pueda ejecutar instrucciones privilegiadas y así proteger el sistema", "Para duplicar la velocidad de la CPU", "Para que el usuario pueda acceder directamente al hardware"],
+      "correcta": 1,
+      "explicacion": "El hardware implementa un bit de modo que distingue modo usuario y kernel; solo el kernel ejecuta instrucciones privilegiadas. Es la base de la protección del sistema.",
+      "fuente": { "archivo": "Unidad 1a.pdf", "pagina": 33 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-014", "unidad": "u1", "tema": "Modo dual", "tipo": "unica",
+      "enunciado": "¿Cuál de estos eventos NO produce un cambio a modo kernel según la cátedra?",
+      "opciones": ["Una interrupción", "Una llamada al sistema (trap)", "Una excepción", "Una suma entre dos registros en modo usuario"],
+      "correcta": 3,
+      "explicacion": "El cambio de modo ocurre mediante interrupciones, system calls (traps) y excepciones. Una operación aritmética común no es privilegiada y se ejecuta en modo usuario.",
+      "fuente": { "archivo": "Unidad 1a.pdf", "pagina": 33 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-015", "unidad": "u1", "tema": "Timer", "tipo": "unica",
+      "enunciado": "¿Qué problema resuelve el timer?",
+      "opciones": ["Que un proceso monopolice la CPU o entre en un bucle infinito sin devolver el control", "Que dos procesos accedan a la misma variable", "Que la RAM se fragmente", "Que el disco tarde demasiado"],
+      "correcta": 0,
+      "explicacion": "El timer cuenta hacia atrás y, al llegar a cero, genera una interrupción que devuelve el control al SO. Permite la apropiación, implementar multitarea y evitar el monopolio de la CPU.",
+      "fuente": { "archivo": "Unidad 1a.pdf", "pagina": 35 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-016", "unidad": "u1", "tema": "Caché", "tipo": "unica",
+      "enunciado": "¿Cuál es el principal desafío del uso de caché, especialmente en multiprocesadores?",
+      "opciones": ["La coherencia de datos entre los distintos niveles", "Que la caché es más lenta que el disco", "Que la caché no es volátil", "Que solo puede guardar instrucciones"],
+      "correcta": 0,
+      "explicacion": "La caché copia información a un almacenamiento más rápido. Sus desafíos son el tamaño limitado y la coherencia: si un dato cambia en un nivel, debe actualizarse en los demás, algo crítico en multiprocesadores.",
+      "fuente": { "archivo": "Unidad 1a.pdf", "pagina": 42 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-017", "unidad": "u1", "tema": "Protección y seguridad", "tipo": "unica",
+      "enunciado": "¿Cuál es la diferencia entre protección y seguridad?",
+      "opciones": ["Son sinónimos", "La protección controla el acceso de procesos y usuarios a los recursos; la seguridad defiende al sistema de ataques internos y externos", "La seguridad controla el acceso a archivos y la protección solo a la red", "La protección es por software y la seguridad solo por hardware"],
+      "correcta": 1,
+      "explicacion": "Protección: mecanismos para controlar el acceso de procesos o usuarios a los recursos. Seguridad: defensa del sistema contra ataques externos e internos (virus, intrusos, denegación de servicio).",
+      "fuente": { "archivo": "Unidad 1a.pdf", "pagina": 45 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-018", "unidad": "u1", "tema": "Virtualización", "tipo": "unica",
+      "enunciado": "Según la Unidad 1, ¿cuál es la diferencia clave entre emulación y virtualización?",
+      "opciones": ["La emulación traduce instrucciones de una arquitectura a otra (lento); en la virtualización el SO invitado corre sobre hardware real de forma aislada (rápido)", "La virtualización traduce instrucciones y la emulación no", "Ambas son igual de rápidas", "La emulación necesita un hipervisor y la virtualización no"],
+      "correcta": 0,
+      "explicacion": "La cátedra distingue la emulación (traducir instrucciones de una arquitectura a otra, lento) de la virtualización (el SO invitado corre sobre hardware real de forma aislada, rápido).",
+      "fuente": { "archivo": "Unidad 1a.pdf", "pagina": 47 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-019", "unidad": "u1", "tema": "Estructuras del kernel", "tipo": "unica",
+      "enunciado": "¿Qué estructura de datos usa el SO, según la cátedra, para saber rápidamente qué bloques del disco están libres?",
+      "opciones": ["Un árbol rojo-negro", "Una pila", "Un mapa de bits (bitmap)", "Una lista doblemente enlazada de procesos"],
+      "correcta": 2,
+      "explicacion": "Los mapas de bits representan con 0 o 1 si cada bloque está libre u ocupado; el SO lee esa cadena para saber qué bloques del disco están vacíos.",
+      "fuente": { "archivo": "Unidad 1a.pdf", "pagina": 53 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-020", "unidad": "u1", "tema": "Llamadas al sistema", "tipo": "unica",
+      "enunciado": "¿Cuál es la única forma de que un programa de usuario ejecute instrucciones privilegiadas?",
+      "opciones": ["Escribir directamente en los registros de E/S", "Mediante una llamada al sistema", "Desactivando el timer", "Modificando el vector de interrupciones"],
+      "correcta": 1,
+      "explicacion": "El hardware usa un bit de modo para restringir instrucciones privilegiadas; la única forma de ejecutarlas es mediante una llamada al sistema, que provoca un trap y pasa a modo kernel.",
+      "fuente": { "archivo": "Unidad 1b.pdf", "pagina": 8 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-021", "unidad": "u1", "tema": "Llamadas al sistema", "tipo": "unica",
+      "enunciado": "¿Qué método de pasaje de parámetros a una syscall es el estándar para manejar estructuras complejas?",
+      "opciones": ["Registros", "Bloque de parámetros en memoria, con su dirección en un registro", "Variables globales del kernel", "Archivos temporales"],
+      "correcta": 1,
+      "explicacion": "Los registros son lo más rápido pero limitado; el bloque de parámetros (datos en una tabla en memoria cuyo puntero se pasa en un registro) es el método estándar para estructuras complejas. También se puede usar la pila.",
+      "fuente": { "archivo": "Unidad 1b.pdf", "pagina": 10 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-022", "unidad": "u1", "tema": "Llamadas al sistema", "tipo": "unica",
+      "enunciado": "¿Qué llamada al sistema reemplaza el código del proceso por un programa nuevo?",
+      "opciones": ["fork()", "exec()", "wait()", "exit()"],
+      "correcta": 1,
+      "explicacion": "fork() crea un clon, exec() reemplaza el código, wait() sincroniza con el padre y exit() finaliza.",
+      "fuente": { "archivo": "Unidad 1b.pdf", "pagina": 11 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-023", "unidad": "u1", "tema": "Llamadas al sistema", "tipo": "unica",
+      "enunciado": "¿Qué llamada permite enviar comandos específicos a un dispositivo que no encajan en el modelo de lectura/escritura?",
+      "opciones": ["ioctl()", "lseek()", "stat()", "brk()"],
+      "correcta": 0,
+      "explicacion": "ioctl() (I/O Control) permite enviar comandos específicos que no encajan en el modelo de lectura/escritura, como expulsar un medio o configurar baudios.",
+      "fuente": { "archivo": "Unidad 1b.pdf", "pagina": 12 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-024", "unidad": "u1", "tema": "Diseño", "tipo": "unica",
+      "enunciado": "La separación entre mecanismo y política permite:",
+      "opciones": ["Cambiar la política sin recompilar ni rediseñar el núcleo", "Eliminar las llamadas al sistema", "Ejecutar el kernel en modo usuario", "Que el usuario elija el hardware"],
+      "correcta": 0,
+      "explicacion": "El mecanismo es el código que realiza la acción y la política es la regla que decide qué hacer. Separarlos permite cambiar la política (por ejemplo, prioridades) sin recompilar ni rediseñar el núcleo.",
+      "fuente": { "archivo": "Unidad 1b.pdf", "pagina": 19 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-025", "unidad": "u1", "tema": "Estructura", "tipo": "unica",
+      "enunciado": "¿Cuál es la principal desventaja de un kernel monolítico?",
+      "opciones": ["Es muy lento por el paso de mensajes", "Es difícil de mantener y un error en un driver puede corromper todo el kernel", "No puede cargar módulos", "Solo funciona en microcontroladores"],
+      "correcta": 1,
+      "explicacion": "En la estructura monolítica todos los servicios están en un único espacio de direcciones: tiene rendimiento máximo, pero es difícil de mantener y un error en un driver puede corromper todo el kernel.",
+      "fuente": { "archivo": "Unidad 1b.pdf", "pagina": 20 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-026", "unidad": "u1", "tema": "Estructura", "tipo": "unica",
+      "enunciado": "En un microkernel (como Mach o QNX):",
+      "opciones": ["Todos los servicios están dentro del kernel", "Los servicios se ejecutan como procesos de usuario y el kernel solo gestiona la comunicación (IPC)", "No existe el modo kernel", "Cada capa usa solo los servicios de la inferior"],
+      "correcta": 1,
+      "explicacion": "En los microkernels se extraen servicios del kernel (sistema de archivos, red) y se ejecutan como procesos de usuario; el kernel solo gestiona la IPC. Es fiable, pero con menor rendimiento por el paso de mensajes.",
+      "fuente": { "archivo": "Unidad 1b.pdf", "pagina": 22 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-027", "unidad": "u1", "tema": "Estructura", "tipo": "unica",
+      "enunciado": "¿Qué enfoque combina la velocidad monolítica con la flexibilidad modular, y es el que usa Linux moderno?",
+      "opciones": ["Estructura por capas", "Microkernel puro", "Módulos cargables del kernel (LKM)", "Hipervisor tipo 2"],
+      "correcta": 2,
+      "explicacion": "Los módulos cargables (LKM) son el enfoque moderno (Linux, Solaris): un núcleo pequeño que carga módulos en tiempo de ejecución, combinando velocidad monolítica y flexibilidad modular.",
+      "fuente": { "archivo": "Unidad 1b.pdf", "pagina": 22 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-028", "unidad": "u1", "tema": "Arranque", "tipo": "unica",
+      "enunciado": "¿Cuál es el orden correcto del arranque de un SO?",
+      "opciones": ["Kernel → firmware → boot loader → init", "Firmware (POST) → boot loader → carga del kernel → primer proceso (init/systemd)", "Boot loader → firmware → init → kernel", "Init → kernel → boot loader → firmware"],
+      "correcta": 1,
+      "explicacion": "El firmware (BIOS/UEFI) hace el POST, busca el boot loader (por ejemplo GRUB), este carga el kernel en RAM y el kernel inicializa y lanza el primer proceso (init o systemd).",
+      "fuente": { "archivo": "Unidad 1b.pdf", "pagina": 24 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-029", "unidad": "u1", "tema": "Portabilidad", "tipo": "unica",
+      "enunciado": "¿Por qué un binario compilado para Linux no funciona directamente en Windows?",
+      "opciones": ["Porque cambian el formato ejecutable (ELF vs PE), las llamadas al sistema y posiblemente el conjunto de instrucciones", "Porque Windows no tiene kernel", "Porque Linux no usa memoria virtual", "Porque los binarios se borran al copiarlos"],
+      "correcta": 0,
+      "explicacion": "Un binario no funciona en otro SO por el formato del ejecutable (ELF, PE, Mach-O), el conjunto de instrucciones (ISA) y las llamadas al sistema, cuyos números y forma de pasar parámetros varían.",
+      "fuente": { "archivo": "Unidad 1b.pdf", "pagina": 18 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u1-030", "unidad": "u1", "tema": "Compilación y carga", "tipo": "unica",
+      "enunciado": "¿Qué permite el enlazado dinámico (DLL / .so)?",
+      "opciones": ["Que las librerías se carguen bajo demanda y varios programas compartan el mismo código en RAM", "Que el programa no necesite sistema operativo", "Que el compilador genere código absoluto", "Que se eliminen las llamadas al sistema"],
+      "correcta": 0,
+      "explicacion": "Con el enlazado dinámico las librerías se cargan bajo demanda, y múltiples programas comparten el mismo código en RAM.",
+      "fuente": { "archivo": "Unidad 1b.pdf", "pagina": 17 }, "origen": "generada", "estado": "verificada"
+    }
+  ]
+}

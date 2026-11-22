@@ -1,0 +1,277 @@
+{
+  "unidad": "u7",
+  "preguntas": [
+    {
+      "id": "u7-001", "unidad": "u7", "tema": "Sistemas distribuidos", "tipo": "unica",
+      "enunciado": "¿Qué caracteriza a un sistema distribuido frente a un SMP?",
+      "opciones": ["Los procesadores comparten una misma RAM y bus", "Los nodos son autónomos (CPU, RAM local y reloj propio) y se comunican por paso de mensajes en red", "Tiene un único reloj global", "No puede escalar"],
+      "correcta": 1,
+      "explicacion": "En un sistema distribuido (acoplamiento débil) los procesadores no comparten la memoria principal: hay nodos autónomos, con RAM y reloj propios, unidos por red y comunicados por paso de mensajes.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 5 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-002", "unidad": "u7", "tema": "Sistemas distribuidos", "tipo": "unica",
+      "enunciado": "¿Cuál es una desventaja de los sistemas distribuidos según la cátedra?",
+      "opciones": ["No toleran fallos", "Latencia de red, pérdida de estado global y complejidad para sincronizar sin reloj común", "No permiten agregar nodos", "Necesitan memoria compartida"],
+      "correcta": 1,
+      "explicacion": "Ventajas: escalabilidad horizontal, paralelización masiva y tolerancia a fallos. Desventajas: latencia de red (µs/ms frente a ns en RAM), pérdida de estado global y complejidad para sincronizar sin reloj común.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 5 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-003", "unidad": "u7", "tema": "RPC", "tipo": "unica",
+      "enunciado": "En RPC, ¿qué hace el stub del cliente?",
+      "opciones": ["Ejecuta la función en el servidor", "Actúa como representante de la función remota: empaqueta los parámetros (marshaling) y los envía", "Administra el sistema de archivos", "Reemplaza a la red"],
+      "correcta": 1,
+      "explicacion": "El stub es un intermediario: el programa lo llama como si fuera la función local, y él empaqueta los parámetros (marshaling), envía la solicitud y recibe la respuesta.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 12 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-004", "unidad": "u7", "tema": "Migración", "tipo": "unica",
+      "enunciado": "Llevar la función hacia donde están los datos (por ejemplo con RPC) es:",
+      "opciones": ["Migración de datos", "Migración de cómputo", "Migración de procesos", "Swapping"],
+      "correcta": 1,
+      "explicacion": "La migración de cómputo lleva la función hacia los datos (RPC), lo que reduce el tráfico de red. La migración de datos hace lo contrario y la de procesos mueve un proceso completo.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 12 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-005", "unidad": "u7", "tema": "DFS", "tipo": "unica",
+      "enunciado": "¿Qué hace la capa VFS en un sistema de archivos distribuido?",
+      "opciones": ["Intercepta las llamadas al sistema: si la ruta es local va al driver de disco, si es remota la desvía al cliente DFS", "Guarda los archivos en la nube", "Cifra los datos", "Reemplaza al kernel"],
+      "correcta": 0,
+      "explicacion": "El VFS es una capa de abstracción del kernel que intercepta las llamadas del programa: si la ruta es local la envía al controlador (ext4/NTFS) y, si es remota, al cliente DFS por red.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 15 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-006", "unidad": "u7", "tema": "DFS", "tipo": "unica",
+      "enunciado": "¿Qué es la independencia de ubicación?",
+      "opciones": ["Que el nombre lógico no revela en qué servidor está el archivo", "Que se puede cambiar la ubicación física del archivo sin alterar su nombre de ruta lógico", "Que cada cliente monta las carpetas en distintos lugares", "Que el archivo no tiene ubicación"],
+      "correcta": 1,
+      "explicacion": "La transparencia de ubicación oculta en qué servidor está el archivo. La independencia de ubicación va más allá: permite moverlo de servidor sin cambiar su ruta lógica.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 18 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-007", "unidad": "u7", "tema": "Coherencia", "tipo": "unica",
+      "enunciado": "En la semántica de sesión (usada en AFS):",
+      "opciones": ["Cada escritura es visible al instante para todos", "Las modificaciones son privadas en la caché local y se envían al servidor recién al hacer close()", "Los archivos nunca se modifican", "No hay caché en el cliente"],
+      "correcta": 1,
+      "explicacion": "En la semántica de sesión los cambios son privados mientras el archivo está abierto y se envían al servidor con close(); los demás los ven si abren el archivo después.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 21 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-008", "unidad": "u7", "tema": "NFS", "tipo": "unica",
+      "enunciado": "¿Por qué el servidor NFS (v2/v3) es sin estado (stateless)?",
+      "opciones": ["Para ahorrar disco", "Por resiliencia ante fallos: si se reinicia, no tiene que reconstruir sesiones y el cliente simplemente reintenta los RPC", "Porque no usa RPC", "Porque no permite caché"],
+      "correcta": 1,
+      "explicacion": "El servidor no guarda información de sesión de cada cliente. Si falla o se reinicia, no hay estado que reconstruir: el cliente reintenta las solicitudes RPC.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 22 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-009", "unidad": "u7", "tema": "Tiempo real", "tipo": "unica",
+      "enunciado": "¿Por qué un sistema hard real-time evita la paginación?",
+      "opciones": ["Para ahorrar energía", "Porque un fallo de página introduce retrasos impredecibles; las tareas críticas se mantienen en RAM", "Porque no tiene MMU", "Porque la paginación es insegura"],
+      "correcta": 1,
+      "explicacion": "En hard real-time se mantienen las tareas críticas en RAM (sin paginación) para evitar retrasos impredecibles, junto con un kernel apropiativo y latencias acotadas.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 25 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-010", "unidad": "u7", "tema": "Tiempo real", "tipo": "unica",
+      "enunciado": "La latencia de interrupción es el tiempo:",
+      "opciones": ["Desde que llega la interrupción a la CPU hasta que empieza a ejecutarse la ISR", "Que tarda el scheduler en hacer el cambio de contexto a la tarea de tiempo real", "Que tarda el disco en responder", "Entre dos quantums"],
+      "correcta": 0,
+      "explicacion": "La latencia de interrupción va desde que llega la señal hasta que comienza la ISR. La latencia de despacho es el tiempo para pasar de la tarea actual a la de tiempo real.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 28 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-011", "unidad": "u7", "tema": "Tiempo real", "tipo": "unica",
+      "enunciado": "En la fase de conflicto de la latencia de despacho, la tarea de tiempo real puede tener que esperar:",
+      "opciones": ["A que termine una sección del kernel no apropiable o a que se liberen recursos retenidos por tareas de menor prioridad", "A que el usuario confirme", "A que se llene la TLB", "A que el disco termine de girar"],
+      "correcta": 0,
+      "explicacion": "En la fase de conflicto, la tarea de tiempo real puede esperar a que termine una sección del kernel que no puede ser desalojada (por eso se necesita un kernel apropiativo) o la liberación de recursos de tareas de menor prioridad.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 28 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-012", "unidad": "u7", "tema": "RMS", "tipo": "unica",
+      "enunciado": "En Rate-Monotonic, ¿qué tarea tiene más prioridad?",
+      "opciones": ["La de mayor tiempo de ejecución", "La de período más corto (la que se ejecuta más seguido)", "La de plazo más cercano en cada instante", "La que llegó primero"],
+      "correcta": 1,
+      "explicacion": "En RMS la prioridad es estática e inversamente proporcional al período: la tarea con período más corto (más frecuente) tiene más prioridad.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 32 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-013", "unidad": "u7", "tema": "RMS", "tipo": "unica",
+      "enunciado": "Dos tareas: sensor (2 ms cada 10 ms) y motor (4 ms cada 20 ms). ¿Qué concluye RMS?",
+      "opciones": ["U = 40 % < 82,8 %: está garantizado que cumplen sus plazos", "U = 60 %: no se puede garantizar", "U = 82,8 %: está justo en el límite", "U = 40 % > 69 %: no se garantiza"],
+      "correcta": 0,
+      "explicacion": "U = 2/10 + 4/20 = 20 % + 20 % = 40 %. Con N = 2, la cota es 82,8 %; como 40 % < 82,8 %, RMS garantiza los plazos.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 33 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-014", "unidad": "u7", "tema": "RMS", "tipo": "unica",
+      "enunciado": "¿Hacia qué valor tiende la cota de utilización de RMS cuando la cantidad de tareas tiende a infinito?",
+      "opciones": ["100 %", "82,8 %", "ln 2 ≈ 69,3 %", "50 %"],
+      "correcta": 2,
+      "explicacion": "La cota N(2^(1/N) − 1) vale 100 % con N = 1, 82,8 % con N = 2 y converge a ln 2 ≈ 69,3 % cuando N → ∞.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 33 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-015", "unidad": "u7", "tema": "EDF", "tipo": "unica",
+      "enunciado": "¿Qué ventaja tiene EDF sobre RMS?",
+      "opciones": ["Usa prioridades estáticas más simples", "Reajusta dinámicamente las prioridades según el plazo y teóricamente aprovecha el 100 % de la CPU", "No necesita conocer los plazos", "Solo funciona con tareas periódicas"],
+      "correcta": 1,
+      "explicacion": "RMS desperdicia CPU por su cota fija. EDF asigna más prioridad dinámica a la tarea con el plazo más cercano, no exige tareas periódicas y puede llegar al 100 % de utilización.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 34 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-016", "unidad": "u7", "tema": "Tiempo real", "tipo": "unica",
+      "enunciado": "¿Qué es la inversión de prioridad y cómo se resuelve?",
+      "opciones": ["Una tarea de alta prioridad queda bloqueada esperando un recurso de una de baja prioridad que es desalojada por tareas medias; se resuelve con herencia de prioridad", "Cuando el scheduler invierte el orden de la cola; se resuelve con FCFS", "Cuando una tarea baja su propia prioridad; se resuelve con nice", "Cuando dos tareas tienen la misma prioridad; se resuelve con RR"],
+      "correcta": 0,
+      "explicacion": "En la inversión de prioridad, una tarea alta espera un recurso retenido por una baja que es desalojada por tareas medias. Con herencia de prioridad, la tarea baja hereda temporalmente la prioridad de la bloqueada.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 89 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-017", "unidad": "u7", "tema": "Hipervisores", "tipo": "unica",
+      "enunciado": "VMware ESXi, KVM y Xen son hipervisores de tipo:",
+      "opciones": ["Tipo 0", "Tipo 1 (bare-metal)", "Tipo 2 (hosted)", "Contenedores"],
+      "correcta": 1,
+      "explicacion": "El tipo 1 corre directamente sobre el hardware en modo kernel (ESXi, XenServer, KVM). El tipo 2 es una aplicación sobre un SO anfitrión (VirtualBox, VMware Workstation) y el tipo 0 está en el firmware (IBM LPARs).",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 42 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-018", "unidad": "u7", "tema": "Hipervisores", "tipo": "unica",
+      "enunciado": "¿Cuál es una debilidad del hipervisor tipo 2?",
+      "opciones": ["No permite ejecutar Linux", "Compite con los procesos del SO anfitrión y, si el anfitrión cae, caen todas las VMs", "Solo funciona en mainframes", "No tiene overhead"],
+      "correcta": 1,
+      "explicacion": "El tipo 2 tiene menor rendimiento porque compite con los procesos del SO anfitrión, y aislamiento moderado: si el anfitrión es vulnerado o se cuelga, caen todas las máquinas virtuales.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 50 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-019", "unidad": "u7", "tema": "Traducción binaria", "tipo": "unica",
+      "enunciado": "¿Por qué hacía falta la traducción binaria para virtualizar x86 antes de VT-x?",
+      "opciones": ["Porque x86 no tenía modo usuario", "Porque algunas instrucciones sensibles (como popf) no generaban trap en modo usuario, sino que fallaban en silencio", "Porque los discos eran lentos", "Porque no había memoria virtual"],
+      "correcta": 1,
+      "explicacion": "El modelo trap-and-emulate requiere que las instrucciones privilegiadas generen un trap. En x86 algunas, como popf, no lo hacían: fallaban en silencio. La traducción binaria reescribe ese código antes de ejecutarlo.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 51 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-020", "unidad": "u7", "tema": "VT-x", "tipo": "unica",
+      "enunciado": "En la virtualización asistida por hardware (Intel VT-x), ¿qué es un VM Exit?",
+      "opciones": ["El apagado de la máquina virtual", "La transición en la que la CPU detiene a la VM y devuelve el control al hipervisor cuando la VM intenta algo delicado", "La migración de la VM a otro servidor", "El inicio de la VM"],
+      "correcta": 1,
+      "explicacion": "VM Entry: el hipervisor cede la CPU a la VM. VM Exit: si la VM intenta algo delicado (tocar registros críticos), la CPU la detiene y devuelve el control al hipervisor. El estado se guarda en la VMCS.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 55 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-021", "unidad": "u7", "tema": "Memoria virtualizada", "tipo": "unica",
+      "enunciado": "Con EPT/NPT, ¿qué dos traducciones hace la MMU?",
+      "opciones": ["GVA → GPA (tablas del invitado) y GPA → HPA (tablas del hipervisor)", "HPA → GVA y GVA → GPA", "Solo GVA → HPA en un paso", "Lógica → segmento y segmento → página"],
+      "correcta": 0,
+      "explicacion": "Con EPT/NPT la CPU traduce primero GVA → GPA con las tablas del invitado y después GPA → HPA con las tablas EPT/NPT del hipervisor, sin que este intervenga en cada operación.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 58 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-022", "unidad": "u7", "tema": "Memoria virtualizada", "tipo": "unica",
+      "enunciado": "En el peor caso de un recorrido 2D (x86-64 de 4 niveles con EPT), ¿cuántos accesos a RAM puede requerir una traducción?",
+      "opciones": ["2", "4", "8", "24"],
+      "correcta": 3,
+      "explicacion": "Hay que recorrer las tablas del invitado y, a su vez, traducir con EPT/NPT las direcciones donde están esas tablas. En el peor caso son hasta 24 accesos a RAM.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 59 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-023", "unidad": "u7", "tema": "Ballooning", "tipo": "unica",
+      "enunciado": "¿Cómo funciona la fase de inflado del ballooning?",
+      "opciones": ["El hipervisor pagina la RAM de la VM a disco sin avisar", "El balloon driver pide memoria al SO invitado; este libera páginas con sus algoritmos (LRU) y el hipervisor recupera esos marcos para otra VM", "La VM pide más RAM al hipervisor", "Se agrega RAM física al servidor"],
+      "correcta": 1,
+      "explicacion": "El hipervisor ordena inflarse al balloon driver, que pide memoria al kernel invitado. El invitado siente presión, libera páginas con su LRU y el driver las bloquea y notifica al hipervisor, que retira los marcos.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 61 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-024", "unidad": "u7", "tema": "virtio", "tipo": "unica",
+      "enunciado": "¿Qué ventaja tiene virtio frente a emular un controlador de disco o una placa de red reales?",
+      "opciones": ["El invitado no sabe que está virtualizado", "Agrupa muchas peticiones en anillos de memoria compartida y notifica el lote con una sola hypercall, evitando un VM Exit por petición", "No requiere drivers", "Elimina el hipervisor"],
+      "correcta": 1,
+      "explicacion": "virtio usa virtqueues en memoria compartida: el invitado coloca muchas peticiones y hace una sola hypercall (batching). El costo es que el invitado sabe que está virtualizado y necesita drivers virtio.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 65 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-025", "unidad": "u7", "tema": "Contenedores", "tipo": "unica",
+      "enunciado": "¿Qué diferencia fundamental tiene un contenedor respecto de una máquina virtual?",
+      "opciones": ["El contenedor arranca su propio kernel", "Los contenedores comparten un único kernel del sistema anfitrión", "El contenedor emula hardware", "La VM no tiene sistema operativo"],
+      "correcta": 1,
+      "explicacion": "Cada VM ejecuta su propio SO invitado. Los contenedores comparten el kernel del anfitrión y solo aíslan el entorno de ejecución (procesos, red, sistema de archivos).",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 67 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-026", "unidad": "u7", "tema": "Contenedores", "tipo": "unica",
+      "enunciado": "En Linux, ¿qué mecanismo LIMITA cuántos recursos (CPU, RAM, E/S) puede consumir un contenedor?",
+      "opciones": ["Namespaces", "cgroups", "VMCS", "EPT"],
+      "correcta": 1,
+      "explicacion": "Los namespaces aíslan la visibilidad (¿qué puedo ver?: PID, NET, MNT…). Los cgroups controlan el consumo (¿cuánto puedo consumir?: CPU, RAM, disco, red).",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 69 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-027", "unidad": "u7", "tema": "Contenedores", "tipo": "unica",
+      "enunciado": "¿Cuál es la principal limitación de seguridad de los contenedores?",
+      "opciones": ["Arrancan muy lento", "Como el kernel es compartido, un escape que comprometa el kernel anfitrión afecta a todos los contenedores", "Consumen más RAM que una VM", "No pueden usar red"],
+      "correcta": 1,
+      "explicacion": "Su ventaja es el rendimiento casi nativo y el arranque rápido. Su limitación es que el kernel es compartido: una vulnerabilidad que escape del aislamiento puede afectar a todos.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 72 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-028", "unidad": "u7", "tema": "Migración en vivo", "tipo": "unica",
+      "enunciado": "En la migración en vivo pre-copy, ¿qué se retransmite en las pasadas iterativas?",
+      "opciones": ["Toda la memoria cada vez", "Solo las páginas sucias que la VM modificó durante la transferencia", "Solo los registros de la VCPU", "El disco completo"],
+      "correcta": 1,
+      "explicacion": "Primero se copia toda la RAM mientras la VM corre y se rastrean con un dirty bitmap las páginas modificadas. En cada pasada se reenvían solo las páginas sucias, hasta que quedan pocas; ahí se hace el stop-and-copy (< 50 ms).",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 73 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-029", "unidad": "u7", "tema": "Seguridad", "tipo": "unica",
+      "enunciado": "¿Qué es un VM escape?",
+      "opciones": ["Apagar una VM de forma forzada", "Que un proceso dentro de una VM explote una vulnerabilidad de un dispositivo emulado o paravirtualizado y ejecute código con privilegios del hipervisor", "Migrar una VM a otra región", "Un ataque que mide tiempos de caché"],
+      "correcta": 1,
+      "explicacion": "En el VM escape, un proceso dentro de la VM explota una vulnerabilidad (por ejemplo, en virtio) para ejecutar código con privilegios del hipervisor. Medir tiempos de caché es un ataque de canal lateral.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 75 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-030", "unidad": "u7", "tema": "Nube", "tipo": "unica",
+      "enunciado": "En IaaS, ¿qué gestiona el cliente?",
+      "opciones": ["Nada: todo lo gestiona el proveedor", "Solo el código de su aplicación", "El sistema operativo, los parches, las aplicaciones y la red virtual", "El hardware físico y el hipervisor"],
+      "correcta": 2,
+      "explicacion": "En IaaS el proveedor gestiona el hardware, la red y el hipervisor; el cliente, el SO, los parches, las aplicaciones y la red virtual (por ejemplo, AWS EC2). En PaaS el cliente solo sube su código y en SaaS no administra nada.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 77 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-031", "unidad": "u7", "tema": "Nube", "tipo": "unica",
+      "enunciado": "Google App Engine, donde el cliente solo despliega su código, es un ejemplo de:",
+      "opciones": ["IaaS", "PaaS", "SaaS", "Nube privada"],
+      "correcta": 1,
+      "explicacion": "En PaaS el proveedor abstrae también el SO, la base de datos y el runtime; el cliente solo gestiona su código (AWS Elastic Beanstalk, Google App Engine).",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 77 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-032", "unidad": "u7", "tema": "Nube", "tipo": "unica",
+      "enunciado": "¿Qué es el cloud bursting?",
+      "opciones": ["Un ataque a la nube", "En una nube híbrida, mover cargas no críticas a la nube pública durante picos de demanda", "Borrar instancias que no se usan", "Replicar datos entre zonas"],
+      "correcta": 1,
+      "explicacion": "La nube híbrida combina nube pública y privada, y permite mover cargas no críticas a la pública durante picos de demanda (cloud bursting).",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 80 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-033", "unidad": "u7", "tema": "Nube", "tipo": "unica",
+      "enunciado": "¿Qué es una zona de disponibilidad (AZ)?",
+      "opciones": ["Un servidor de caché cerca del usuario", "Uno o más centros de datos aislados dentro de una región, con energía, refrigeración y red independientes", "Un continente", "Una VM de respaldo"],
+      "correcta": 1,
+      "explicacion": "Una AZ es uno o más centros de datos físicos aislados dentro de una región, con energía, refrigeración y red independientes, interconectados con latencias de 1–2 ms.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 83 }, "origen": "generada", "estado": "verificada"
+    },
+    {
+      "id": "u7-034", "unidad": "u7", "tema": "Object storage", "tipo": "unica",
+      "enunciado": "¿Cómo se accede a los objetos en un almacenamiento como AWS S3?",
+      "opciones": ["Con open(), read() y write(), manteniendo la sesión abierta", "Con peticiones HTTP/REST (GET, PUT, DELETE, HEAD) sin mantener una sesión de archivo abierta", "Montando el disco por NFS", "Con mmap"],
+      "correcta": 1,
+      "explicacion": "Object storage guarda cada archivo como un objeto (datos, metadatos y una clave) y se accede por HTTP: GET, PUT, DELETE y HEAD, sin sesión abierta. NFS/AFS usan operaciones POSIX.",
+      "fuente": { "archivo": "Unidad 7 - Virtualizacion y otros.pdf", "pagina": 85 }, "origen": "generada", "estado": "verificada"
+    }
+  ]
+}
