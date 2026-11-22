@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Práctica SO · Final</title>
+  <meta name="description" content="Multiple choice, ejercicios interactivos y teoría para practicar el final de Sistemas Operativos.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234f7cff'/%3E%3Ctext x='32' y='42' font-size='26' font-family='sans-serif' font-weight='700' text-anchor='middle' fill='white'%3ESO%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    // Aplica el tema guardado antes de pintar (evita el parpadeo).
+    try { const t = localStorage.getItem('so-tema'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+</head>
+<body>
+  <a class="saltar" href="#app">Saltar al contenido</a>
+  <header class="barra-superior">
+    <a href="#/" class="marca"><span class="logo">SO</span> Práctica final</a>
+    <nav class="nav" aria-label="Secciones">
+      <a href="#/quiz">Preguntas</a>
+      <a href="#/simulacro">Simulacro</a>
+      <a href="#/ejercicios">Ejercicios</a>
+      <a href="#/teoria">Teoría</a>
+      <a href="#/progreso">Progreso</a>
+    </nav>
+    <button id="tema" class="boton-icono" type="button" aria-label="Cambiar entre modo claro y oscuro" title="Modo claro / oscuro">◐</button>
+  </header>
+  <main id="app" tabindex="-1">
+    <p class="cargando">Cargando…</p>
+  </main>
+  <footer class="pie">
+    Contenido armado a partir del material de la cátedra de Sistemas Operativos (UTN San Nicolás). Las preguntas marcadas como «Generada» se escribieron a partir de la teoría y citan su fuente.
+  </footer>
+  <noscript><p class="aviso">Esta página necesita JavaScript.</p></noscript>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
