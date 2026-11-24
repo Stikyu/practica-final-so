@@ -59,7 +59,7 @@ export async function vistaTipo(raiz, tipoId) {
         <div class="generador">
           <strong>Ejercicio nuevo:</strong>
           ${ops.map((o) => `<label>${escapar(o.label)} <select data-op="${o.id}">${o.valores.map(([v, t]) => `<option value="${escapar(v)}">${escapar(t)}</option>`).join('')}</select></label>`).join('')}
-          <button type="button" class="boton primario" id="generar">🎲 Generar ejercicio nuevo</button>
+          <button type="button" class="boton primario" id="generar">Generar ejercicio nuevo</button>
         </div>
       </div>
       <div id="ejercicio"></div>

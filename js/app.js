@@ -5,6 +5,7 @@ import * as progreso from './progreso.js';
 import * as quiz from './quiz.js';
 import { vistaTeoria } from './teoria.js';
 import { vistaLista, vistaTipo } from './ejercicios/vista.js';
+import { TIPOS } from './ejercicios/tipos.js';
 import { escapar, $ } from './util.js';
 
 const raiz = document.getElementById('app');
@@ -27,28 +28,83 @@ document.getElementById('tema').addEventListener('click', () => {
 
 /* ---------------- Inicio ---------------- */
 
+// La entrada animada de la portada se ve una sola vez por visita.
+let primeraVisita = true;
+
 async function vistaInicio() {
   const [us, ps] = await Promise.all([datos.unidades(), datos.preguntas()]);
   const prog = progreso.leer();
   const respondidas = Object.keys(prog.preguntas).length;
   const errores = progreso.idsConError().length;
+  const flecha = '<svg class="flecha" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const tarjeta = (n, href, titulo, texto, extra = '') => `
+    <a class="tarjeta tarjeta-enlace ${extra}" href="${href}">
+      <span class="tarjeta-num">${n}</span>
+      <h3>${titulo}</h3>
+      <p>${texto}</p>
+      <span class="tarjeta-ir">Abrir ${flecha}</span>
+    </a>`;
+  // Round Robin q = 2 · P1(0,5) P2(1,3) P3(2,1) P4(3,2): el ejemplo del panel está resuelto de verdad.
+  const tramos = [['P1', 0, 2], ['P2', 2, 4], ['P3', 4, 5], ['P1', 5, 7], ['P4', 7, 9], ['P2', 9, 10], ['P1', 10, 11]];
+  const entra = primeraVisita ? ' entra' : '';
+  primeraVisita = false;
   raiz.innerHTML = `
-    <section class="pagina">
-      <div class="hero">
-        <h1>Práctica para el final de Sistemas Operativos</h1>
-        <p class="bajada">Preguntas, ejercicios y resúmenes armados con el material de la cátedra (UTN San Nicolás). Tu progreso se guarda en este navegador.</p>
-        ${respondidas ? `<p class="resumen-progreso">Respondiste <strong>${respondidas}</strong> de ${ps.length} preguntas distintas${errores ? ` · <a href="#/errores">${errores} para repasar</a>` : ''}.</p>` : ''}
+    <section class="hero${entra}">
+      <div class="hero-interior">
+        <div class="hero-texto">
+          <p class="antetitulo">Sistemas Operativos · UTN San Nicolás</p>
+          <h1>Práctica para el final de Sistemas Operativos</h1>
+          <p class="bajada">Preguntas, ejercicios y resúmenes armados con el material de la cátedra. Tu progreso se guarda en este navegador.</p>
+          <div class="acciones">
+            <a class="boton primario" href="#/quiz">Empezar a practicar</a>
+            <a class="boton" href="#/simulacro">Hacer un simulacro</a>
+          </div>
+          <dl class="datos-hero">
+            <div><dt>Preguntas</dt><dd>${ps.length}</dd></div>
+            <div><dt>Unidades</dt><dd>${us.length}</dd></div>
+            <div><dt>Tipos de ejercicio</dt><dd>${TIPOS.length}</dd></div>
+          </dl>
+          ${respondidas ? `<p class="resumen-progreso">Respondiste <strong>${respondidas}</strong> de ${ps.length} preguntas distintas${errores ? ` · <a href="#/errores">${errores} para repasar</a>` : ''}.</p>` : ''}
+        </div>
+        <a class="panel-muestra" href="#/ejercicios/planificacion" aria-label="Abrir los ejercicios de planificación">
+          <div class="panel-barra"><span class="panel-puntos" aria-hidden="true"><i></i><i></i><i></i></span><span>planificación · round robin · q = 2</span></div>
+          <div class="panel-cuerpo">
+            <table class="panel-tabla">
+              <thead><tr><th>Proceso</th><th>Llegada</th><th>Ráfaga</th><th>Espera</th></tr></thead>
+              <tbody>
+                <tr><td><i class="pp p1"></i>P1</td><td>0</td><td>5</td><td>6</td></tr>
+                <tr><td><i class="pp p2"></i>P2</td><td>1</td><td>3</td><td>6</td></tr>
+                <tr><td><i class="pp p3"></i>P3</td><td>2</td><td>1</td><td>2</td></tr>
+                <tr><td><i class="pp p4"></i>P4</td><td>3</td><td>2</td><td>4</td></tr>
+              </tbody>
+            </table>
+            <div class="panel-gantt" aria-hidden="true">
+              ${tramos.map(([p, d, h], i) => `<span class="${p.toLowerCase()}" style="flex:${h - d};--i:${i}">${p}</span>`).join('')}
+            </div>
+            <div class="panel-eje" aria-hidden="true">${[0, 2, 4, 5, 7, 9, 10, 11].map((t) => `<span style="left:${(t / 11) * 100}%">${t}</span>`).join('')}</div>
+            <p class="panel-resultado"><span>Espera media</span><strong>4,5</strong></p>
+          </div>
+        </a>
       </div>
-      <div class="grilla-tarjetas">
-        <a class="tarjeta tarjeta-enlace destacada" href="#/quiz"><span class="icono">✅</span><h3>Multiple choice</h3><p>${ps.length} preguntas por unidad o mezcladas, con explicación y fuente.</p></a>
-        <a class="tarjeta tarjeta-enlace" href="#/simulacro"><span class="icono">⏱️</span><h3>Simulacro de final</h3><p>Con tiempo y sin feedback hasta el final. Nota y revisión completa.</p></a>
-        <a class="tarjeta tarjeta-enlace" href="#/ejercicios"><span class="icono">🧮</span><h3>Ejercicios</h3><p>Gantt, reemplazo de páginas, paginación, banquero, disco, semáforos y más.</p></a>
-        <a class="tarjeta tarjeta-enlace" href="#/teoria"><span class="icono">📖</span><h3>Teoría</h3><p>Un resumen corto de cada unidad para leer antes de practicar.</p></a>
-        <a class="tarjeta tarjeta-enlace" href="#/errores"><span class="icono">🔁</span><h3>Repasar mis errores</h3><p>${errores ? `${errores} preguntas falladas esperando revancha.` : 'Lo que falles va a aparecer acá.'}</p></a>
-        <a class="tarjeta tarjeta-enlace" href="#/progreso"><span class="icono">📊</span><h3>Estadísticas</h3><p>Porcentaje de aciertos por unidad, para ver qué te falta.</p></a>
+    </section>
+    <section class="pagina inicio">
+      <div class="encabezado-seccion">
+        <h2>Modos de práctica</h2>
+        <p class="bajada">Elegí cómo estudiar hoy.</p>
       </div>
-      <h2>Unidades</h2>
-      <ul class="lista-unidades">${us.map((u) => `<li><a href="#/teoria/${u.id}"><strong>U${u.numero}</strong> ${escapar(u.titulo)}</a></li>`).join('')}</ul>
+      <div class="grilla-tarjetas inicio-tarjetas">
+        ${tarjeta('01', '#/quiz', 'Multiple choice', `${ps.length} preguntas por unidad o mezcladas, con explicación y fuente.`, 'destacada')}
+        ${tarjeta('02', '#/simulacro', 'Simulacro de final', 'Con tiempo y sin feedback hasta el final. Nota y revisión completa.')}
+        ${tarjeta('03', '#/ejercicios', 'Ejercicios', 'Gantt, reemplazo de páginas, paginación, banquero, disco, semáforos y más.')}
+        ${tarjeta('04', '#/teoria', 'Teoría', 'Un resumen corto de cada unidad para leer antes de practicar.')}
+        ${tarjeta('05', '#/errores', 'Repasar mis errores', errores ? `${errores} preguntas falladas esperando revancha.` : 'Lo que falles va a aparecer acá.')}
+        ${tarjeta('06', '#/progreso', 'Estadísticas', 'Porcentaje de aciertos por unidad, para ver qué te falta.')}
+      </div>
+      <div class="encabezado-seccion">
+        <h2>Unidades</h2>
+        <p class="bajada">El resumen de teoría de cada una.</p>
+      </div>
+      <ul class="lista-unidades">${us.map((u) => `<li><a href="#/teoria/${u.id}"><span class="u-num">U${u.numero}</span><span class="u-titulo">${escapar(u.titulo)}</span>${flecha}</a></li>`).join('')}</ul>
     </section>`;
 }
 
@@ -92,12 +148,12 @@ async function vistaProgreso() {
             </div>`).join('')}
         </div>
       </div>
-      ${ejercicios.length ? `<h2>Ejercicios</h2><div class="tarjeta"><table class="tabla-chica"><thead><tr><th>Tipo</th><th>Correcciones</th><th>Perfectas</th></tr></thead><tbody>
+      ${ejercicios.length ? `<h2>Ejercicios</h2><div class="tarjeta"><div class="tabla-scroll"><table class="tabla-chica"><thead><tr><th>Tipo</th><th>Correcciones</th><th>Perfectas</th></tr></thead><tbody>
         ${ejercicios.map(([t, e]) => `<tr><td><a href="#/ejercicios/${t}">${escapar(t)}</a></td><td>${e.intentos}</td><td>${e.perfectos}</td></tr>`).join('')}
-      </tbody></table></div>` : ''}
-      ${prog.simulacros.length ? `<h2>Simulacros</h2><div class="tarjeta"><table class="tabla-chica"><thead><tr><th>Fecha</th><th>Nota</th><th>%</th><th>Preguntas</th></tr></thead><tbody>
+      </tbody></table></div></div>` : ''}
+      ${prog.simulacros.length ? `<h2>Simulacros</h2><div class="tarjeta"><div class="tabla-scroll"><table class="tabla-chica"><thead><tr><th>Fecha</th><th>Nota</th><th>%</th><th>Preguntas</th></tr></thead><tbody>
         ${[...prog.simulacros].reverse().map((s) => `<tr><td>${new Date(s.fecha).toLocaleString('es-AR', { dateStyle: 'short', timeStyle: 'short' })}</td><td>${s.nota}</td><td>${s.porcentaje}%</td><td>${s.total}</td></tr>`).join('')}
-      </tbody></table></div>` : ''}
+      </tbody></table></div></div>` : ''}
       <h2>Tus datos</h2>
       <div class="acciones">
         <button class="boton" id="exportar">Exportar progreso</button>
@@ -136,7 +192,11 @@ async function enrutar() {
   }
   rutaAnterior = location.hash;
   const [ruta, param] = location.hash.replace(/^#\/?/, '').split('/');
-  document.querySelectorAll('.nav a').forEach((a) => a.classList.toggle('activa', a.getAttribute('href') === `#/${ruta}`));
+  document.querySelectorAll('.nav a').forEach((a) => {
+    const activa = a.getAttribute('href') === `#/${ruta}`;
+    a.classList.toggle('activa', activa);
+    if (activa) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+  });
   try {
     switch (ruta) {
       case '': await vistaInicio(); break;

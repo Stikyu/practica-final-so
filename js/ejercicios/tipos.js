@@ -25,7 +25,7 @@ function leerTamano(texto) {
 
 /* =================== U3 · Planificación =================== */
 
-const colores = ['#4f7cff', '#f59e0b', '#10b981', '#ef4444', '#8b5cf6', '#ec4899', '#14b8a6'];
+const colores = ['var(--g1)', 'var(--g2)', 'var(--g3)', 'var(--g4)', 'var(--g5)', 'var(--g6)', 'var(--g7)'];
 
 function ganttHTML(gantt, ids) {
   const tramos = tramosGantt(gantt);
